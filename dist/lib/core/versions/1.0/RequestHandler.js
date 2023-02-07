@@ -64,7 +64,7 @@ class RequestHandler {
                     };
                 }
                 // Else we give a generic bad request response.
-                Logger_1.default.info(`Bad request: ${error}`);
+                Logger_1.default.info(`Bad request: ${JSON.stringify(error)}`);
                 return {
                     status: ResponseStatus_1.default.BadRequest
                 };

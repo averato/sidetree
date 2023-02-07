@@ -3,7 +3,8 @@ www/api/index.html
 www/spec/index.html
 www/spec-up/
 nunitresults.xml
-
+# Yarn cache
+.yarn/
 # Istanbul code coverage folders
 .nyc_output/
 coverage/

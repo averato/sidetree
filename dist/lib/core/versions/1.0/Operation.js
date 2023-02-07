@@ -18,6 +18,7 @@ const OperationType_1 = require("../../enums/OperationType");
 const RecoverOperation_1 = require("./RecoverOperation");
 const SidetreeError_1 = require("../../../common/SidetreeError");
 const UpdateOperation_1 = require("./UpdateOperation");
+const Logger_1 = require("../../../common/Logger");
 /**
  * A class that contains Sidetree operation utility methods.
  */
@@ -29,6 +30,7 @@ class Operation {
         return __awaiter(this, void 0, void 0, function* () {
             // Parse request buffer into a JS object.
             const operationJsonString = operationBuffer.toString();
+            Logger_1.default.info(`Operation params: ${operationJsonString}`);
             const operationObject = JSON.parse(operationJsonString);
             const operationType = operationObject.type;
             if (operationType === OperationType_1.default.Create) {

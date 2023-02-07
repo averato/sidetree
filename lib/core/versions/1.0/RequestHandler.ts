@@ -67,7 +67,7 @@ export default class RequestHandler implements IRequestHandler {
       }
 
       // Else we give a generic bad request response.
-      Logger.info(`Bad request: ${error}`);
+      Logger.info(`Bad request: ${JSON.stringify(error)}`);
       return {
         status: ResponseStatus.BadRequest
       };

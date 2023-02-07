@@ -8,6 +8,7 @@ import OperationType from '../../enums/OperationType';
 import RecoverOperation from './RecoverOperation';
 import SidetreeError from '../../../common/SidetreeError';
 import UpdateOperation from './UpdateOperation';
+import Logger from '../../../common/Logger';
 
 /**
  * A class that contains Sidetree operation utility methods.
@@ -22,7 +23,9 @@ export default class Operation {
   public static async parse (operationBuffer: Buffer): Promise<OperationModel> {
     // Parse request buffer into a JS object.
     const operationJsonString = operationBuffer.toString();
+    Logger.info(`Operation params: ${operationJsonString}`);
     const operationObject = JSON.parse(operationJsonString);
+    Logger.info(`Operation parsed object: ${JSON.stringify(operationObject)}`);
     const operationType = operationObject.type;
 
     if (operationType === OperationType.Create) {

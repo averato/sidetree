@@ -32,6 +32,7 @@ class Operation {
             const operationJsonString = operationBuffer.toString();
             Logger_1.default.info(`Operation params: ${operationJsonString}`);
             const operationObject = JSON.parse(operationJsonString);
+            Logger_1.default.info(`Operation parsed object: ${JSON.stringify(operationObject)}`);
             const operationType = operationObject.type;
             if (operationType === OperationType_1.default.Create) {
                 return CreateOperation_1.default.parseObject(operationObject, operationBuffer);

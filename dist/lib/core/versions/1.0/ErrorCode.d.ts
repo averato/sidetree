@@ -1,3 +1,6 @@
+/**
+ * Error codes used ONLY by this version of the protocol.
+ */
 declare const _default: {
     AnchoredDataIncorrectFormat: string;
     AnchoredDataNumberOfOperationsGreaterThanMax: string;
@@ -142,7 +145,4 @@ declare const _default: {
     ValueTimeLockVerifierTransactionTimeOutsideLockRange: string;
     ValueTimeLockVerifierTransactionWriterLockOwnerMismatch: string;
 };
-/**
- * Error codes used ONLY by this version of the protocol.
- */
 export default _default;

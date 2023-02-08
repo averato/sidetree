@@ -26,7 +26,7 @@ describe('Ipfs', () => __awaiter(void 0, void 0, void 0, function* () {
         // test network connectivity, `networkAvailable` is used by tests to decide whether to run tests through real network calls or stubs
         const ipfsVersionUrl = new URL('/api/v0/version', config.ipfsHttpApiEndpointUri).toString();
         try {
-            const response = yield node_fetch_1.default(ipfsVersionUrl, { method: 'POST' });
+            const response = yield (0, node_fetch_1.default)(ipfsVersionUrl, { method: 'POST' });
             if (response.status === 200) {
                 networkAvailable = true;
             }

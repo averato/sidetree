@@ -831,7 +831,7 @@ class BitcoinClient {
                     // Clone the request parameters passed in, then set timeout value if needed.
                     const params = Object.assign({}, requestParameters);
                     params.timeout = requestTimeout;
-                    response = yield node_fetch_1.default(uri, params);
+                    response = yield (0, node_fetch_1.default)(uri, params);
                 }
                 catch (error) {
                     // Retry-able if request is timed out.

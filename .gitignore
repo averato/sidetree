@@ -5,6 +5,7 @@ www/spec-up/
 nunitresults.xml
 # Yarn cache
 .yarn/
+.yarnrc.*
 # Istanbul code coverage folders
 .nyc_output/
 coverage/

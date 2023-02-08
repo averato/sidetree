@@ -1,3 +1,6 @@
+/**
+ * Error codes used by Sidetree core service.
+ */
 declare const _default: {
     BatchSchedulerWriteUnexpectedError: string;
     BlockchainGetFeeResponseNotOk: string;
@@ -12,7 +15,4 @@ declare const _default: {
     VersionManagerVersionStringNotFound: string;
     VersionManagerVersionMetadataIncorrectType: string;
 };
-/**
- * Error codes used by Sidetree core service.
- */
 export default _default;

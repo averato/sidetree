@@ -44,7 +44,8 @@ describe('VersionManager', () => __awaiter(void 0, void 0, void 0, function* () 
             ];
             const versionMgr = new VersionManager_1.default(config, versionModels);
             spyOn(versionMgr, 'loadDefaultExportsForVersion').and.callFake((version, className) => __awaiter(void 0, void 0, void 0, function* () {
-                return (yield Promise.resolve().then(() => require(`./versions/${version}/${className}`))).default;
+                var _a;
+                return (yield (_a = `./versions/${version}/${className}`, Promise.resolve().then(() => require(_a)))).default;
             }));
             const resolver = new Resolver_1.default(versionMgr, operationStore);
             yield versionMgr.initialize(blockChain, cas, downloadMgr, operationStore, resolver, mockTransactionStore, mockConfirmationStore);
@@ -58,13 +59,14 @@ describe('VersionManager', () => __awaiter(void 0, void 0, void 0, function* () 
             ];
             const versionMgr = new VersionManager_1.default(config, versionModels);
             spyOn(versionMgr, 'loadDefaultExportsForVersion').and.callFake((version, className) => __awaiter(void 0, void 0, void 0, function* () {
+                var _b;
                 if (className === 'VersionMetadata') {
                     const fakeClass = class {
                     }; // a fake class that does nothing
                     return fakeClass;
                 }
                 else {
-                    return (yield Promise.resolve().then(() => require(`./versions/${version}/${className}`))).default;
+                    return (yield (_b = `./versions/${version}/${className}`, Promise.resolve().then(() => require(_b)))).default;
                 }
             }));
             const resolver = new Resolver_1.default(versionMgr, operationStore);
@@ -112,6 +114,7 @@ describe('VersionManager', () => __awaiter(void 0, void 0, void 0, function* () 
                 selectQualifiedTransactions() { return [anyTransactionModel]; }
             };
             spyOn(versionManager, 'loadDefaultExportsForVersion').and.callFake((version, className) => __awaiter(void 0, void 0, void 0, function* () {
+                var _c;
                 if (className === 'TransactionSelector') {
                     if (version === '1000') {
                         return mockTransactionSelector1;
@@ -121,7 +124,7 @@ describe('VersionManager', () => __awaiter(void 0, void 0, void 0, function* () 
                     }
                 }
                 // Else we are loading components unrelated to this test, default to loading from `latest` version folder.
-                const classObject = (yield Promise.resolve().then(() => require(`../../lib/core/versions/latest/${className}`))).default;
+                const classObject = (yield (_c = `../../lib/core/versions/latest/${className}`, Promise.resolve().then(() => require(_c)))).default;
                 // Override the `intialize()` call so no network call occurs, else the test the will fail in GitHub CICD.
                 if (className === 'MongoDbOperationQueue') {
                     classObject.prototype.initialize = () => __awaiter(void 0, void 0, void 0, function* () { });
@@ -141,7 +144,8 @@ describe('VersionManager', () => __awaiter(void 0, void 0, void 0, function* () 
             ];
             const versionMgr = new VersionManager_1.default(config, versionModels);
             spyOn(versionMgr, 'loadDefaultExportsForVersion').and.callFake((version, className) => __awaiter(void 0, void 0, void 0, function* () {
-                return (yield Promise.resolve().then(() => require(`./versions/${version}/${className}`))).default;
+                var _a;
+                return (yield (_a = `./versions/${version}/${className}`, Promise.resolve().then(() => require(_a)))).default;
             }));
             const resolver = new Resolver_1.default(versionMgr, operationStore);
             yield versionMgr.initialize(blockChain, cas, downloadMgr, operationStore, resolver, mockTransactionStore, mockConfirmationStore);
@@ -156,7 +160,8 @@ describe('VersionManager', () => __awaiter(void 0, void 0, void 0, function* () 
             ];
             const versionMgr = new VersionManager_1.default(config, versionModels);
             spyOn(versionMgr, 'loadDefaultExportsForVersion').and.callFake((version, className) => __awaiter(void 0, void 0, void 0, function* () {
-                return (yield Promise.resolve().then(() => require(`./versions/${version}/${className}`))).default;
+                var _d;
+                return (yield (_d = `./versions/${version}/${className}`, Promise.resolve().then(() => require(_d)))).default;
             }));
             const resolver = new Resolver_1.default(versionMgr, operationStore);
             yield versionMgr.initialize(blockChain, cas, downloadMgr, operationStore, resolver, mockTransactionStore, mockConfirmationStore);
@@ -196,7 +201,8 @@ describe('VersionManager', () => __awaiter(void 0, void 0, void 0, function* () 
             ];
             const versionMgr = new VersionManager_1.default(config, versionModels);
             spyOn(versionMgr, 'loadDefaultExportsForVersion').and.callFake((version, className) => __awaiter(void 0, void 0, void 0, function* () {
-                return (yield Promise.resolve().then(() => require(`./versions/${version}/${className}`))).default;
+                var _e;
+                return (yield (_e = `./versions/${version}/${className}`, Promise.resolve().then(() => require(_e)))).default;
             }));
             const resolver = new Resolver_1.default(versionMgr, operationStore);
             yield versionMgr.initialize(blockChain, cas, downloadMgr, operationStore, resolver, mockTransactionStore, mockConfirmationStore);

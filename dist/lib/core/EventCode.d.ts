@@ -1,3 +1,6 @@
+/**
+ * Event codes used by Sidetree core service.
+ */
 declare const _default: {
     SidetreeBatchWriterLoopFailure: string;
     SidetreeBatchWriterLoopSuccess: string;
@@ -7,7 +10,4 @@ declare const _default: {
     SidetreeObserverLoopFailure: string;
     SidetreeObserverLoopSuccess: string;
 };
-/**
- * Event codes used by Sidetree core service.
- */
 export default _default;

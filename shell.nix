@@ -23,6 +23,8 @@ in pkgs.mkShell {
     pkgs.typescript
     pkgs.nodePackages.typescript
     pkgs.nodePackages.typescript-language-server   
+    pkgs.nodePackages.eslint   
+
     # pkgs.mongodb
   ];
 

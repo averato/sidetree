@@ -16,14 +16,6 @@ const Logger_1 = require("../common/Logger");
  */
 class MongoDbStore {
     /**
-     * Constructs a `MongoDbStore`;
-     */
-    constructor(serverUrl, collectionName, databaseName) {
-        this.serverUrl = serverUrl;
-        this.collectionName = collectionName;
-        this.databaseName = databaseName;
-    }
-    /**
      * Set the logger for mongodb command monitoring.
      * @param client the mongodb client
      */
@@ -57,6 +49,14 @@ class MongoDbStore {
         }
     }
     ;
+    /**
+     * Constructs a `MongoDbStore`;
+     */
+    constructor(serverUrl, collectionName, databaseName) {
+        this.serverUrl = serverUrl;
+        this.collectionName = collectionName;
+        this.databaseName = databaseName;
+    }
     /**
      * Initialize the MongoDB transaction store.
      */

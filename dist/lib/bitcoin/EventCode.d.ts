@@ -1,3 +1,6 @@
+/**
+ * Event codes used by Bitcoin Processor.
+ */
 declare const _default: {
     BitcoinDatabasesRevert: string;
     BitcoinLockMonitorLockReleased: string;
@@ -8,7 +11,4 @@ declare const _default: {
     BitcoinObservingLoopFailure: string;
     BitcoinObservingLoopSuccess: string;
 };
-/**
- * Event codes used by Bitcoin Processor.
- */
 export default _default;

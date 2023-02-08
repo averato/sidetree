@@ -64,7 +64,7 @@ export default class MongoDbStore {
       logger: MongoDbStore.customLogger,
       monitorCommands: true,
       loggerLevel: 'error',
-      useUnifiedTopology: true // prevents unrecoverable lost of connection: https://jira.mongodb.org/browse/NODE-3252 
+      useUnifiedTopology: true // prevents unrecoverable lost of connection: https://jira.mongodb.org/browse/NODE-3252
     });
     MongoDbStore.enableCommandResultLogging(client);
     this.db = client.db(this.databaseName);

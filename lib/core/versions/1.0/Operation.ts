@@ -3,12 +3,12 @@ import DeactivateOperation from './DeactivateOperation';
 import DocumentComposer from './DocumentComposer';
 import ErrorCode from './ErrorCode';
 import InputValidator from './InputValidator';
+import Logger from '../../../common/Logger';
 import OperationModel from './models/OperationModel';
 import OperationType from '../../enums/OperationType';
 import RecoverOperation from './RecoverOperation';
 import SidetreeError from '../../../common/SidetreeError';
 import UpdateOperation from './UpdateOperation';
-import Logger from '../../../common/Logger';
 
 /**
  * A class that contains Sidetree operation utility methods.

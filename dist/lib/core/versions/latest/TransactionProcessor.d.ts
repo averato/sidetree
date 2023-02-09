@@ -4,9 +4,6 @@ import IOperationStore from '../../interfaces/IOperationStore';
 import ITransactionProcessor from '../../interfaces/ITransactionProcessor';
 import IVersionMetadataFetcher from '../../interfaces/IVersionMetadataFetcher';
 import TransactionModel from '../../../common/models/TransactionModel';
-/**
- * Implementation of the `ITransactionProcessor`.
- */
 export default class TransactionProcessor implements ITransactionProcessor {
     private downloadManager;
     private operationStore;

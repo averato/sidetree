@@ -1,8 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * DID Document public key purpose.
- */
 var PublicKeyPurpose;
 (function (PublicKeyPurpose) {
     PublicKeyPurpose["Authentication"] = "authentication";

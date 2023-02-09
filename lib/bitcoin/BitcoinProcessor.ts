@@ -78,7 +78,7 @@ export default class BitcoinProcessor {
   private lastProcessedBlock: BlockMetadata | undefined;
 
   /** Poll timeout identifier */
-  private pollTimeoutId: number | undefined;
+  private pollTimeoutId: NodeJS.Timeout | undefined;
 
   private serviceInfoProvider: ServiceInfoProvider;
 

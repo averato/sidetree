@@ -1,8 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Sidetree patch actions. These are the valid values in the action property of a patch.
- */
 var PatchAction;
 (function (PatchAction) {
     PatchAction["Replace"] = "replace";

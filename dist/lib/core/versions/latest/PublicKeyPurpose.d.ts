@@ -1,6 +1,3 @@
-/**
- * DID Document public key purpose.
- */
 declare enum PublicKeyPurpose {
     Authentication = "authentication",
     AssertionMethod = "assertionMethod",

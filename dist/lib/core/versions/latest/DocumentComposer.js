@@ -9,22 +9,12 @@ const JsObject_1 = require("./util/JsObject");
 const PatchAction_1 = require("./PatchAction");
 const PublicKeyPurpose_1 = require("./PublicKeyPurpose");
 const SidetreeError_1 = require("../../../common/SidetreeError");
-/**
- * Class that handles the composition of operations into final external-facing document.
- */
 class DocumentComposer {
-    /**
-     * Transforms the given DID state into a DID Document.
-     */
     static transformToExternalDocument(didState, did, published) {
-        // If the DID is deactivated.
-        // Return required metadata and a document with only context and id if so
         if (didState.nextRecoveryCommitmentHash === undefined) {
             return DocumentComposer.createDeactivatedResolutionResult(did.shortForm, published);
         }
         const document = didState.document;
-        // Put each public key in verificationMethod
-        // then populate the verification relationships by reference if a key has purposes,
         const verificationRelationships = new Map();
         const verificationMethod = [];
         if (Array.isArray(document.publicKeys)) {
@@ -37,8 +27,6 @@ class DocumentComposer {
                     publicKeyJwk: publicKey.publicKeyJwk
                 };
                 const purposeSet = new Set(publicKey.purposes);
-                // add to verificationMethod no matter what,
-                // then look at purpose to decide what verification relationship to add to
                 verificationMethod.push(didDocumentPublicKey);
                 if (purposeSet.size > 0) {
                     const reference = didDocumentPublicKey.id;
@@ -53,7 +41,6 @@ class DocumentComposer {
                 }
             }
         }
-        // Only update `service` if the array is present
         let services;
         if (Array.isArray(document.services)) {
             services = [];
@@ -118,10 +105,6 @@ class DocumentComposer {
             didDocumentMetadata
         };
     }
-    /**
-     * Validates the schema of the given full document state.
-     * @throws SidetreeError if given document patch fails validation.
-     */
     static validateDocument(document) {
         if (document === undefined) {
             throw new SidetreeError_1.default(ErrorCode_1.default.DocumentComposerDocumentMissing);
@@ -132,20 +115,13 @@ class DocumentComposer {
                 throw new SidetreeError_1.default(ErrorCode_1.default.DocumentComposerUnknownPropertyInDocument, `Unexpected property ${property} in document.`);
             }
         }
-        // Verify 'publicKeys' property if it exists.
         if (('publicKeys' in document)) {
             DocumentComposer.validatePublicKeys(document.publicKeys);
         }
-        // Verify 'services' property if it exists.
         if (('services' in document)) {
-            // Verify each entry in services array.
             DocumentComposer.validateServices(document.services);
         }
     }
-    /**
-     * Validates the schema of the given update document patch.
-     * @throws SidetreeError if given document patch fails validation.
-     */
     static validateDocumentPatches(patches) {
         if (!Array.isArray(patches)) {
             throw new SidetreeError_1.default(ErrorCode_1.default.DocumentComposerUpdateOperationDocumentPatchesNotArray);
@@ -200,7 +176,6 @@ class DocumentComposer {
                 throw new SidetreeError_1.default(ErrorCode_1.default.DocumentComposerPublicKeyTypeMissingOrIncorrectType);
             }
             DocumentComposer.validateId(publicKey.id);
-            // 'id' must be unique
             if (publicKeyIdSet.has(publicKey.id)) {
                 throw new SidetreeError_1.default(ErrorCode_1.default.DocumentComposerPublicKeyIdDuplicated);
             }
@@ -213,7 +188,6 @@ class DocumentComposer {
                     throw new SidetreeError_1.default(ErrorCode_1.default.DocumentComposerPublicKeyPurposesDuplicated);
                 }
                 const validPurposes = new Set(Object.values(PublicKeyPurpose_1.default));
-                // Purpose must be one of the valid ones in PublicKeyPurpose
                 for (const purpose of publicKey.purposes) {
                     if (!validPurposes.has(purpose)) {
                         throw new SidetreeError_1.default(ErrorCode_1.default.DocumentComposerPublicKeyInvalidPurpose);
@@ -236,9 +210,6 @@ class DocumentComposer {
             DocumentComposer.validateId(id);
         }
     }
-    /**
-     * validate update patch for removing services
-     */
     static validateRemoveServicesPatch(patch) {
         const allowedProperties = new Set(['action', 'ids']);
         for (const property in patch) {
@@ -253,9 +224,6 @@ class DocumentComposer {
             DocumentComposer.validateId(id);
         }
     }
-    /**
-     * Validates update patch for adding services.
-     */
     static validateAddServicesPatch(patch) {
         const patchProperties = Object.keys(patch);
         if (patchProperties.length !== 2) {
@@ -266,10 +234,6 @@ class DocumentComposer {
         }
         DocumentComposer.validateServices(patch.services);
     }
-    /**
-     * Validates and parses services.
-     * @param services The services to validate and parse.
-     */
     static validateServices(services) {
         if (!Array.isArray(services)) {
             throw new SidetreeError_1.default(ErrorCode_1.default.DocumentComposerPatchServicesNotArray);
@@ -277,7 +241,7 @@ class DocumentComposer {
         const serviceIdSet = new Set();
         for (const service of services) {
             const serviceProperties = Object.keys(service);
-            if (serviceProperties.length !== 3) { // type, id, and serviceEndpoint
+            if (serviceProperties.length !== 3) {
                 throw new SidetreeError_1.default(ErrorCode_1.default.DocumentComposerServiceHasMissingOrUnknownProperty);
             }
             DocumentComposer.validateId(service.id);
@@ -291,7 +255,6 @@ class DocumentComposer {
             if (service.type.length > 30) {
                 throw new SidetreeError_1.default(ErrorCode_1.default.DocumentComposerPatchServiceTypeTooLong);
             }
-            // `serviceEndpoint` validations.
             const serviceEndpoint = service.serviceEndpoint;
             if (typeof serviceEndpoint === 'string') {
                 const uri = URI.parse(service.serviceEndpoint);
@@ -300,7 +263,6 @@ class DocumentComposer {
                 }
             }
             else if (typeof serviceEndpoint === 'object') {
-                // Allow `object` type only if it is not an array.
                 if (Array.isArray(serviceEndpoint)) {
                     throw new SidetreeError_1.default(ErrorCode_1.default.DocumentComposerPatchServiceEndpointCannotBeAnArray);
                 }
@@ -321,22 +283,13 @@ class DocumentComposer {
             throw new SidetreeError_1.default(ErrorCode_1.default.DocumentComposerIdNotUsingBase64UrlCharacterSet);
         }
     }
-    /**
-     * Applies the given patches in order to the given document.
-     * NOTE: Assumes no schema validation is needed, since validation should've already occurred at the time of the operation being parsed.
-     */
     static applyPatches(document, patches) {
-        // Loop through and apply all patches.
         for (const patch of patches) {
             DocumentComposer.applyPatchToDidDocument(document, patch);
         }
     }
-    /**
-     * Applies the given patch to the given DID Document.
-     */
     static applyPatchToDidDocument(document, patch) {
         if (patch.action === PatchAction_1.default.Replace) {
-            // In-place replacement of the document.
             JsObject_1.default.clearObject(document);
             Object.assign(document, patch.document);
         }
@@ -356,38 +309,26 @@ class DocumentComposer {
             throw new SidetreeError_1.default(ErrorCode_1.default.DocumentComposerApplyPatchUnknownAction, `Cannot apply invalid action: ${patch.action}`);
         }
     }
-    /**
-     * Adds public keys to document.
-     */
     static addPublicKeys(document, patch) {
         const publicKeyMap = new Map((document.publicKeys || []).map(publicKey => [publicKey.id, publicKey]));
-        // Loop through all given public keys and add them.
-        // NOTE: If a key ID already exists, we will just replace the existing key.
-        // Not throwing error will minimize the need (thus risk) of reusing exposed update reveal value.
         for (const publicKey of patch.publicKeys) {
             publicKeyMap.set(publicKey.id, publicKey);
         }
         document.publicKeys = [...publicKeyMap.values()];
     }
-    /**
-     * Removes public keys from document.
-     */
     static removePublicKeys(document, patch) {
         if (document.publicKeys === undefined) {
             return;
         }
         const idsOfKeysToRemove = new Set(patch.ids);
-        // Keep only keys that are not in the removal list.
         document.publicKeys = document.publicKeys.filter(publicKey => !idsOfKeysToRemove.has(publicKey.id));
     }
     static addServices(document, patch) {
         const services = patch.services;
         if (document.services === undefined) {
-            // create a new array if `services` does not exist
             document.services = [];
         }
         const idToIndexMapper = new Map();
-        // map all id and their index
         for (const index in document.services) {
             idToIndexMapper.set(document.services[index].id, index);
         }

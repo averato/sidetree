@@ -1,14 +1,6 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = require("tslib");
 const ArrayMethods_1 = require("./util/ArrayMethods");
 const Compressor_1 = require("./util/Compressor");
 const ErrorCode_1 = require("./ErrorCode");
@@ -16,25 +8,13 @@ const InputValidator_1 = require("./InputValidator");
 const JsonAsync_1 = require("./util/JsonAsync");
 const ProtocolParameters_1 = require("./ProtocolParameters");
 const SidetreeError_1 = require("../../../common/SidetreeError");
-/**
- * Class containing Map File related operations.
- */
 class ProvisionalIndexFile {
-    /**
-     * Class that represents a provisional index file.
-     * NOTE: this class is introduced as an internal structure in replacement to `ProvisionalIndexFileModel`
-     * to keep useful metadata so that repeated computation can be avoided.
-     */
     constructor(model, didUniqueSuffixes) {
         this.model = model;
         this.didUniqueSuffixes = didUniqueSuffixes;
     }
-    /**
-     * Parses and validates the given provisional index file buffer.
-     * @throws `SidetreeError` if failed parsing or validation.
-     */
     static parse(provisionalIndexFileBuffer) {
-        return __awaiter(this, void 0, void 0, function* () {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
             let decompressedBuffer;
             try {
                 const maxAllowedDecompressedSizeInBytes = ProtocolParameters_1.default.maxProvisionalIndexFileSizeInBytes * Compressor_1.default.estimatedDecompressionMultiplier;
@@ -58,7 +38,6 @@ class ProvisionalIndexFile {
             }
             ProvisionalIndexFile.validateChunksProperty(provisionalIndexFileModel.chunks);
             const didSuffixes = yield ProvisionalIndexFile.validateOperationsProperty(provisionalIndexFileModel.operations);
-            // Validate provisional proof file URI.
             if (didSuffixes.length > 0) {
                 InputValidator_1.default.validateCasFileUri(provisionalIndexFileModel.provisionalProofFileUri, 'provisional proof file URI');
             }
@@ -71,11 +50,6 @@ class ProvisionalIndexFile {
             return provisionalIndexFile;
         });
     }
-    /**
-     * Validates the given `operations` property, throws error if the property fails validation.
-     *
-     * @returns The of array of unique DID suffixes if validation succeeds.
-     */
     static validateOperationsProperty(operations) {
         if (operations === undefined) {
             return [];
@@ -84,23 +58,17 @@ class ProvisionalIndexFile {
         if (!Array.isArray(operations.update)) {
             throw new SidetreeError_1.default(ErrorCode_1.default.ProvisionalIndexFileUpdateOperationsNotArray);
         }
-        // Validate all update operation references.
         InputValidator_1.default.validateOperationReferences(operations.update, 'update reference');
-        // Make sure no operation with same DID.
         const didSuffixes = operations.update.map(operation => operation.didSuffix);
         if (ArrayMethods_1.default.hasDuplicates(didSuffixes)) {
             throw new SidetreeError_1.default(ErrorCode_1.default.ProvisionalIndexFileMultipleOperationsForTheSameDid);
         }
         return didSuffixes;
     }
-    /**
-     * Validates the given `chunks` property, throws error if the property fails validation.
-     */
     static validateChunksProperty(chunks) {
         if (!Array.isArray(chunks)) {
             throw new SidetreeError_1.default(ErrorCode_1.default.ProvisionalIndexFileChunksPropertyMissingOrIncorrectType);
         }
-        // This version expects only one hash.
         if (chunks.length !== 1) {
             throw new SidetreeError_1.default(ErrorCode_1.default.ProvisionalIndexFileChunksPropertyDoesNotHaveExactlyOneElement);
         }
@@ -111,11 +79,8 @@ class ProvisionalIndexFile {
         }
         InputValidator_1.default.validateCasFileUri(chunk.chunkFileUri, 'chunk file URI');
     }
-    /**
-     * Creates the Map File buffer.
-     */
     static createBuffer(chunkFileUri, provisionalProofFileUri, updateOperationArray) {
-        return __awaiter(this, void 0, void 0, function* () {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
             const updateReferences = updateOperationArray.map(operation => {
                 const revealValue = operation.revealValue;
                 return { didSuffix: operation.didUniqueSuffix, revealValue };
@@ -123,7 +88,6 @@ class ProvisionalIndexFile {
             const provisionalIndexFileModel = {
                 chunks: [{ chunkFileUri }]
             };
-            // Only insert `operations` and `provisionalProofFileUri` properties if there are update operations.
             if (updateReferences.length > 0) {
                 provisionalIndexFileModel.operations = {
                     update: updateReferences

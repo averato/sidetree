@@ -1,7 +1,4 @@
 import OperationReferenceModel from './OperationReferenceModel';
-/**
- * Defines the external Core Index File structure.
- */
 export default interface CoreIndexFileModel {
     writerLockId?: string;
     provisionalIndexFileUri?: string;

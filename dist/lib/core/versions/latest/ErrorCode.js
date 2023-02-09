@@ -1,8 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Error codes used ONLY by this version of the protocol.
- */
 exports.default = {
     AnchoredDataIncorrectFormat: 'anchored_data_incorrect_format',
     AnchoredDataNumberOfOperationsGreaterThanMax: 'anchored_data_number_of_operations_greater_than_max',

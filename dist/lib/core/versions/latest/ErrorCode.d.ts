@@ -1,6 +1,3 @@
-/**
- * Error codes used ONLY by this version of the protocol.
- */
 declare const _default: {
     AnchoredDataIncorrectFormat: string;
     AnchoredDataNumberOfOperationsGreaterThanMax: string;

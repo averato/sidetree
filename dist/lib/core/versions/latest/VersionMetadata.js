@@ -2,9 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const AbstractVersionMetadata_1 = require("../../abstracts/AbstractVersionMetadata");
 const ProtocolParameters_1 = require("./ProtocolParameters");
-/**
- * Implementation of the abstract VersionMetadata.
- */
 class VersionMetadata extends AbstractVersionMetadata_1.default {
     constructor() {
         super();

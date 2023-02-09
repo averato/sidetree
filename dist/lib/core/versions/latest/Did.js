@@ -1,14 +1,6 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = require("tslib");
 const CreateOperation_1 = require("./CreateOperation");
 const Delta_1 = require("./Delta");
 const Encoder_1 = require("./Encoder");
@@ -17,25 +9,14 @@ const JsonCanonicalizer_1 = require("./util/JsonCanonicalizer");
 const Multihash_1 = require("./Multihash");
 const OperationType_1 = require("../../enums/OperationType");
 const SidetreeError_1 = require("../../../common/SidetreeError");
-/**
- * Class containing reusable Sidetree DID related operations.
- */
 class Did {
-    /**
-     * Parses the input string as Sidetree DID.
-     * NOTE: Must not call this constructor directly, use the factory `create` method instead.
-     * @param did Short or long-form DID string.
-     * @param didMethodName The expected DID method given in the DID string. The method throws SidetreeError if mismatch.
-     */
     constructor(did, didMethodName) {
         this.didMethodName = didMethodName;
         const didPrefix = `did:${didMethodName}:`;
-        // TODO https://github.com/decentralized-identity/sidetree/issues/470 add network prefix to the didPrefix string
         if (!did.startsWith(didPrefix)) {
             throw new SidetreeError_1.default(ErrorCode_1.default.DidIncorrectPrefix, `Expected DID prefix ${didPrefix} not given in DID.`);
         }
         const didWithoutPrefix = did.split(didPrefix)[1];
-        // split by : and if there is 1 element, then it's short form. Long form has 2 elements
         const didSplitLength = didWithoutPrefix.split(':').length;
         if (didSplitLength === 1) {
             this.isShortForm = true;
@@ -47,8 +28,6 @@ class Did {
             this.uniqueSuffix = did.substring(didPrefix.length);
         }
         else {
-            // Long-form DID looks like:
-            // 'did:<methodName>:<unique-portion>:Base64url(JCS({suffix-data, delta}))'
             this.uniqueSuffix = did.substring(didPrefix.length, did.lastIndexOf(':'));
             this.longForm = did;
         }
@@ -57,24 +36,14 @@ class Did {
         }
         this.shortForm = didPrefix + this.uniqueSuffix;
     }
-    /**
-     * Parses the input string as Sidetree DID.
-     * @param didString Short or long-form DID string.
-     */
     static create(didString, didMethodName) {
-        return __awaiter(this, void 0, void 0, function* () {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
             const did = new Did(didString, didMethodName);
-            // If DID is long-form, ensure the unique suffix constructed from the suffix data matches the short-form DID and populate the `createOperation` property.
             if (!did.isShortForm) {
                 const initialStateEncodedJcs = Did.getInitialStateFromDidStringWithExtraColon(didString);
                 const createOperation = Did.constructCreateOperationFromEncodedJcs(initialStateEncodedJcs);
-                // NOTE: we cannot use the unique suffix directly from `createOperation.didUniqueSuffix` for comparison,
-                // because a given long-form DID may have been created long ago,
-                // thus this version of `CreateOperation.parse()` maybe using a different hashing algorithm than that of the unique DID suffix (short-form).
-                // So we compute the suffix data hash again using the hashing algorithm used by the given unique DID suffix (short-form).
                 const suffixDataJcsBuffer = JsonCanonicalizer_1.default.canonicalizeAsBuffer(createOperation.suffixData);
                 const suffixDataHashMatchesUniqueSuffix = Multihash_1.default.verifyEncodedMultihashForContent(suffixDataJcsBuffer, did.uniqueSuffix);
-                // If the computed suffix data hash is not the same as the unique suffix given in the DID string, the DID is not valid.
                 if (!suffixDataHashMatchesUniqueSuffix) {
                     throw new SidetreeError_1.default(ErrorCode_1.default.DidUniqueSuffixFromInitialStateMismatch);
                 }
@@ -83,11 +52,7 @@ class Did {
             return did;
         });
     }
-    /**
-     * Computes the DID unique suffix given the suffix data object.
-     */
     static computeUniqueSuffix(suffixDataModel) {
-        // TODO: #965 - Need to decide on what hash algorithm to use when hashing suffix data - https://github.com/decentralized-identity/sidetree/issues/965
         const hashAlgorithmInMultihashCode = 18;
         const suffixDataBuffer = JsonCanonicalizer_1.default.canonicalizeAsBuffer(suffixDataModel);
         const multihash = Multihash_1.default.hash(suffixDataBuffer, hashAlgorithmInMultihashCode);
@@ -95,13 +60,11 @@ class Did {
         return encodedMultihash;
     }
     static getInitialStateFromDidStringWithExtraColon(didString) {
-        // DID example: 'did:<methodName>:<unique-portion>:Base64url(JCS({suffix-data, delta}))'
         const lastColonIndex = didString.lastIndexOf(':');
         const initialStateValue = didString.substring(lastColonIndex + 1);
         return initialStateValue;
     }
     static constructCreateOperationFromEncodedJcs(initialStateEncodedJcs) {
-        // Initial state should be in the format base64url(JCS(initialState))
         const initialStateDecodedJcs = Encoder_1.default.decodeAsString(initialStateEncodedJcs);
         let initialStateObject;
         try {
@@ -121,9 +84,6 @@ class Did {
         const createOperation = CreateOperation_1.default.parseObject(createOperationRequest, createOperationBuffer);
         return createOperation;
     }
-    /**
-     * Make sure initial state is JCS
-     */
     static validateInitialStateJcs(initialStateEncodedJcs, initialStateObject) {
         const expectedInitialState = Encoder_1.default.encode(JsonCanonicalizer_1.default.canonicalizeAsBuffer(initialStateObject));
         if (expectedInitialState !== initialStateEncodedJcs) {

@@ -1,12 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Class containing methods that operates against an array.
- */
 class ArrayMethods {
-    /**
-     * Checks to see if there are duplicates in the given array.
-     */
     static hasDuplicates(array) {
         const uniqueValues = new Set();
         for (let i = 0; i < array.length; i++) {
@@ -18,9 +12,6 @@ class ArrayMethods {
         }
         return false;
     }
-    /**
-     * Checks that entries in array 2 is not in array 1.
-     */
     static areMutuallyExclusive(array1, array2) {
         const valuesInArray1 = new Set(array1);
         for (const value of array2) {

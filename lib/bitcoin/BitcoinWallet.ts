@@ -16,7 +16,7 @@ export default class BitcoinWallet implements IBitcoinWallet {
   constructor (bitcoinWalletImportString: string) {
     try {
       this.walletPrivateKey = (PrivateKey as any).fromWIF(bitcoinWalletImportString);
-    } catch (error) {
+    } catch (error: any) {
       throw SidetreeError.createFromError(ErrorCode.BitcoinWalletIncorrectImportString, error);
     }
 

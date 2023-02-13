@@ -121,7 +121,7 @@ export default class SidetreeTransactionParser {
     try {
       const transaction = await this.bitcoinClient.getRawTransaction(transactionId);
       return transaction.outputs[outputIndexToFetch];
-    } catch (e) {
+    } catch (e: any) {
       Logger.error(`Error while trying to get outputIdx: ${outputIndexToFetch} from transaction: ${transactionId}. Error: ${SidetreeError.stringify(e)}`);
       throw e;
     }

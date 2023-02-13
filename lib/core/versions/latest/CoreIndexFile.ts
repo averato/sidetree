@@ -47,14 +47,14 @@ export default class CoreIndexFile {
     try {
       const maxAllowedDecompressedSizeInBytes = ProtocolParameters.maxCoreIndexFileSizeInBytes * Compressor.estimatedDecompressionMultiplier;
       coreIndexFileDecompressedBuffer = await Compressor.decompress(coreIndexFileBuffer, maxAllowedDecompressedSizeInBytes);
-    } catch (e) {
+    } catch (e: any) {
       throw SidetreeError.createFromError(ErrorCode.CoreIndexFileDecompressionFailure, e);
     }
 
     let coreIndexFileModel;
     try {
       coreIndexFileModel = await JsonAsync.parse(coreIndexFileDecompressedBuffer);
-    } catch (e) {
+    } catch (e: any) {
       throw SidetreeError.createFromError(ErrorCode.CoreIndexFileNotJson, e);
     }
 

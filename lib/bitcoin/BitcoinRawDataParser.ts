@@ -64,7 +64,7 @@ export default class BitcoinRawDataParser {
       let block: Block;
       try {
         block = new Block(blockData);
-      } catch (e) {
+      } catch (e: any) {
         throw SidetreeError.createFromError(ErrorCode.BitcoinRawDataParserInvalidBlockData, e);
       }
 

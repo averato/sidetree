@@ -406,7 +406,8 @@ class BitcoinProcessor {
                 Logger_1.default.error(error);
             }
             finally {
-                this.pollTimeoutId = setTimeout(this.periodicPoll.bind(this), 1000 * interval, interval);
+                let timer = setTimeout(this.periodicPoll.bind(this), 1000 * interval, interval);
+                this.pollTimeoutId = timer;
             }
         });
     }

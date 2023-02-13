@@ -98,7 +98,7 @@ export default class Observer {
           Logger.info('Fetching Sidetree transactions from blockchain service...');
           readResult = await this.blockchain.read(cursorTransactionNumber, cursorTransactionTimeHash);
           Logger.info(`Fetched ${readResult.transactions.length} Sidetree transactions from blockchain service in ${endTimer.rounded()} ms.`);
-        } catch (error) {
+        } catch (error: any) {
           if (error instanceof SidetreeError && error.code === SharedErrorCode.InvalidTransactionNumberOrTimeHash) {
             Logger.info(`Invalid transaction number ${cursorTransactionNumber} or time hash ${cursorTransactionTimeHash} given to blockchain service.`);
             invalidTransactionNumberOrTimeHash = true;
@@ -188,7 +188,7 @@ export default class Observer {
       await this.processUnresolvableTransactions();
 
       EventEmitter.emit(EventCode.SidetreeObserverLoopSuccess);
-    } catch (error) {
+    } catch (error: any) {
       EventEmitter.emit(EventCode.SidetreeObserverLoopFailure);
       Logger.error(`Encountered unhandled and possibly fatal Observer error, must investigate and fix:`);
       Logger.error(error);
@@ -296,7 +296,7 @@ export default class Observer {
     try {
       const transactionProcessor: ITransactionProcessor = this.versionManager.getTransactionProcessor(transaction.transactionTime);
       transactionProcessedSuccessfully = await transactionProcessor.processTransaction(transaction);
-    } catch (error) {
+    } catch (error: any) {
       Logger.error(`Unhandled error encountered processing transaction '${transaction.transactionNumber}'.`);
       Logger.error(error);
       transactionProcessedSuccessfully = false;
@@ -311,7 +311,7 @@ export default class Observer {
       try {
         Logger.info(`Recording failed processing attempt for transaction '${transaction.transactionNumber}'...`);
         await this.unresolvableTransactionStore.recordUnresolvableTransactionFetchAttempt(transaction);
-      } catch (error) {
+      } catch (error: any) {
         transactionUnderProcessing.processingStatus = TransactionProcessingStatus.Error;
 
         Logger.error(`Error encountered saving unresolvable transaction '${transaction.transactionNumber}' for retry.`);

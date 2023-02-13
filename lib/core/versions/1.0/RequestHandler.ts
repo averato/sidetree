@@ -40,7 +40,7 @@ export default class RequestHandler implements IRequestHandler {
     let operationModel: OperationModel;
     try {
       const operationRequest = await JsonAsync.parse(request);
-
+      Logger.error(`JSON Parseing outcome: ${operationRequest}`);
       // Check `delta` property data size if they exist in the operation.
       if (operationRequest.type === OperationType.Create ||
           operationRequest.type === OperationType.Recover ||
@@ -49,13 +49,14 @@ export default class RequestHandler implements IRequestHandler {
       }
 
       operationModel = await Operation.parse(request);
+      Logger.error(`Opearation Parseing outcome: ${operationModel}`);
 
       // Reject operation if there is already an operation for the same DID waiting to be batched and anchored.
       if (await this.operationQueue.contains(operationModel.didUniqueSuffix)) {
         const errorMessage = `An operation request already exists in queue for DID '${operationModel.didUniqueSuffix}', only one is allowed at a time.`;
         throw new SidetreeError(ErrorCode.QueueingMultipleOperationsPerDidNotAllowed, errorMessage);
       }
-    } catch (error) {
+    } catch (error: any) {
       // Give meaningful/specific error code and message when possible.
       if (error instanceof SidetreeError) {
         Logger.info(`Bad request: ${error.code}`);
@@ -104,7 +105,7 @@ export default class RequestHandler implements IRequestHandler {
       }
 
       return response;
-    } catch (error) {
+    } catch (error: any) {
       // Give meaningful/specific error code and message when possible.
       if (error instanceof SidetreeError) {
         Logger.info(`Sidetree error: ${error.code} ${error.message}`);
@@ -189,7 +190,7 @@ export default class RequestHandler implements IRequestHandler {
         status,
         body: document
       };
-    } catch (error) {
+    } catch (error: any) {
       // Give meaningful/specific error code and message when possible.
       if (error instanceof SidetreeError) {
         Logger.info(`Bad request. Code: ${error.code}. Message: ${error.message}`);

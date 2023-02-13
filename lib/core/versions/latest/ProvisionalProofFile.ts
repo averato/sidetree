@@ -57,14 +57,14 @@ export default class ProvisionalProofFile {
     try {
       const maxAllowedDecompressedSizeInBytes = ProtocolParameters.maxProofFileSizeInBytes * Compressor.estimatedDecompressionMultiplier;
       provisionalProofFileDecompressedBuffer = await Compressor.decompress(provisionalProofFileBuffer, maxAllowedDecompressedSizeInBytes);
-    } catch (error) {
+    } catch (error: any) {
       throw SidetreeError.createFromError(ErrorCode.ProvisionalProofFileDecompressionFailure, error);
     }
 
     let provisionalProofFileModel;
     try {
       provisionalProofFileModel = await JsonAsync.parse(provisionalProofFileDecompressedBuffer);
-    } catch (error) {
+    } catch (error: any) {
       throw SidetreeError.createFromError(ErrorCode.ProvisionalProofFileNotJson, error);
     }
 

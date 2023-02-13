@@ -100,7 +100,7 @@ export default class BitcoinClient {
           Logger.info(LogColor.lightBlue('Bitcoin Core fully synchronized'));
           return;
         }
-      } catch (error) {
+      } catch (error: any) {
         Logger.info(LogColor.yellow(`Bitcoin Core not ready or not available: ${error}.`));
       }
 
@@ -294,7 +294,7 @@ export default class BitcoinClient {
     try {
       await this.rpcCall(request, true, isWalletRpc);
       Logger.info(`Wallet created with name "${this.walletNameToUse}".`);
-    } catch (e) {
+    } catch (e: any) {
       // using error message because bitcoin core error code is not reliable as a single code can contain multiple errors
       const duplicateCreateString = 'already exists';
       if (e.toString().toLowerCase().includes(duplicateCreateString)) {
@@ -317,7 +317,7 @@ export default class BitcoinClient {
     try {
       await this.rpcCall(request, true, isWalletRpc);
       Logger.info(`Wallet loaded with name "${this.walletNameToUse}".`);
-    } catch (e) {
+    } catch (e: any) {
       // using error message because bitcoin core error code is not reliable as a single code can contain multiple errors
       const duplicateLoadString = 'already loaded';
       if (e.toString().toLowerCase().includes(duplicateLoadString)) {
@@ -535,7 +535,7 @@ export default class BitcoinClient {
     try {
       estimatedFeeSatoshiPerKB = await this.getCurrentEstimatedFeeInSatoshisPerKB();
       this.estimatedFeeSatoshiPerKB = estimatedFeeSatoshiPerKB;
-    } catch (error) {
+    } catch (error: any) {
       estimatedFeeSatoshiPerKB = this.estimatedFeeSatoshiPerKB;
       if (!estimatedFeeSatoshiPerKB) {
         throw error;
@@ -958,7 +958,7 @@ export default class BitcoinClient {
         params.timeout = requestTimeout;
 
         response = await nodeFetch(uri, params);
-      } catch (error) {
+      } catch (error: any) {
         // Retry-able if request is timed out.
         if (error instanceof FetchError && error.type === 'request-timeout') {
           networkError = error;

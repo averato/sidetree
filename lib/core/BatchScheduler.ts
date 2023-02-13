@@ -56,7 +56,7 @@ export default class BatchScheduler {
       const batchSize = await batchWriter.write();
 
       EventEmitter.emit(EventCode.SidetreeBatchWriterLoopSuccess, { batchSize });
-    } catch (error) {
+    } catch (error: any) {
       // Default the error to unexpected error.
       const loopFailureEventData = { code: ErrorCode.BatchSchedulerWriteUnexpectedError };
 

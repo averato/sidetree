@@ -25,12 +25,14 @@ class RequestHandler {
             let operationModel;
             try {
                 const operationRequest = yield JsonAsync_1.default.parse(request);
+                Logger_1.default.error(`JSON Parseing outcome: ${operationRequest}`);
                 if (operationRequest.type === OperationType_1.default.Create ||
                     operationRequest.type === OperationType_1.default.Recover ||
                     operationRequest.type === OperationType_1.default.Update) {
                     Delta_1.default.validateDelta(operationRequest.delta);
                 }
                 operationModel = yield Operation_1.default.parse(request);
+                Logger_1.default.error(`Opearation Parseing outcome: ${operationModel}`);
                 if (yield this.operationQueue.contains(operationModel.didUniqueSuffix)) {
                     const errorMessage = `An operation request already exists in queue for DID '${operationModel.didUniqueSuffix}', only one is allowed at a time.`;
                     throw new SidetreeError_1.default(ErrorCode_1.default.QueueingMultipleOperationsPerDidNotAllowed, errorMessage);

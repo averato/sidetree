@@ -77,7 +77,7 @@ export default class Ipfs implements ICas {
       // if Cid construction fails, it is not a valid cid
       /* eslint-disable no-new */
       new Cids(casUri);
-    } catch (error) {
+    } catch (error: any) {
       Logger.info(`'${casUri}' is not a valid CID: ${SidetreeError.stringify(error)}`);
       return { code: FetchResultCode.InvalidHash };
     }
@@ -87,7 +87,7 @@ export default class Ipfs implements ICas {
     try {
       const fetchContentPromise = this.fetchContent(casUri, maxSizeInBytes);
       fetchResult = await Timeout.timeout(fetchContentPromise, this.fetchTimeoutInSeconds * 1000);
-    } catch (error) {
+    } catch (error: any) {
       // Log appropriately based on error.
       if (error.code === IpfsErrorCode.TimeoutPromiseTimedOut) {
         Logger.info(`Timed out fetching CID '${casUri}'.`);
@@ -129,7 +129,7 @@ export default class Ipfs implements ICas {
       // IPFS is given the opportunity to optimize its download logic. (e.g. not needing to download the entire content).
       const catUrl = new URL(`/api/v0/cat?arg=${base58Multihash}&length=${maxSizeInBytes + 1}`, this.uri).toString();
       response = await this.fetch(catUrl, { method: 'POST' });
-    } catch (error) {
+    } catch (error: any) {
       if (error.code === 'ECONNREFUSED') {
         return { code: FetchResultCode.CasNotReachable };
       }
@@ -155,7 +155,7 @@ export default class Ipfs implements ICas {
     try {
       fetchResult.content = await ReadableStream.readAll(response.body, maxSizeInBytes);
       return fetchResult;
-    } catch (error) {
+    } catch (error: any) {
       if (error.code === SharedErrorCode.ReadableStreamMaxAllowedDataSizeExceeded) {
         return { code: FetchResultCode.MaxSizeExceeded };
       }

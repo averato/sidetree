@@ -78,7 +78,7 @@ export default class BitcoinProcessor {
   private lastProcessedBlock: BlockMetadata | undefined;
 
   /** Poll timeout identifier */
-  private pollTimeoutId: NodeJS.Timeout | undefined;
+  private pollTimeoutId: number | undefined;   // NodeJS.Timeout | undefined;
 
   private serviceInfoProvider: ServiceInfoProvider;
 
@@ -403,7 +403,7 @@ export default class BitcoinProcessor {
           Logger.info(LogColor.lightBlue(`Sidetree transaction found; adding ${LogColor.green(JSON.stringify(sidetreeTxToAdd))}`));
           await this.transactionStore.addTransaction(sidetreeTxToAdd);
         }
-      } catch (e) {
+      } catch (e: any) {
         const inputs = { blockHeight: block.height, blockHash: block.hash, transactionIndex: transactionIndex };
         Logger.info(
           `An error happened when trying to add sidetree transaction to the store. Inputs: ${JSON.stringify(inputs)}\r\n` +
@@ -639,7 +639,7 @@ export default class BitcoinProcessor {
       // (instead the caller's exception handler is invoked) and the correct status/error-code etc is not
       // bubbled up above.
       return await this.lockResolver.resolveSerializedLockIdentifierAndThrowOnError(lockIdentifier);
-    } catch (e) {
+    } catch (e: any) {
       Logger.info(`Value time lock not found. Identifier: ${lockIdentifier}. Error: ${JSON.stringify(e, Object.getOwnPropertyNames(e))}`);
       throw new RequestError(ResponseStatus.NotFound, SharedErrorCode.ValueTimeLockNotFound);
     }
@@ -653,7 +653,7 @@ export default class BitcoinProcessor {
 
     try {
       currentLock = await this.lockMonitor.getCurrentValueTimeLock();
-    } catch (e) {
+    } catch (e: any) {
 
       if (e instanceof SidetreeError && e.code === ErrorCode.LockMonitorCurrentValueTimeLockInPendingState) {
         throw new RequestError(ResponseStatus.NotFound, ErrorCode.ValueTimeLockInPendingState);
@@ -698,11 +698,13 @@ export default class BitcoinProcessor {
       }
 
       EventEmitter.emit(EventCode.BitcoinObservingLoopSuccess);
-    } catch (error) {
+    } catch (error: any) {
       EventEmitter.emit(EventCode.BitcoinObservingLoopFailure);
       Logger.error(error);
     } finally {
-      this.pollTimeoutId = setTimeout(this.periodicPoll.bind(this), 1000 * interval, interval);
+     //  this.pollTimeoutId
+     let timer = setTimeout(this.periodicPoll.bind(this), 1000 * interval, interval);
+     this.pollTimeoutId = timer;
     }
   }
 

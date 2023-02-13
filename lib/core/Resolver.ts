@@ -184,7 +184,7 @@ export default class Resolver {
     try {
       const operationProcessor = this.versionManager.getOperationProcessor(operation.transactionTime);
       appliedDidState = await operationProcessor.apply(operation, didState);
-    } catch (error) {
+    } catch (error: any) {
       Logger.info(`Skipped bad operation for DID ${operation.didUniqueSuffix} at time ${operation.transactionTime}. Error: ${SidetreeError.stringify(error)}`);
     }
 

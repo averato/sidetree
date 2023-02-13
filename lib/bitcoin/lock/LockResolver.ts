@@ -162,7 +162,7 @@ export default class LockResolver {
       const redeemScriptAsBuffer = Buffer.from(redeemScriptAsHex, 'hex');
 
       return new Script(redeemScriptAsBuffer);
-    } catch (e) {
+    } catch (e: any) {
       throw SidetreeError.createFromError(ErrorCode.LockResolverRedeemScriptIsInvalid, e);
     }
   }
@@ -170,7 +170,7 @@ export default class LockResolver {
   private async getTransaction (transactionId: string): Promise<BitcoinTransactionModel> {
     try {
       return this.bitcoinClient.getRawTransaction(transactionId);
-    } catch (e) {
+    } catch (e: any) {
       throw SidetreeError.createFromError(ErrorCode.LockResolverTransactionNotFound, e);
     }
   }

@@ -121,7 +121,7 @@ export default class OperationProcessor implements IOperationProcessor {
       const document = { };
       DocumentComposer.applyPatches(document, delta.patches);
       newDidState.document = document;
-    } catch (error) {
+    } catch (error: any) {
       const didUniqueSuffix = anchoredOperationModel.didUniqueSuffix;
       const transactionNumber = anchoredOperationModel.transactionNumber;
       Logger.info(
@@ -179,7 +179,7 @@ export default class OperationProcessor implements IOperationProcessor {
       const documentDeepCopy = JsObject.deepCopyObject(didState.document);
       DocumentComposer.applyPatches(documentDeepCopy, operation.delta.patches);
       newDidState.document = documentDeepCopy;
-    } catch (error) {
+    } catch (error: any) {
       const didUniqueSuffix = anchoredOperationModel.didUniqueSuffix;
       const transactionNumber = anchoredOperationModel.transactionNumber;
       Logger.info(`Unable to apply document patch in transaction number ${transactionNumber} for DID ${didUniqueSuffix}: ${SidetreeError.stringify(error)}.`);
@@ -239,7 +239,7 @@ export default class OperationProcessor implements IOperationProcessor {
       const document = { };
       DocumentComposer.applyPatches(document, delta.patches);
       newDidState.document = document;
-    } catch (error) {
+    } catch (error: any) {
       const didUniqueSuffix = anchoredOperationModel.didUniqueSuffix;
       const transactionNumber = anchoredOperationModel.transactionNumber;
       Logger.info(

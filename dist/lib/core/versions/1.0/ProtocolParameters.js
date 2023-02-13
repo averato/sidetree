@@ -1,5 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
 const protocolParameters = require('./protocol-parameters.json');
 exports.default = protocolParameters;
-//# sourceMappingURL=ProtocolParameters.js.map
+// # sourceMappingURL=ProtocolParameters.js.map

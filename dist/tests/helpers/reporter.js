@@ -4,12 +4,12 @@ var SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 
 var junitReporter = new jasmineReporters.NUnitXmlReporter({
   savePath: './',
-  consolidateAll: false,
+  consolidateAll: false
 });
 
 var textReporter = new SpecReporter({  // add jasmine-spec-reporter
   spec: {
-    displayDuration: true,
+    displayDuration: true
   }
 });
 

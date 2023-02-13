@@ -53,7 +53,7 @@ export default class TransactionProcessor implements ITransactionProcessor {
 
       // Download and verify core proof file.
       coreProofFile = await this.downloadAndVerifyCoreProofFile(coreIndexFile);
-    } catch (error) {
+    } catch (error: any) {
       let retryNeeded = true;
       if (error instanceof SidetreeError) {
         // If error is related to CAS network connectivity issues, we need to retry later.
@@ -93,7 +93,7 @@ export default class TransactionProcessor implements ITransactionProcessor {
       chunkFileModel = await this.downloadAndVerifyChunkFile(coreIndexFile, provisionalIndexFile);
 
       retryNeeded = false;
-    } catch (error) {
+    } catch (error: any) {
       // If we encounter any error, regardless of whether the transaction should be retried for processing,
       // we set all the provisional/chunk files to be `undefined`,
       // this is because chunk file would not be available/valid for its deltas to be used during resolutions,

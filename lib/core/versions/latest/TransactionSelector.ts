@@ -92,7 +92,7 @@ export default class TransactionSelector implements ITransactionSelector {
         try {
           const numOfOperationsInCurrentTransaction = AnchoredDataSerializer.deserialize(transaction.anchorString).numberOfOperations;
           numberOfOperations += numOfOperationsInCurrentTransaction;
-        } catch (e) {
+        } catch (e: any) {
           Logger.info(`Error thrown in TransactionSelector: ${JSON.stringify(e, Object.getOwnPropertyNames(e))}`);
           Logger.info(`Transaction with anchor string ${transaction.anchorString} not considered as selected.`);
         }
@@ -123,7 +123,7 @@ export default class TransactionSelector implements ITransactionSelector {
         if (numberOfOperationsSeen <= numberOfOperationsToQualify) {
           transactionsToReturn.push(currentTransaction);
         }
-      } catch (e) {
+      } catch (e: any) {
         Logger.info(`Error thrown in TransactionSelector: ${JSON.stringify(e, Object.getOwnPropertyNames(e))}`);
         Logger.info(`Transaction with anchor string ${currentTransaction.anchorString} not selected`);
       }

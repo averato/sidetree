@@ -32,14 +32,14 @@ export default class ProvisionalIndexFile {
     try {
       const maxAllowedDecompressedSizeInBytes = ProtocolParameters.maxProvisionalIndexFileSizeInBytes * Compressor.estimatedDecompressionMultiplier;
       decompressedBuffer = await Compressor.decompress(provisionalIndexFileBuffer, maxAllowedDecompressedSizeInBytes);
-    } catch (error) {
+    } catch (error: any) {
       throw SidetreeError.createFromError(ErrorCode.ProvisionalIndexFileDecompressionFailure, error);
     }
 
     let provisionalIndexFileModel;
     try {
       provisionalIndexFileModel = await JsonAsync.parse(decompressedBuffer);
-    } catch (error) {
+    } catch (error: any) {
       throw SidetreeError.createFromError(ErrorCode.ProvisionalIndexFileNotJson, error);
     }
 

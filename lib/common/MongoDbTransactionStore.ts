@@ -66,7 +66,7 @@ export default class MongoDbTransactionStore extends MongoDbStore implements ITr
       // Fetch the transactions
       transactions = await dbCursor.toArray();
 
-    } catch (error) {
+    } catch (error: any) {
       Logger.error(error);
     }
 
@@ -86,7 +86,7 @@ export default class MongoDbTransactionStore extends MongoDbStore implements ITr
         writer: transaction.writer
       };
       await this.collection!.insertOne(transactionInMongoDb);
-    } catch (error) {
+    } catch (error: any) {
       // Swallow duplicate insert errors (error code 11000) as no-op; rethrow others
       if (error.code !== 11000) {
         throw error;

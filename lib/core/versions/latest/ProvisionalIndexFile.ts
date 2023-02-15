@@ -32,15 +32,23 @@ export default class ProvisionalIndexFile {
     try {
       const maxAllowedDecompressedSizeInBytes = ProtocolParameters.maxProvisionalIndexFileSizeInBytes * Compressor.estimatedDecompressionMultiplier;
       decompressedBuffer = await Compressor.decompress(provisionalIndexFileBuffer, maxAllowedDecompressedSizeInBytes);
-    } catch (error: any) {
-      throw SidetreeError.createFromError(ErrorCode.ProvisionalIndexFileDecompressionFailure, error);
+    } catch (error) {
+      if (error instanceof SidetreeError) {
+        throw SidetreeError.createFromError(ErrorCode.ProvisionalIndexFileDecompressionFailure, error);
+      }
+      
+      throw error;
     }
 
     let provisionalIndexFileModel;
     try {
       provisionalIndexFileModel = await JsonAsync.parse(decompressedBuffer);
-    } catch (error: any) {
-      throw SidetreeError.createFromError(ErrorCode.ProvisionalIndexFileNotJson, error);
+    } catch (error) {
+      if (error instanceof SidetreeError) {
+        throw SidetreeError.createFromError(ErrorCode.ProvisionalIndexFileNotJson, error);
+      }
+
+      throw error;
     }
 
     const allowedProperties = new Set(['chunks', 'operations', 'provisionalProofFileUri']);
@@ -52,7 +60,7 @@ export default class ProvisionalIndexFile {
 
     ProvisionalIndexFile.validateChunksProperty(provisionalIndexFileModel.chunks);
 
-    const didSuffixes = await ProvisionalIndexFile.validateOperationsProperty(provisionalIndexFileModel.operations);
+    const didSuffixes = ProvisionalIndexFile.validateOperationsProperty(provisionalIndexFileModel.operations);
 
     // Validate provisional proof file URI.
     if (didSuffixes.length > 0) {

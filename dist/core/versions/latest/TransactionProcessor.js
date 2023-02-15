@@ -48,7 +48,7 @@ class TransactionProcessor {
                     }
                 }
                 else {
-                    Logger_1.default.error(LogColor_1.default.red(`Unexpected error while fetching and downloading core files, MUST investigate and fix: ${error.message}`));
+                    Logger_1.default.error(LogColor_1.default.red(`Unexpected error while fetching and downloading core files, MUST investigate and fix: ${error}`));
                     retryNeeded = true;
                 }
                 const transactionProcessedCompletely = !retryNeeded;
@@ -79,7 +79,7 @@ class TransactionProcessor {
                     }
                 }
                 else {
-                    Logger_1.default.error(LogColor_1.default.red(`Unexpected error while fetching and downloading provisional files, MUST investigate and fix: ${error.message}`));
+                    Logger_1.default.error(LogColor_1.default.red(`Unexpected error while fetching and downloading provisional files, MUST investigate and fix: ${error}`));
                     retryNeeded = true;
                 }
             }

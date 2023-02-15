@@ -21,14 +21,18 @@ class ProvisionalIndexFile {
                 decompressedBuffer = yield Compressor_1.default.decompress(provisionalIndexFileBuffer, maxAllowedDecompressedSizeInBytes);
             }
             catch (error) {
-                throw SidetreeError_1.default.createFromError(ErrorCode_1.default.ProvisionalIndexFileDecompressionFailure, error);
+                if (error instanceof SidetreeError_1.default)
+                    throw SidetreeError_1.default.createFromError(ErrorCode_1.default.ProvisionalIndexFileDecompressionFailure, error);
+                throw error;
             }
             let provisionalIndexFileModel;
             try {
                 provisionalIndexFileModel = yield JsonAsync_1.default.parse(decompressedBuffer);
             }
             catch (error) {
-                throw SidetreeError_1.default.createFromError(ErrorCode_1.default.ProvisionalIndexFileNotJson, error);
+                if (error instanceof SidetreeError_1.default)
+                    throw SidetreeError_1.default.createFromError(ErrorCode_1.default.ProvisionalIndexFileNotJson, error);
+                throw error;
             }
             const allowedProperties = new Set(['chunks', 'operations', 'provisionalProofFileUri']);
             for (const property in provisionalIndexFileModel) {
@@ -37,7 +41,7 @@ class ProvisionalIndexFile {
                 }
             }
             ProvisionalIndexFile.validateChunksProperty(provisionalIndexFileModel.chunks);
-            const didSuffixes = yield ProvisionalIndexFile.validateOperationsProperty(provisionalIndexFileModel.operations);
+            const didSuffixes = ProvisionalIndexFile.validateOperationsProperty(provisionalIndexFileModel.operations);
             if (didSuffixes.length > 0) {
                 InputValidator_1.default.validateCasFileUri(provisionalIndexFileModel.provisionalProofFileUri, 'provisional proof file URI');
             }

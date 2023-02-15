@@ -162,16 +162,20 @@ export default class LockResolver {
       const redeemScriptAsBuffer = Buffer.from(redeemScriptAsHex, 'hex');
 
       return new Script(redeemScriptAsBuffer);
-    } catch (e: any) {
-      throw SidetreeError.createFromError(ErrorCode.LockResolverRedeemScriptIsInvalid, e);
+    } catch (e) {
+      if (e instanceof SidetreeError) throw SidetreeError.createFromError(ErrorCode.LockResolverRedeemScriptIsInvalid, e);
+
+      throw e;
     }
   }
 
   private async getTransaction (transactionId: string): Promise<BitcoinTransactionModel> {
     try {
       return this.bitcoinClient.getRawTransaction(transactionId);
-    } catch (e: any) {
-      throw SidetreeError.createFromError(ErrorCode.LockResolverTransactionNotFound, e);
+    } catch (e) {
+      if (e instanceof SidetreeError) throw SidetreeError.createFromError(ErrorCode.LockResolverTransactionNotFound, e);
+
+      throw e;
     }
   }
 

@@ -77,9 +77,13 @@ export default class Ipfs implements ICas {
       // if Cid construction fails, it is not a valid cid
       /* eslint-disable no-new */
       new Cids(casUri);
-    } catch (error: any) {
-      Logger.info(`'${casUri}' is not a valid CID: ${SidetreeError.stringify(error)}`);
-      return { code: FetchResultCode.InvalidHash };
+    } catch (error) {
+      if (error instanceof SidetreeError) {
+        Logger.info(`'${casUri}' is not a valid CID: ${SidetreeError.stringify(error)}`);
+        return {code: FetchResultCode.InvalidHash};
+      }
+
+      throw error;
     }
 
     // Fetch the content.
@@ -87,17 +91,19 @@ export default class Ipfs implements ICas {
     try {
       const fetchContentPromise = this.fetchContent(casUri, maxSizeInBytes);
       fetchResult = await Timeout.timeout(fetchContentPromise, this.fetchTimeoutInSeconds * 1000);
-    } catch (error: any) {
+    } catch (error) {
       // Log appropriately based on error.
-      if (error.code === IpfsErrorCode.TimeoutPromiseTimedOut) {
-        Logger.info(`Timed out fetching CID '${casUri}'.`);
-      } else {
-        // Log any unexpected error for investigation.
-        const errorMessage =
-          `Unexpected error while fetching CID '${casUri}'. ` +
-          `Investigate and fix: ${SidetreeError.stringify(error)}`;
-        Logger.error(errorMessage);
-      }
+      if (error instanceof SidetreeError) {
+        if (error.code === IpfsErrorCode.TimeoutPromiseTimedOut) {
+          Logger.info(`Timed out fetching CID '${casUri}'.`);
+        } else {
+          // Log any unexpected error for investigation.
+          const errorMessage =
+            `Unexpected error while fetching CID '${casUri}'. ` +
+            `Investigate and fix: ${SidetreeError.stringify(error)}`;
+          Logger.error(errorMessage);
+        }
+      }   
 
       // Mark content as `not found` if any error is thrown while fetching.
       return { code: FetchResultCode.NotFound };
@@ -129,8 +135,8 @@ export default class Ipfs implements ICas {
       // IPFS is given the opportunity to optimize its download logic. (e.g. not needing to download the entire content).
       const catUrl = new URL(`/api/v0/cat?arg=${base58Multihash}&length=${maxSizeInBytes + 1}`, this.uri).toString();
       response = await this.fetch(catUrl, { method: 'POST' });
-    } catch (error: any) {
-      if (error.code === 'ECONNREFUSED') {
+    } catch (error) {
+      if (error instanceof SidetreeError && error.code === 'ECONNREFUSED') {
         return { code: FetchResultCode.CasNotReachable };
       }
 
@@ -155,8 +161,9 @@ export default class Ipfs implements ICas {
     try {
       fetchResult.content = await ReadableStream.readAll(response.body, maxSizeInBytes);
       return fetchResult;
-    } catch (error: any) {
-      if (error.code === SharedErrorCode.ReadableStreamMaxAllowedDataSizeExceeded) {
+    } catch (error) {
+      if (error instanceof SidetreeError && 
+          error.code === SharedErrorCode.ReadableStreamMaxAllowedDataSizeExceeded) {
         return { code: FetchResultCode.MaxSizeExceeded };
       }
 

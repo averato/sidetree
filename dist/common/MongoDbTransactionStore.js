@@ -4,6 +4,7 @@ const tslib_1 = require("tslib");
 const mongodb_1 = require("mongodb");
 const Logger_1 = require("../common/Logger");
 const MongoDbStore_1 = require("./MongoDbStore");
+const SidetreeError_1 = require("../common/SidetreeError");
 class MongoDbTransactionStore extends MongoDbStore_1.default {
     constructor(serverUrl, databaseName) {
         super(serverUrl, MongoDbTransactionStore.transactionCollectionName, databaseName);
@@ -62,7 +63,7 @@ class MongoDbTransactionStore extends MongoDbStore_1.default {
                 yield this.collection.insertOne(transactionInMongoDb);
             }
             catch (error) {
-                if (error.code !== 11000) {
+                if (error instanceof SidetreeError_1.default && error.code !== '11000') {
                     throw error;
                 }
             }

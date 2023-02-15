@@ -133,7 +133,7 @@ export default class Multihash {
     try {
       const contentBuffer = Encoder.decodeAsBuffer(encodedContent);
       return Multihash.verifyEncodedMultihashForContent(contentBuffer, encodedMultihash);
-    } catch (error: any) {
+    } catch (error) {
       Logger.info(error);
       return false;
     }
@@ -168,7 +168,7 @@ export default class Multihash {
       const contentBuffer = JsonCanonicalizer.canonicalizeAsBuffer(content);
 
       return Multihash.verifyDoubleHash(contentBuffer, encodedMultihash);
-    } catch (error: any) {
+    } catch (error) {
       Logger.info(error);
       return false;
     }
@@ -188,7 +188,7 @@ export default class Multihash {
       const actualMultihashBuffer = Multihash.hash(intermediateHashBuffer, hashAlgorithmCode);
 
       return Buffer.compare(actualMultihashBuffer, expectedMultihashBuffer) === 0;
-    } catch (error: any) {
+    } catch (error) {
       Logger.info(error);
       return false;
     }
@@ -210,7 +210,7 @@ export default class Multihash {
       //      'EiAJID5-y7rbEs7I3PPiMtwVf28LTkPFD4BWIZPCtb6AMv' would decode into the same buffer.
       const actualMultihashString = Encoder.encode(actualMultihashBuffer);
       return actualMultihashString === encodedMultihash;
-    } catch (error: any) {
+    } catch (error) {
       Logger.info(error);
       return false;
     }

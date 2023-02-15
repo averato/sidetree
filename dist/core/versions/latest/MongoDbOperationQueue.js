@@ -24,7 +24,7 @@ class MongoDbOperationQueue extends MongoDbStore_1.default {
                 yield this.collection.insertOne(queuedOperation);
             }
             catch (error) {
-                if (error.code === 11000) {
+                if (error instanceof SidetreeError_1.default && error.code === "11000") {
                     throw new SidetreeError_1.default(ErrorCode_1.default.BatchWriterAlreadyHasOperationForDid);
                 }
                 throw error;

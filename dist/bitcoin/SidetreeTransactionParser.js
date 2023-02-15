@@ -71,7 +71,8 @@ class SidetreeTransactionParser {
                 return transaction.outputs[outputIndexToFetch];
             }
             catch (e) {
-                Logger_1.default.error(`Error while trying to get outputIdx: ${outputIndexToFetch} from transaction: ${transactionId}. Error: ${SidetreeError_1.default.stringify(e)}`);
+                if (e instanceof SidetreeError_1.default)
+                    Logger_1.default.error(`Error while trying to get outputIdx: ${outputIndexToFetch} from transaction: ${transactionId}. Error: ${SidetreeError_1.default.stringify(e)}`);
                 throw e;
             }
         });

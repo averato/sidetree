@@ -92,8 +92,10 @@ class OperationProcessor {
             catch (error) {
                 const didUniqueSuffix = anchoredOperationModel.didUniqueSuffix;
                 const transactionNumber = anchoredOperationModel.transactionNumber;
-                Logger_1.default.info(`Partial update on next commitment hash applied because: ` +
-                    `Unable to apply delta patches for transaction number ${transactionNumber} for DID ${didUniqueSuffix}: ${SidetreeError_1.default.stringify(error)}.`);
+                if (error instanceof SidetreeError_1.default) {
+                    Logger_1.default.info(`Partial update on next commitment hash applied because: ` +
+                        `Unable to apply delta patches for transaction number ${transactionNumber} for DID ${didUniqueSuffix}: ${SidetreeError_1.default.stringify(error)}.`);
+                }
             }
             return newDidState;
         });
@@ -132,7 +134,9 @@ class OperationProcessor {
             catch (error) {
                 const didUniqueSuffix = anchoredOperationModel.didUniqueSuffix;
                 const transactionNumber = anchoredOperationModel.transactionNumber;
-                Logger_1.default.info(`Unable to apply document patch in transaction number ${transactionNumber} for DID ${didUniqueSuffix}: ${SidetreeError_1.default.stringify(error)}.`);
+                if (error instanceof SidetreeError_1.default) {
+                    Logger_1.default.info(`Unable to apply document patch in transaction number ${transactionNumber} for DID ${didUniqueSuffix}: ${SidetreeError_1.default.stringify(error)}.`);
+                }
             }
             return newDidState;
         });
@@ -173,8 +177,10 @@ class OperationProcessor {
             catch (error) {
                 const didUniqueSuffix = anchoredOperationModel.didUniqueSuffix;
                 const transactionNumber = anchoredOperationModel.transactionNumber;
-                Logger_1.default.info(`Partial update on next commitment hash applied because: ` +
-                    `Unable to apply delta patches for transaction number ${transactionNumber} for DID ${didUniqueSuffix}: ${SidetreeError_1.default.stringify(error)}.`);
+                if (error instanceof SidetreeError_1.default) {
+                    Logger_1.default.info(`Partial update on next commitment hash applied because: ` +
+                        `Unable to apply delta patches for transaction number ${transactionNumber} for DID ${didUniqueSuffix}: ${SidetreeError_1.default.stringify(error)}.`);
+                }
             }
             return newDidState;
         });

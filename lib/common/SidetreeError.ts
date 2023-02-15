@@ -27,4 +27,8 @@ export default class SidetreeError extends Error {
   public static stringify (error: Error) {
     return JSON.stringify(error, Object.getOwnPropertyNames(error));
   }
+
+  /**
+   * Give proper resposne 
+   */ 
 }

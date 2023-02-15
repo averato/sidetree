@@ -113,7 +113,9 @@ class Resolver {
                 appliedDidState = yield operationProcessor.apply(operation, didState);
             }
             catch (error) {
-                Logger_1.default.info(`Skipped bad operation for DID ${operation.didUniqueSuffix} at time ${operation.transactionTime}. Error: ${SidetreeError_1.default.stringify(error)}`);
+                if (error instanceof SidetreeError_1.default)
+                    Logger_1.default.info(`Skipped bad operation for DID ${operation.didUniqueSuffix} at time ${operation.transactionTime}. Error: ${SidetreeError_1.default.stringify(error)}`);
+                throw error;
             }
             return appliedDidState;
         });

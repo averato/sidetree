@@ -14,7 +14,9 @@ class BitcoinFileReader {
             blockDataDir = fs.readdirSync(blocksDataDirectoryPath);
         }
         catch (e) {
-            throw SidetreeError_1.default.createFromError(ErrorCode_1.default.BitcoinFileReaderBlockCannotReadDirectory, e);
+            if (e instanceof SidetreeError_1.default)
+                throw SidetreeError_1.default.createFromError(ErrorCode_1.default.BitcoinFileReaderBlockCannotReadDirectory, e);
+            throw e;
         }
         const blockFileList = blockDataDir.filter((fileName) => { return fileName.startsWith('blk'); });
         return blockFileList;
@@ -24,7 +26,9 @@ class BitcoinFileReader {
             return fs.readFileSync(`${this.bitcoinDataDirectory}/blocks/${fileName}`);
         }
         catch (e) {
-            throw SidetreeError_1.default.createFromError(ErrorCode_1.default.BitcoinFileReaderBlockCannotReadFile, e);
+            if (e instanceof SidetreeError_1.default)
+                throw SidetreeError_1.default.createFromError(ErrorCode_1.default.BitcoinFileReaderBlockCannotReadFile, e);
+            throw e;
         }
     }
 }

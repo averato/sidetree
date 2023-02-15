@@ -121,12 +121,14 @@ export default class OperationProcessor implements IOperationProcessor {
       const document = { };
       DocumentComposer.applyPatches(document, delta.patches);
       newDidState.document = document;
-    } catch (error: any) {
+    } catch (error) {
       const didUniqueSuffix = anchoredOperationModel.didUniqueSuffix;
       const transactionNumber = anchoredOperationModel.transactionNumber;
-      Logger.info(
-        `Partial update on next commitment hash applied because: ` +
-        `Unable to apply delta patches for transaction number ${transactionNumber} for DID ${didUniqueSuffix}: ${SidetreeError.stringify(error)}.`);
+      if (error instanceof SidetreeError) {
+        Logger.info(
+          `Partial update on next commitment hash applied because: ` +
+          `Unable to apply delta patches for transaction number ${transactionNumber} for DID ${didUniqueSuffix}: ${SidetreeError.stringify(error)}.`);
+      }
     }
 
     return newDidState;
@@ -179,10 +181,12 @@ export default class OperationProcessor implements IOperationProcessor {
       const documentDeepCopy = JsObject.deepCopyObject(didState.document);
       DocumentComposer.applyPatches(documentDeepCopy, operation.delta.patches);
       newDidState.document = documentDeepCopy;
-    } catch (error: any) {
+    } catch (error) {
       const didUniqueSuffix = anchoredOperationModel.didUniqueSuffix;
       const transactionNumber = anchoredOperationModel.transactionNumber;
-      Logger.info(`Unable to apply document patch in transaction number ${transactionNumber} for DID ${didUniqueSuffix}: ${SidetreeError.stringify(error)}.`);
+      if (error instanceof SidetreeError) {
+        Logger.info(`Unable to apply document patch in transaction number ${transactionNumber} for DID ${didUniqueSuffix}: ${SidetreeError.stringify(error)}.`);
+      }
     }
 
     return newDidState;
@@ -239,12 +243,14 @@ export default class OperationProcessor implements IOperationProcessor {
       const document = { };
       DocumentComposer.applyPatches(document, delta.patches);
       newDidState.document = document;
-    } catch (error: any) {
+    } catch (error) {
       const didUniqueSuffix = anchoredOperationModel.didUniqueSuffix;
       const transactionNumber = anchoredOperationModel.transactionNumber;
-      Logger.info(
-        `Partial update on next commitment hash applied because: ` +
-        `Unable to apply delta patches for transaction number ${transactionNumber} for DID ${didUniqueSuffix}: ${SidetreeError.stringify(error)}.`);
+      if (error instanceof SidetreeError) {
+        Logger.info(
+          `Partial update on next commitment hash applied because: ` +
+          `Unable to apply delta patches for transaction number ${transactionNumber} for DID ${didUniqueSuffix}: ${SidetreeError.stringify(error)}.`);
+      }   
     }
 
     return newDidState;

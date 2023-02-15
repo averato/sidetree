@@ -142,7 +142,7 @@ export default class Core {
         await this.confirmationStore.initialize();
         await this.upgradeDatabaseIfNeeded();
         return;
-      } catch (error: any) {
+      } catch (error) {
         Logger.info(LogColor.yellow(`Unable to initialize data stores: ${error}.`));
       }
 

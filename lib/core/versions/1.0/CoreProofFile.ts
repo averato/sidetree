@@ -63,15 +63,19 @@ export default class CoreProofFile {
     try {
       const maxAllowedDecompressedSizeInBytes = ProtocolParameters.maxProofFileSizeInBytes * Compressor.estimatedDecompressionMultiplier;
       coreProofFileDecompressedBuffer = await Compressor.decompress(coreProofFileBuffer, maxAllowedDecompressedSizeInBytes);
-    } catch (error: any) {
-      throw SidetreeError.createFromError(ErrorCode.CoreProofFileDecompressionFailure, error);
+    } catch (error) {
+      if (error instanceof SidetreeError) throw SidetreeError.createFromError(ErrorCode.CoreProofFileDecompressionFailure, error);
+
+      throw error;
     }
 
     let coreProofFileModel;
     try {
       coreProofFileModel = await JsonAsync.parse(coreProofFileDecompressedBuffer);
-    } catch (error: any) {
-      throw SidetreeError.createFromError(ErrorCode.CoreProofFileNotJson, error);
+    } catch (error) {
+      if (error instanceof SidetreeError) throw SidetreeError.createFromError(ErrorCode.CoreProofFileNotJson, error);
+
+      throw error;
     }
 
     if (coreProofFileModel.operations === undefined) {

@@ -42,14 +42,18 @@ class CoreProofFile {
                 coreProofFileDecompressedBuffer = yield Compressor_1.default.decompress(coreProofFileBuffer, maxAllowedDecompressedSizeInBytes);
             }
             catch (error) {
-                throw SidetreeError_1.default.createFromError(ErrorCode_1.default.CoreProofFileDecompressionFailure, error);
+                if (error instanceof SidetreeError_1.default)
+                    throw SidetreeError_1.default.createFromError(ErrorCode_1.default.CoreProofFileDecompressionFailure, error);
+                throw error;
             }
             let coreProofFileModel;
             try {
                 coreProofFileModel = yield JsonAsync_1.default.parse(coreProofFileDecompressedBuffer);
             }
             catch (error) {
-                throw SidetreeError_1.default.createFromError(ErrorCode_1.default.CoreProofFileNotJson, error);
+                if (error instanceof SidetreeError_1.default)
+                    throw SidetreeError_1.default.createFromError(ErrorCode_1.default.CoreProofFileNotJson, error);
+                throw error;
             }
             if (coreProofFileModel.operations === undefined) {
                 throw new SidetreeError_1.default(ErrorCode_1.default.CoreProofFileOperationsNotFound, `Core proof file does not have any operation proofs.`);

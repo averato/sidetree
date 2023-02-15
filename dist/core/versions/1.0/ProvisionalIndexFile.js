@@ -41,7 +41,7 @@ class ProvisionalIndexFile {
                 }
             }
             ProvisionalIndexFile.validateChunksProperty(provisionalIndexFileModel.chunks);
-            const didSuffixes = yield ProvisionalIndexFile.validateOperationsProperty(provisionalIndexFileModel.operations);
+            const didSuffixes = ProvisionalIndexFile.validateOperationsProperty(provisionalIndexFileModel.operations);
             if (didSuffixes.length > 0) {
                 InputValidator_1.default.validateCasFileUri(provisionalIndexFileModel.provisionalProofFileUri, 'provisional proof file URI');
             }

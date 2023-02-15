@@ -628,7 +628,7 @@ class BitcoinClient {
                 try {
                     const params = Object.assign({}, requestParameters);
                     params.timeout = requestTimeout;
-                    response = yield node_fetch_1.default(uri, params);
+                    response = yield (0, node_fetch_1.default)(uri, params);
                 }
                 catch (error) {
                     if (error instanceof node_fetch_1.FetchError && error.type === 'request-timeout') {

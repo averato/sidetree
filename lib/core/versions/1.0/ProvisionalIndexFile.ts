@@ -56,7 +56,7 @@ export default class ProvisionalIndexFile {
 
     ProvisionalIndexFile.validateChunksProperty(provisionalIndexFileModel.chunks);
 
-    const didSuffixes = await ProvisionalIndexFile.validateOperationsProperty(provisionalIndexFileModel.operations);
+    const didSuffixes = ProvisionalIndexFile.validateOperationsProperty(provisionalIndexFileModel.operations);
 
     // Validate provisional proof file URI.
     if (didSuffixes.length > 0) {

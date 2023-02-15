@@ -25,14 +25,18 @@ class CoreIndexFile {
                 coreIndexFileDecompressedBuffer = yield Compressor_1.default.decompress(coreIndexFileBuffer, maxAllowedDecompressedSizeInBytes);
             }
             catch (e) {
-                throw SidetreeError_1.default.createFromError(ErrorCode_1.default.CoreIndexFileDecompressionFailure, e);
+                if (e instanceof SidetreeError_1.default)
+                    throw SidetreeError_1.default.createFromError(ErrorCode_1.default.CoreIndexFileDecompressionFailure, e);
+                throw e;
             }
             let coreIndexFileModel;
             try {
                 coreIndexFileModel = yield JsonAsync_1.default.parse(coreIndexFileDecompressedBuffer);
             }
             catch (e) {
-                throw SidetreeError_1.default.createFromError(ErrorCode_1.default.CoreIndexFileNotJson, e);
+                if (e instanceof SidetreeError_1.default)
+                    throw SidetreeError_1.default.createFromError(ErrorCode_1.default.CoreIndexFileNotJson, e);
+                throw e;
             }
             const allowedProperties = new Set(['provisionalIndexFileUri', 'coreProofFileUri', 'operations', 'writerLockId']);
             for (const property in coreIndexFileModel) {

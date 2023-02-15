@@ -61,8 +61,10 @@ class LockMonitor {
             }
             catch (e) {
                 EventEmitter_1.default.emit(EventCode_1.default.BitcoinLockMonitorLoopFailure);
-                const message = `An error occurred during periodic poll: ${SidetreeError_1.default.stringify(e)}`;
-                Logger_1.default.error(message);
+                if (e instanceof SidetreeError_1.default) {
+                    const message = `An error occurred during periodic poll: ${SidetreeError_1.default.stringify(e)}`;
+                    Logger_1.default.error(message);
+                }
             }
             finally {
                 this.periodicPollTimeoutId = setTimeout(this.periodicPoll.bind(this), 1000 * this.pollPeriodInSeconds);

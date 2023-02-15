@@ -44,8 +44,7 @@ class VersionManager {
     }
     loadDefaultExportsForVersion(version, className) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
-            var _a;
-            const defaults = (yield (_a = `./versions/${version}/${className}`, Promise.resolve().then(() => require(_a)))).default;
+            const defaults = (yield Promise.resolve().then(() => require(`./versions/${version}/${className}`))).default;
             return defaults;
         });
     }

@@ -81,7 +81,9 @@ class LockResolver {
             return new bitcore_lib_1.Script(redeemScriptAsBuffer);
         }
         catch (e) {
-            throw SidetreeError_1.default.createFromError(ErrorCode_1.default.LockResolverRedeemScriptIsInvalid, e);
+            if (e instanceof SidetreeError_1.default)
+                throw SidetreeError_1.default.createFromError(ErrorCode_1.default.LockResolverRedeemScriptIsInvalid, e);
+            throw e;
         }
     }
     getTransaction(transactionId) {
@@ -90,7 +92,9 @@ class LockResolver {
                 return this.bitcoinClient.getRawTransaction(transactionId);
             }
             catch (e) {
-                throw SidetreeError_1.default.createFromError(ErrorCode_1.default.LockResolverTransactionNotFound, e);
+                if (e instanceof SidetreeError_1.default)
+                    throw SidetreeError_1.default.createFromError(ErrorCode_1.default.LockResolverTransactionNotFound, e);
+                throw e;
             }
         });
     }

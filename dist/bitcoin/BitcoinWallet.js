@@ -10,7 +10,9 @@ class BitcoinWallet {
             this.walletPrivateKey = bitcore_lib_1.PrivateKey.fromWIF(bitcoinWalletImportString);
         }
         catch (error) {
-            throw SidetreeError_1.default.createFromError(ErrorCode_1.default.BitcoinWalletIncorrectImportString, error);
+            if (error instanceof SidetreeError_1.default)
+                throw SidetreeError_1.default.createFromError(ErrorCode_1.default.BitcoinWalletIncorrectImportString, error);
+            throw error;
         }
         this.walletAddress = this.walletPrivateKey.toAddress();
         const walletPublicKey = this.walletPrivateKey.toPublicKey();

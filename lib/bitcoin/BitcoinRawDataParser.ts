@@ -64,8 +64,10 @@ export default class BitcoinRawDataParser {
       let block: Block;
       try {
         block = new Block(blockData);
-      } catch (e: any) {
-        throw SidetreeError.createFromError(ErrorCode.BitcoinRawDataParserInvalidBlockData, e);
+      } catch (e) {
+        if (e instanceof SidetreeError) throw SidetreeError.createFromError(ErrorCode.BitcoinRawDataParserInvalidBlockData, e);
+
+        throw e;
       }
 
       const blockHeight = BitcoinRawDataParser.getBlockHeightFromBlock(block, actualMagicBytes);

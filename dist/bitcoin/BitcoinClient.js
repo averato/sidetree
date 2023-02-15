@@ -178,7 +178,7 @@ class BitcoinClient {
             }
             catch (e) {
                 const duplicateCreateString = 'already exists';
-                if (e.toString().toLowerCase().includes(duplicateCreateString)) {
+                if (e instanceof SidetreeError_1.default && e.toString().toLowerCase().includes(duplicateCreateString)) {
                     Logger_1.default.info(`Wallet with name ${this.walletNameToUse} already exists.`);
                 }
                 else {
@@ -201,7 +201,7 @@ class BitcoinClient {
             }
             catch (e) {
                 const duplicateLoadString = 'already loaded';
-                if (e.toString().toLowerCase().includes(duplicateLoadString)) {
+                if (e instanceof SidetreeError_1.default && e.toString().toLowerCase().includes(duplicateLoadString)) {
                     Logger_1.default.info(`Wallet with name ${this.walletNameToUse} already loaded.`);
                 }
                 else {
@@ -628,7 +628,7 @@ class BitcoinClient {
                 try {
                     const params = Object.assign({}, requestParameters);
                     params.timeout = requestTimeout;
-                    response = yield (0, node_fetch_1.default)(uri, params);
+                    response = yield node_fetch_1.default(uri, params);
                 }
                 catch (error) {
                     if (error instanceof node_fetch_1.FetchError && error.type === 'request-timeout') {

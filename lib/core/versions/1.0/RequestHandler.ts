@@ -56,7 +56,7 @@ export default class RequestHandler implements IRequestHandler {
         const errorMessage = `An operation request already exists in queue for DID '${operationModel.didUniqueSuffix}', only one is allowed at a time.`;
         throw new SidetreeError(ErrorCode.QueueingMultipleOperationsPerDidNotAllowed, errorMessage);
       }
-    } catch (error: any) {
+    } catch (error) {
       // Give meaningful/specific error code and message when possible.
       if (error instanceof SidetreeError) {
         Logger.info(`Bad request: ${error.code}`);
@@ -105,7 +105,7 @@ export default class RequestHandler implements IRequestHandler {
       }
 
       return response;
-    } catch (error: any) {
+    } catch (error) {
       // Give meaningful/specific error code and message when possible.
       if (error instanceof SidetreeError) {
         Logger.info(`Sidetree error: ${error.code} ${error.message}`);
@@ -190,7 +190,7 @@ export default class RequestHandler implements IRequestHandler {
         status,
         body: document
       };
-    } catch (error: any) {
+    } catch (error) {
       // Give meaningful/specific error code and message when possible.
       if (error instanceof SidetreeError) {
         Logger.info(`Bad request. Code: ${error.code}. Message: ${error.message}`);

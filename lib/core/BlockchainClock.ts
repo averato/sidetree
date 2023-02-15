@@ -50,7 +50,7 @@ export default class BlockchainClock {
 
       this.cachedApproximateTime = serviceState.approximateTime;
       Logger.info(`Core cachedApproximateTime updated to: ${serviceState.approximateTime}`);
-    } catch (e: any) {
+    } catch (e) {
       Logger.error(`Error occurred while updating BitcoinClock: ${e}`);
     }
 
@@ -70,7 +70,7 @@ export default class BlockchainClock {
         await this.serviceStateStore.put(serviceState);
         EventEmitter.emit(EventCode.SidetreeBlockchainTimeChanged, { time: serviceState.approximateTime });
       }
-    } catch (e: any) {
+    } catch (e) {
       Logger.error(`Error occurred while updating blockchain time, investigate and fix: ${e}`);
     }
   }

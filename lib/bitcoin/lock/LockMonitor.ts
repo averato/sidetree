@@ -103,10 +103,12 @@ export default class LockMonitor {
       await this.handlePeriodicPolling();
 
       EventEmitter.emit(EventCode.BitcoinLockMonitorLoopSuccess);
-    } catch (e: any) {
+    } catch (e) {
       EventEmitter.emit(EventCode.BitcoinLockMonitorLoopFailure);
-      const message = `An error occurred during periodic poll: ${SidetreeError.stringify(e)}`;
-      Logger.error(message);
+      if (e instanceof SidetreeError) {
+        const message = `An error occurred during periodic poll: ${SidetreeError.stringify(e)}`;
+        Logger.error(message);
+      }  
     } finally {
       this.periodicPollTimeoutId = setTimeout(this.periodicPoll.bind(this), 1000 * this.pollPeriodInSeconds);
     }
@@ -211,7 +213,7 @@ export default class LockMonitor {
         status: LockStatus.Confirmed
       };
 
-    } catch (e: any) {
+    } catch (e) {
 
       if (e instanceof SidetreeError &&
         (e.code === ErrorCode.LockResolverTransactionNotConfirmed || e.code === ErrorCode.NormalizedFeeCalculatorBlockNotFound)) {
@@ -256,7 +258,7 @@ export default class LockMonitor {
 
       // no exception thrown == transaction found == it was broadcasted even if it is only in the mempool.
       return true;
-    } catch (e: any) {
+    } catch (e) {
       Logger.warn(`Transaction with id: ${transactionId} was not found on the bitcoin. Error: ${JSON.stringify(e, Object.getOwnPropertyNames(e))}`);
     }
 
@@ -321,7 +323,7 @@ export default class LockMonitor {
     try {
       await this.renewLock(currentValueTimeLock, desiredLockAmountInSatoshis);
       EventEmitter.emit(EventCode.BitcoinLockMonitorLockRenewed);
-    } catch (e: any) {
+    } catch (e) {
 
       // If there is not enough balance for the relock then just release the lock. Let the next
       // iteration of the polling to try and create a new lock.

@@ -53,8 +53,11 @@ class Ipfs {
                 new Cids(casUri);
             }
             catch (error) {
-                Logger_1.default.info(`'${casUri}' is not a valid CID: ${SidetreeError_1.default.stringify(error)}`);
-                return { code: FetchResultCode_1.default.InvalidHash };
+                if (error instanceof SidetreeError_1.default) {
+                    Logger_1.default.info(`'${casUri}' is not a valid CID: ${SidetreeError_1.default.stringify(error)}`);
+                    return { code: FetchResultCode_1.default.InvalidHash };
+                }
+                throw error;
             }
             let fetchResult;
             try {
@@ -62,13 +65,15 @@ class Ipfs {
                 fetchResult = yield Timeout_1.default.timeout(fetchContentPromise, this.fetchTimeoutInSeconds * 1000);
             }
             catch (error) {
-                if (error.code === IpfsErrorCode_1.default.TimeoutPromiseTimedOut) {
-                    Logger_1.default.info(`Timed out fetching CID '${casUri}'.`);
-                }
-                else {
-                    const errorMessage = `Unexpected error while fetching CID '${casUri}'. ` +
-                        `Investigate and fix: ${SidetreeError_1.default.stringify(error)}`;
-                    Logger_1.default.error(errorMessage);
+                if (error instanceof SidetreeError_1.default) {
+                    if (error.code === IpfsErrorCode_1.default.TimeoutPromiseTimedOut) {
+                        Logger_1.default.info(`Timed out fetching CID '${casUri}'.`);
+                    }
+                    else {
+                        const errorMessage = `Unexpected error while fetching CID '${casUri}'. ` +
+                            `Investigate and fix: ${SidetreeError_1.default.stringify(error)}`;
+                        Logger_1.default.error(errorMessage);
+                    }
                 }
                 return { code: FetchResultCode_1.default.NotFound };
             }
@@ -87,7 +92,7 @@ class Ipfs {
                 response = yield this.fetch(catUrl, { method: 'POST' });
             }
             catch (error) {
-                if (error.code === 'ECONNREFUSED') {
+                if (error instanceof SidetreeError_1.default && error.code === 'ECONNREFUSED') {
                     return { code: FetchResultCode_1.default.CasNotReachable };
                 }
                 throw error;
@@ -107,7 +112,8 @@ class Ipfs {
                 return fetchResult;
             }
             catch (error) {
-                if (error.code === SharedErrorCode_1.default.ReadableStreamMaxAllowedDataSizeExceeded) {
+                if (error instanceof SidetreeError_1.default &&
+                    error.code === SharedErrorCode_1.default.ReadableStreamMaxAllowedDataSizeExceeded) {
                     return { code: FetchResultCode_1.default.MaxSizeExceeded };
                 }
                 throw error;

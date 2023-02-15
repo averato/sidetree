@@ -38,14 +38,18 @@ class ProvisionalProofFile {
                 provisionalProofFileDecompressedBuffer = yield Compressor_1.default.decompress(provisionalProofFileBuffer, maxAllowedDecompressedSizeInBytes);
             }
             catch (error) {
-                throw SidetreeError_1.default.createFromError(ErrorCode_1.default.ProvisionalProofFileDecompressionFailure, error);
+                if (error instanceof SidetreeError_1.default)
+                    throw SidetreeError_1.default.createFromError(ErrorCode_1.default.ProvisionalProofFileDecompressionFailure, error);
+                throw error;
             }
             let provisionalProofFileModel;
             try {
                 provisionalProofFileModel = yield JsonAsync_1.default.parse(provisionalProofFileDecompressedBuffer);
             }
             catch (error) {
-                throw SidetreeError_1.default.createFromError(ErrorCode_1.default.ProvisionalProofFileNotJson, error);
+                if (error instanceof SidetreeError_1.default)
+                    throw SidetreeError_1.default.createFromError(ErrorCode_1.default.ProvisionalProofFileNotJson, error);
+                throw error;
             }
             if (provisionalProofFileModel.operations === undefined) {
                 throw new SidetreeError_1.default(ErrorCode_1.default.ProvisionalProofFileOperationsNotFound, `Provisional proof file does not have any operation proofs.`);

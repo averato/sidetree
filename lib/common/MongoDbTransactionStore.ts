@@ -3,6 +3,7 @@ import ITransactionStore from '../core/interfaces/ITransactionStore';
 import Logger from '../common/Logger';
 import MongoDbStore from './MongoDbStore';
 import TransactionModel from './models/TransactionModel';
+import SidetreeError from '../common/SidetreeError';
 
 /**
  * Implementation of ITransactionStore that stores the transaction data in a MongoDB database.
@@ -66,7 +67,7 @@ export default class MongoDbTransactionStore extends MongoDbStore implements ITr
       // Fetch the transactions
       transactions = await dbCursor.toArray();
 
-    } catch (error: any) {
+    } catch (error) {
       Logger.error(error);
     }
 
@@ -86,9 +87,9 @@ export default class MongoDbTransactionStore extends MongoDbStore implements ITr
         writer: transaction.writer
       };
       await this.collection!.insertOne(transactionInMongoDb);
-    } catch (error: any) {
+    } catch (error) {
       // Swallow duplicate insert errors (error code 11000) as no-op; rethrow others
-      if (error.code !== 11000) {
+      if (error instanceof SidetreeError && error.code !== '11000') {
         throw error;
       }
     }

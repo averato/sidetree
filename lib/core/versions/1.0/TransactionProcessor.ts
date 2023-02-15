@@ -53,7 +53,7 @@ export default class TransactionProcessor implements ITransactionProcessor {
 
       // Download and verify core proof file.
       coreProofFile = await this.downloadAndVerifyCoreProofFile(coreIndexFile);
-    } catch (error: any) {
+    } catch (error) {
       let retryNeeded = true;
       if (error instanceof SidetreeError) {
         // If error is related to CAS network connectivity issues, we need to retry later.
@@ -66,7 +66,7 @@ export default class TransactionProcessor implements ITransactionProcessor {
           retryNeeded = false;
         }
       } else {
-        Logger.error(LogColor.red(`Unexpected error while fetching and downloading core files, MUST investigate and fix: ${error.message}`));
+        Logger.error(LogColor.red(`Unexpected error while fetching and downloading core files, MUST investigate and fix: ${error}`));
         retryNeeded = true;
       }
 
@@ -93,7 +93,7 @@ export default class TransactionProcessor implements ITransactionProcessor {
       chunkFileModel = await this.downloadAndVerifyChunkFile(coreIndexFile, provisionalIndexFile);
 
       retryNeeded = false;
-    } catch (error: any) {
+    } catch (error) {
       // If we encounter any error, regardless of whether the transaction should be retried for processing,
       // we set all the provisional/chunk files to be `undefined`,
       // this is because chunk file would not be available/valid for its deltas to be used during resolutions,
@@ -114,7 +114,7 @@ export default class TransactionProcessor implements ITransactionProcessor {
           retryNeeded = false;
         }
       } else {
-        Logger.error(LogColor.red(`Unexpected error while fetching and downloading provisional files, MUST investigate and fix: ${error.message}`));
+        Logger.error(LogColor.red(`Unexpected error while fetching and downloading provisional files, MUST investigate and fix: ${error}`));
         retryNeeded = true;
       }
     }

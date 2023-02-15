@@ -4,6 +4,11 @@ const tslib_1 = require("tslib");
 const mongodb_1 = require("mongodb");
 const Logger_1 = require("../common/Logger");
 class MongoDbStore {
+    constructor(serverUrl, collectionName, databaseName) {
+        this.serverUrl = serverUrl;
+        this.collectionName = collectionName;
+        this.databaseName = databaseName;
+    }
     static enableCommandResultLogging(client) {
         client.on('commandSucceeded', (event) => {
             const lowerCaseCommandName = event.commandName.toLowerCase();
@@ -28,11 +33,6 @@ class MongoDbStore {
         }
     }
     ;
-    constructor(serverUrl, collectionName, databaseName) {
-        this.serverUrl = serverUrl;
-        this.collectionName = collectionName;
-        this.databaseName = databaseName;
-    }
     initialize() {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             const client = yield mongodb_1.MongoClient.connect(this.serverUrl, {

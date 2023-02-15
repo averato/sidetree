@@ -50,9 +50,9 @@ export default class MongoDbOperationQueue extends MongoDbStore implements IOper
       };
 
       await this.collection!.insertOne(queuedOperation);
-    } catch (error: any) {
+    } catch (error) {
       // Duplicate insert errors (error code 11000).
-      if (error.code === 11000) {
+      if (error instanceof SidetreeError && error.code === "11000") {
         throw new SidetreeError(ErrorCode.BatchWriterAlreadyHasOperationForDid);
       }
 

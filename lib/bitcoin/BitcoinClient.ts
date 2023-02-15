@@ -100,7 +100,7 @@ export default class BitcoinClient {
           Logger.info(LogColor.lightBlue('Bitcoin Core fully synchronized'));
           return;
         }
-      } catch (error: any) {
+      } catch (error) {
         Logger.info(LogColor.yellow(`Bitcoin Core not ready or not available: ${error}.`));
       }
 
@@ -294,10 +294,10 @@ export default class BitcoinClient {
     try {
       await this.rpcCall(request, true, isWalletRpc);
       Logger.info(`Wallet created with name "${this.walletNameToUse}".`);
-    } catch (e: any) {
+    } catch (e) {
       // using error message because bitcoin core error code is not reliable as a single code can contain multiple errors
       const duplicateCreateString = 'already exists';
-      if (e.toString().toLowerCase().includes(duplicateCreateString)) {
+      if (e instanceof SidetreeError && e.toString().toLowerCase().includes(duplicateCreateString)) {
         Logger.info(`Wallet with name ${this.walletNameToUse} already exists.`);
       } else {
         throw e;
@@ -317,10 +317,10 @@ export default class BitcoinClient {
     try {
       await this.rpcCall(request, true, isWalletRpc);
       Logger.info(`Wallet loaded with name "${this.walletNameToUse}".`);
-    } catch (e: any) {
+    } catch (e) {
       // using error message because bitcoin core error code is not reliable as a single code can contain multiple errors
       const duplicateLoadString = 'already loaded';
-      if (e.toString().toLowerCase().includes(duplicateLoadString)) {
+      if (e instanceof SidetreeError && e.toString().toLowerCase().includes(duplicateLoadString)) {
         Logger.info(`Wallet with name ${this.walletNameToUse} already loaded.`);
       } else {
         throw e;
@@ -535,7 +535,7 @@ export default class BitcoinClient {
     try {
       estimatedFeeSatoshiPerKB = await this.getCurrentEstimatedFeeInSatoshisPerKB();
       this.estimatedFeeSatoshiPerKB = estimatedFeeSatoshiPerKB;
-    } catch (error: any) {
+    } catch (error) {
       estimatedFeeSatoshiPerKB = this.estimatedFeeSatoshiPerKB;
       if (!estimatedFeeSatoshiPerKB) {
         throw error;
@@ -958,7 +958,7 @@ export default class BitcoinClient {
         params.timeout = requestTimeout;
 
         response = await nodeFetch(uri, params);
-      } catch (error: any) {
+      } catch (error) {
         // Retry-able if request is timed out.
         if (error instanceof FetchError && error.type === 'request-timeout') {
           networkError = error;

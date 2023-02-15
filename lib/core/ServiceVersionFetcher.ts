@@ -53,7 +53,7 @@ export default class ServiceVersionFetcher {
       Logger.info(`Received version response from the blockchain service: ${responseBodyBuffer.toString()}`);
 
       return JSON.parse(responseBodyBuffer.toString());
-    } catch (e: any) {
+    } catch (e) {
       Logger.error(`Ignoring the exception during blockchain service version retrieval: ${JSON.stringify(e, Object.getOwnPropertyNames(e))}`);
     }
 

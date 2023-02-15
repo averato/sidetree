@@ -59,7 +59,10 @@ class Jws {
             return true;
         }
         catch (error) {
-            Logger_1.default.info(`Input '${compactJws}' failed signature verification: ${SidetreeError_1.default.createFromError(ErrorCode_1.default.JwsFailedSignatureValidation, error)}`);
+            if (error instanceof SidetreeError_1.default) {
+                Logger_1.default.info(`Input '${compactJws}' failed signature verification: ${SidetreeError_1.default.createFromError(ErrorCode_1.default.JwsFailedSignatureValidation, error)}`);
+                return false;
+            }
             return false;
         }
     }

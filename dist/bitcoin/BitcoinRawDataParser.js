@@ -30,7 +30,9 @@ class BitcoinRawDataParser {
                 block = new bitcore_lib_1.Block(blockData);
             }
             catch (e) {
-                throw SidetreeError_1.default.createFromError(ErrorCode_1.default.BitcoinRawDataParserInvalidBlockData, e);
+                if (e instanceof SidetreeError_1.default)
+                    throw SidetreeError_1.default.createFromError(ErrorCode_1.default.BitcoinRawDataParserInvalidBlockData, e);
+                throw e;
             }
             const blockHeight = BitcoinRawDataParser.getBlockHeightFromBlock(block, actualMagicBytes);
             const transactionModels = BitcoinClient_1.default.convertToBitcoinTransactionModels(block);

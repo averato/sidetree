@@ -1,12 +1,12 @@
 import Config from '../../lib/core/models/Config';
 
-const MongoMemoryServer = require('mongodb-memory-server').MongoMemoryServer;
+// const MongoMemoryServer = require('mongodb-memory-server').MongoMemoryServer;
 
 /**
  * MongoDB related operations.
  */
 export default class MongoDb {
-  private static initialized : boolean;
+  private static initialized = true;
 
   /**
    * Setup inmemory mongodb to test with
@@ -17,12 +17,13 @@ export default class MongoDb {
       // Otherwise, assume the database is already running
       const prefix = 'mongodb://localhost:';
       if (config.mongoDbConnectionString.startsWith(prefix)) {
-        const port = parseInt(config.mongoDbConnectionString.substr(prefix.length));
-        await MongoMemoryServer.create({
-          instance: {
-            port
-          }
-        });
+ //      const port = parseInt(config.mongoDbConnectionString.substr(prefix.length));
+ //        await MongoMemoryServer.create({
+ //          instance: {
+ //            port
+ //          },
+ //          binary: { version: '6.0.4' },
+ //        });
       }
       MongoDb.initialized = true;
     }

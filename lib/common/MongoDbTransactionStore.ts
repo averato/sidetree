@@ -1,4 +1,4 @@
-import { Cursor, Long } from 'mongodb';
+import { FindCursor, Long } from 'mongodb';
 import ITransactionStore from '../core/interfaces/ITransactionStore';
 import Logger from '../common/Logger';
 import MongoDbStore from './MongoDbStore';
@@ -47,7 +47,7 @@ export default class MongoDbTransactionStore extends MongoDbStore implements ITr
 
     try {
 
-      let dbCursor: Cursor<any>;
+      let dbCursor: FindCursor<any>;
 
       // If given `undefined`, return transactions from the start.
       if (transactionNumber === undefined) {
@@ -152,7 +152,7 @@ export default class MongoDbTransactionStore extends MongoDbStore implements ITr
    * @param exclusiveEndTransactionTime The transaction time to stop querying for
    */
   public async getTransactionsStartingFrom (inclusiveBeginTransactionTime: number, exclusiveEndTransactionTime: number): Promise<TransactionModel[]> {
-    let cursor: Cursor<any>;
+    let cursor: FindCursor<any>;
     if (inclusiveBeginTransactionTime === exclusiveEndTransactionTime) {
       // if begin === end, query for 1 transaction time
       cursor = this.collection!.find({ transactionTime: { $eq: Long.fromNumber(inclusiveBeginTransactionTime) } });

@@ -99,7 +99,7 @@ export default class MongoDbOperationQueue extends MongoDbStore implements IOper
   private static convertToQueuedOperationModel (mongoQueuedOperation: IMongoQueuedOperation): QueuedOperationModel {
     return {
       didUniqueSuffix: mongoQueuedOperation.didUniqueSuffix,
-      operationBuffer: mongoQueuedOperation.operationBufferBsonBinary.buffer
+      operationBuffer: Buffer.from(mongoQueuedOperation.operationBufferBsonBinary.buffer) 
     };
   }
 }

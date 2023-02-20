@@ -1,4 +1,4 @@
-import { Collection, Db, LoggerState, MongoClient } from 'mongodb';
+import { Collection, Db, MongoClient } from 'mongodb';
 export default class MongoDbStore {
     private serverUrl;
     private collectionName;
@@ -7,7 +7,6 @@ export default class MongoDbStore {
     protected db: Db | undefined;
     protected collection: Collection<any>;
     static enableCommandResultLogging(client: MongoClient): void;
-    static customLogger(_message: string | undefined, state: LoggerState | undefined): void;
     constructor(serverUrl: string, collectionName: string, databaseName: string);
     initialize(): Promise<void>;
     clearCollection(): Promise<void>;

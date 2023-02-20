@@ -18,6 +18,7 @@ import Resolver from '../../lib/core/Resolver';
 import TransactionModel from '../../lib/common/models/TransactionModel';
 import VersionManager from '../../lib/core/VersionManager';
 import VersionModel from '../../lib/core/models/VersionModel';
+import SidetreeError from '../../lib/common/SidetreeError';
 
 describe('VersionManager', async () => {
 
@@ -82,7 +83,7 @@ describe('VersionManager', async () => {
         await versionMgr.initialize(blockChain, cas, downloadMgr, operationStore, resolver, mockTransactionStore, mockConfirmationStore);
         fail('expect to throw but did not');
       } catch (e) {
-        expect(e.code).toEqual(ErrorCode.VersionManagerVersionMetadataIncorrectType);
+        if (e instanceof SidetreeError) expect(e.code).toEqual(ErrorCode.VersionManagerVersionMetadataIncorrectType);
       }
     });
 

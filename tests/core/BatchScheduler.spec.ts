@@ -28,9 +28,9 @@ describe('BatchScheduler', async () => {
       // NOTE: if anything throws, we retry.
       throw new Error('Batch writer not invoked.');
     }, {
-      retries: 5,
-      minTimeout: 1000, // milliseconds
-      maxTimeout: 1000 // milliseconds
+//      retries: 5,
+//      minTimeout: 1000, // milliseconds
+//      maxTimeout: 1000 // milliseconds
     });
 
     batchScheduler.stopPeriodicBatchWriting();

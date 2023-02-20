@@ -78,7 +78,7 @@ export default class BitcoinProcessor {
   private lastProcessedBlock: BlockMetadata | undefined;
 
   /** Poll timeout identifier */
-  private pollTimeoutId: number | undefined;   // NodeJS.Timeout | undefined;
+  private pollTimeoutId: NodeJS.Timeout | undefined;
 
   private serviceInfoProvider: ServiceInfoProvider;
 
@@ -686,7 +686,7 @@ export default class BitcoinProcessor {
     try {
       // Defensive programming to prevent multiple polling loops even if this method is externally called multiple times.
       if (this.pollTimeoutId) {
-        clearTimeout(this.pollTimeoutId);
+        clearTimeout(Number(this.pollTimeoutId));
       }
 
       const startingBlock = await this.getStartingBlockForPeriodicPoll();

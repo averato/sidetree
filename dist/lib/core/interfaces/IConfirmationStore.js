@@ -1,3 +1,3 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-// # sourceMappingURL=IConfirmationStore.js.map
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=IConfirmationStore.js.map

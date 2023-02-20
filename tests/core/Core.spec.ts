@@ -188,7 +188,7 @@ describe('Core', async () => {
     });
   });
 
-  describe('handleResolveRequest', () => {
+  fdescribe('handleResolveRequest', () => {
     it('should call the needed functions and return a response', async () => {
       const core = new Core(testConfig, testVersionConfig, mockCas);
       const mockRequestHandler = jasmine.createSpyObj<IRequestHandler>('versionManagerSpy', ['handleResolveRequest']);

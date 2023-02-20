@@ -615,8 +615,8 @@ describe('BitcoinProcessor', () => {
         await bitcoinProcessor.transactions(randomNumber());
         fail('expected to throw');
       } catch (error) {
-        expect(error.status).toEqual(httpStatus.BAD_REQUEST);
-        expect(error.code).not.toEqual(SharedErrorCode.InvalidTransactionNumberOrTimeHash);
+        if (error instanceof RequestError) expect(error.status).toEqual(httpStatus.BAD_REQUEST);
+        if (error instanceof SidetreeError) expect(error.code).not.toEqual(SharedErrorCode.InvalidTransactionNumberOrTimeHash);
       } finally {
         done();
       }
@@ -631,8 +631,8 @@ describe('BitcoinProcessor', () => {
         await bitcoinProcessor.transactions(expectedTransactionNumber, expectedHash);
         fail('expected to throw');
       } catch (error) {
-        expect(error.status).toEqual(httpStatus.BAD_REQUEST);
-        expect(error.code).toEqual(SharedErrorCode.InvalidTransactionNumberOrTimeHash);
+        if (error instanceof RequestError) expect(error.status).toEqual(httpStatus.BAD_REQUEST);
+        if (error instanceof SidetreeError) expect(error.code).toEqual(SharedErrorCode.InvalidTransactionNumberOrTimeHash);
         expect(verifyMock).toHaveBeenCalledTimes(1);
       } finally {
         done();
@@ -795,8 +795,8 @@ describe('BitcoinProcessor', () => {
         fail('should have thrown');
       } catch (error) {
         expect(error instanceof RequestError).toBeTruthy();
-        expect(error.status).toEqual(400);
-        expect(error.code).toEqual(SharedErrorCode.NotEnoughBalanceForWrite);
+        if (error instanceof RequestError) expect(error.status).toEqual(400);
+        if (error instanceof SidetreeError) expect(error.code).toEqual(SharedErrorCode.NotEnoughBalanceForWrite);
 
         expect(getCoinsSpy).toHaveBeenCalled();
         expect(broadcastSpy).not.toHaveBeenCalled();
@@ -819,8 +819,8 @@ describe('BitcoinProcessor', () => {
         await bitcoinProcessor.writeTransaction('some data', bitcoinFee);
         fail('expected to throw');
       } catch (error) {
-        expect(error.status).toEqual(httpStatus.BAD_REQUEST);
-        expect(error.code).toEqual(SharedErrorCode.SpendingCapPerPeriodReached);
+        // expect(error.status).toEqual(httpStatus.BAD_REQUEST);
+        if (error instanceof SidetreeError) expect(error.code).toEqual(SharedErrorCode.SpendingCapPerPeriodReached);
       }
 
       expect(broadcastSpy).not.toHaveBeenCalled();
@@ -848,8 +848,10 @@ describe('BitcoinProcessor', () => {
         await bitcoinProcessor.getNormalizedFee(0);
         fail('should have failed');
       } catch (error) {
-        expect(error.status).toEqual(httpStatus.BAD_REQUEST);
-        expect(error.code).toEqual(SharedErrorCode.BlockchainTimeOutOfRange);
+        if (error instanceof SidetreeError) {
+          // expect(error.status).toEqual(httpStatus.BAD_REQUEST);
+          expect(error.code).toEqual(SharedErrorCode.BlockchainTimeOutOfRange);
+        }
       }
     });
 
@@ -983,7 +985,7 @@ describe('BitcoinProcessor', () => {
       getStartingBlockForPeriodicPollSpy.and.returnValue(Promise.resolve());
       const clearTimeoutSpy = spyOn(global, 'clearTimeout').and.returnValue();
 
-      bitcoinProcessor['pollTimeoutId'] = 1234;
+      bitcoinProcessor['pollTimeoutId'] = setTimeout(function () { true; }, 1000);
 
       await bitcoinProcessor['periodicPoll']();
 

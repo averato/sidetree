@@ -102,7 +102,7 @@ describe('MongoDbOperationStore', async () => {
     await emptyOperationStore.initialize();
 
     // Make connection to mongo db to verify collection exists
-    const client = await MongoClient.connect(config.mongoDbConnectionString, { useNewUrlParser: true });
+    const client = await MongoClient.connect(config.mongoDbConnectionString);
     const db = client.db(databaseName);
     const collections = await db.collections();
     const collectionNames = collections.map(collection => collection.collectionName);

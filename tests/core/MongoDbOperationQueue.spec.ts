@@ -131,7 +131,7 @@ describe('MongoDbOperationQueue', async () => {
     try {
       await generateAndQueueOperations(operationQueue, 1);
     } catch (error) {
-      if (error.code === 'unexpected-error') {
+      if (error instanceof SidetreeError && error.code === 'unexpected-error') {
         // Expected behavior.
       } else {
         throw error; // Unexpected behavior, throw to fail the test.

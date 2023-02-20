@@ -65,7 +65,7 @@ export default class JasmineSidetreeErrorValidator {
     }
 
     if (!validated) {
-      fail(`Expected error '${expectedErrorCode}' did not occur. Instead got '${actualError.code}'`);
+      fail(`Expected error '${expectedErrorCode}' did not occur. Instead got '${actualError}'`);
     }
   }
 }

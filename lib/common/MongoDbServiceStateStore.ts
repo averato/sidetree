@@ -15,13 +15,13 @@ export default class MongoDbServiceStateStore<T> extends MongoDbStore implements
     super(serverUrl, MongoDbServiceStateStore.collectionName, databaseName);
   }
 
-  async put (serviceState: T) {
+  async put (serviceState: any) {
     await this.collection!.replaceOne({ }, serviceState, { upsert: true }); // { } filter results in replacement of the first document returned.
   }
 
   public async get (): Promise<T> {
-    const queryOptions = { fields: { _id: 0 } }; // Exclude `_id` field from being returned.
-    const serviceState = await this.collection!.findOne({ }, queryOptions);
+    // const queryOptions = { fields: { _id: 0 } }; // Exclude `_id` field from being returned.
+    const serviceState = await this.collection!.findOne({ });
 
     return serviceState ? serviceState : { };
   }

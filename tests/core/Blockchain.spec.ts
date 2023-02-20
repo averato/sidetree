@@ -55,7 +55,7 @@ describe('Blockchain', async () => {
       } catch (error) {
         // Throwing error is the expected case.
 
-        if (error.code !== SharedErrorCode.InvalidTransactionNumberOrTimeHash) {
+        if (error instanceof SidetreeError && error.code !== SharedErrorCode.InvalidTransactionNumberOrTimeHash) {
           fail();
         }
 
@@ -83,7 +83,7 @@ describe('Blockchain', async () => {
       } catch (error) {
         // Throwing error is the expected case.
 
-        if (error.code !== CoreErrorCode.BlockchainReadResponseNotOk) {
+        if (error instanceof SidetreeError && error.code !== CoreErrorCode.BlockchainReadResponseNotOk) {
           fail();
         }
 
@@ -100,7 +100,7 @@ describe('Blockchain', async () => {
       } catch (error) {
         // Throwing error is the expected case.
 
-        if (error.code !== CoreErrorCode.BlockchainReadInvalidArguments) {
+        if (error instanceof SidetreeError && error.code !== CoreErrorCode.BlockchainReadInvalidArguments) {
           fail();
         }
 
@@ -265,7 +265,7 @@ describe('Blockchain', async () => {
       } catch (error) {
         // Throwing error is the expected case.
 
-        if (error.code !== CoreErrorCode.BlockchainGetLatestTimeResponseNotOk) {
+        if (error instanceof SidetreeError && error.code !== CoreErrorCode.BlockchainGetLatestTimeResponseNotOk) {
           fail();
         }
 

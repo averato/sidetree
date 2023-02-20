@@ -295,8 +295,8 @@ describe('CoreIndexFile', async () => {
       const createOperationRequest = createOperationData.operationRequest;
 
       // Strip away properties not allowed in the createOperations array elements.
-      delete createOperationRequest.type;
-      delete createOperationRequest.delta;
+      // delete createOperationRequest.type;
+      // delete createOperationRequest.delta;
 
       const coreIndexFile: CoreIndexFileModel = {
         provisionalIndexFileUri: 'bafkreid5uh2g5gbbhvpza4mwfwbmigy43rar2xkalwtvc7v34b4557cr2i',

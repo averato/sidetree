@@ -1,5 +1,5 @@
 import BlockMetadata from './models/BlockMetadata';
-import { Cursor } from 'mongodb';
+import { FindCursor } from 'mongodb';
 import IBlockMetadataStore from './interfaces/IBlockMetadataStore';
 import MongoDbStore from '../common/MongoDbStore';
 
@@ -11,7 +11,7 @@ export default class MongoDbBlockMetadataStore extends MongoDbStore implements I
   public static readonly collectionName = 'blocks';
 
   /** Query option to exclude `_id` field from being returned. */
-  private static readonly optionToExcludeIdField = { fields: { _id: 0 } };
+  // private static readonly optionToExcludeIdField = { fields: { _id: 0 } };
 
   /**
    * Constructs a `MongoDbBlockMetadataStore`;
@@ -47,7 +47,7 @@ export default class MongoDbBlockMetadataStore extends MongoDbStore implements I
   }
 
   public async get (fromInclusiveHeight: number, toExclusiveHeight: number): Promise<BlockMetadata[]> {
-    let dbCursor: Cursor<BlockMetadata>;
+    let dbCursor: FindCursor<BlockMetadata>;
 
     // Add filter to query.
     dbCursor = this.collection!.find({
@@ -109,7 +109,7 @@ export default class MongoDbBlockMetadataStore extends MongoDbStore implements I
 
     const exponentiallySpacedBlocks = await this.collection!.find<BlockMetadata>(
       { height: { $in: heightOfBlocksToReturn } },
-      MongoDbBlockMetadataStore.optionToExcludeIdField
+     // MongoDbBlockMetadataStore.optionToExcludeIdField
     ).toArray();
     exponentiallySpacedBlocks.sort((a, b) => b.height - a.height); // Sort in height descending order.
 

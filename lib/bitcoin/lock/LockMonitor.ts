@@ -108,7 +108,7 @@ export default class LockMonitor {
       if (e instanceof SidetreeError) {
         const message = `An error occurred during periodic poll: ${SidetreeError.stringify(e)}`;
         Logger.error(message);
-      }  
+      }
     } finally {
       this.periodicPollTimeoutId = setTimeout(this.periodicPoll.bind(this), 1000 * this.pollPeriodInSeconds);
     }

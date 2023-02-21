@@ -13,5 +13,5 @@ export default class Document {
       }
     }
     return undefined;
-  };
+  }
 }

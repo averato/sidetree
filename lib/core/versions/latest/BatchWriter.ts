@@ -151,7 +151,7 @@ export default class BatchWriter implements IBatchWriter {
       return undefined;
     }
 
-    const provisionalIndexFileBuffer = await ProvisionalIndexFile.createBuffer(chunkFileUri!, provisionalProofFileUri, updateOperations);
+    const provisionalIndexFileBuffer = await ProvisionalIndexFile.createBuffer(chunkFileUri, provisionalProofFileUri, updateOperations);
     const provisionalIndexFileUri = await this.cas.write(provisionalIndexFileBuffer);
     Logger.info(LogColor.lightBlue(`Wrote provisional index file ${LogColor.green(provisionalIndexFileUri)} to content addressable store.`));
 
@@ -159,7 +159,7 @@ export default class BatchWriter implements IBatchWriter {
   }
 
   private static hasEnoughConfirmations (confirmedAt: number | undefined, currentTime: number): boolean {
-    const minConfirmationBetweenWrites: number = 6;
+    const minConfirmationBetweenWrites = 6;
 
     // If not confirmed.
     if (confirmedAt === undefined) {

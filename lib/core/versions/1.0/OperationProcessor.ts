@@ -110,7 +110,7 @@ export default class OperationProcessor implements IOperationProcessor {
     const isMatchingDelta = Multihash.verifyEncodedMultihashForContent(deltaPayload, operation.suffixData.deltaHash);
     if (!isMatchingDelta) {
       return newDidState;
-    };
+    }
 
     // Apply the given patches against an empty object.
     const delta = operation.delta;
@@ -124,9 +124,11 @@ export default class OperationProcessor implements IOperationProcessor {
     } catch (error) {
       const didUniqueSuffix = anchoredOperationModel.didUniqueSuffix;
       const transactionNumber = anchoredOperationModel.transactionNumber;
-      if (error instanceof SidetreeError) Logger.info(
+      if (error instanceof SidetreeError) {
+        Logger.info(
         `Partial update on next commitment hash applied because: ` +
         `Unable to apply delta patches for transaction number ${transactionNumber} for DID ${didUniqueSuffix}: ${SidetreeError.stringify(error)}.`);
+      }
     }
 
     return newDidState;
@@ -163,7 +165,7 @@ export default class OperationProcessor implements IOperationProcessor {
     const isMatchingDelta = Multihash.verifyEncodedMultihashForContent(deltaPayload, operation.signedData.deltaHash);
     if (!isMatchingDelta) {
       return didState;
-    };
+    }
 
     // Passed all verifications, must update the update commitment value even if the application of patches fail.
     const newDidState = {
@@ -228,7 +230,7 @@ export default class OperationProcessor implements IOperationProcessor {
     const isMatchingDelta = Multihash.verifyEncodedMultihashForContent(deltaPayload, operation.signedData.deltaHash);
     if (!isMatchingDelta) {
       return newDidState;
-    };
+    }
 
     // Apply the given patches against an empty object.
     const delta = operation.delta;
@@ -242,9 +244,11 @@ export default class OperationProcessor implements IOperationProcessor {
     } catch (error) {
       const didUniqueSuffix = anchoredOperationModel.didUniqueSuffix;
       const transactionNumber = anchoredOperationModel.transactionNumber;
-      if (error instanceof SidetreeError) Logger.info(
+      if (error instanceof SidetreeError) {
+        Logger.info(
         `Partial update on next commitment hash applied because: ` +
         `Unable to apply delta patches for transaction number ${transactionNumber} for DID ${didUniqueSuffix}: ${SidetreeError.stringify(error)}.`);
+      }
 
     }
 

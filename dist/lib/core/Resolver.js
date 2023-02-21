@@ -15,6 +15,7 @@ class Resolver {
             Logger_1.default.info(`Resolving DID unique suffix '${didUniqueSuffix}'...`);
             const operations = yield this.operationStore.get(didUniqueSuffix);
             const operationsByType = Resolver.categorizeOperationsByType(operations);
+            Logger_1.default.info(`DiD contains operations: ${JSON.stringify(operationsByType)}`);
             let didState = yield this.applyCreateOperation(operationsByType.createOperations);
             if (didState === undefined) {
                 return undefined;

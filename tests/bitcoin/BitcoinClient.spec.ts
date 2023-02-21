@@ -49,7 +49,7 @@ describe('BitcoinClient', async () => {
     });
   }
 
-  function generateBitcoreTransactionWrapper (bitcoinWalletImportString: string, outputSatoshis: number = 1, confirmations: number = 0) {
+  function generateBitcoreTransactionWrapper (bitcoinWalletImportString: string, outputSatoshis = 1, confirmations = 0) {
     const transaction = BitcoinDataGenerator.generateBitcoinTransaction(bitcoinWalletImportString, outputSatoshis);
     const unspentOutput = BitcoinDataGenerator.generateUnspentCoin(bitcoinWalletImportString, outputSatoshis + 500);
     transaction.from([unspentOutput]);

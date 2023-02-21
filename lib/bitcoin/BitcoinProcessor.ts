@@ -702,9 +702,9 @@ export default class BitcoinProcessor {
       EventEmitter.emit(EventCode.BitcoinObservingLoopFailure);
       Logger.error(error);
     } finally {
-     //  this.pollTimeoutId
-     let timer = setTimeout(this.periodicPoll.bind(this), 1000 * interval, interval);
-     this.pollTimeoutId = timer;
+      //  this.pollTimeoutId
+      const timer = setTimeout(this.periodicPoll.bind(this), 1000 * interval, interval);
+      this.pollTimeoutId = timer;
     }
   }
 

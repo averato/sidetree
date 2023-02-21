@@ -12,7 +12,7 @@ export default class ConsoleLogger implements ILogger {
     console.warn(data);
   }
 
-  error (data: any): void{
+  error (data: any): void {
     console.error(data);
   }
 }

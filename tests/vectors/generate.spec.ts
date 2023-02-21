@@ -41,7 +41,7 @@ describe('Test Vectors', () => {
       jwkEs256k2Public,
       jwkEs256k2Private
     );
-    const fixtureData = { ...updateOperationData } as any;
+    const fixtureData = { ...updateOperationData };
     // TODO: fix operation data structures so stuff like this is not required
     // to get consistent references to request objects.
     fixtureData.operationRequest = JSON.parse(fixtureData.updateOperation.operationBuffer.toString());
@@ -62,7 +62,7 @@ describe('Test Vectors', () => {
       recoveryPrivateKey: jwkEs256k1Private
     };
     recoverOperationData = await OperationGenerator.generateRecoverOperation(input);
-    const fixtureData = { ...recoverOperationData } as any;
+    const fixtureData = { ...recoverOperationData };
     // TODO: fix operation data structures so stuff like this is not required
     // to get consistent references to request objects.
     fixtureData.operationRequest = JSON.parse(fixtureData.recoverOperation.operationBuffer.toString());
@@ -82,7 +82,7 @@ describe('Test Vectors', () => {
       fixture.create.didUniqueSuffix,
       recoverOperationData.recoveryPrivateKey
     );
-    const fixtureData = { ...deactivateOperationData } as any;
+    const fixtureData = { ...deactivateOperationData };
     // TODO: fix operation data structures so stuff like this is not required
     // to get consistent references to request objects.
     fixtureData.operationRequest = JSON.parse(fixtureData.deactivateOperation.operationBuffer.toString());

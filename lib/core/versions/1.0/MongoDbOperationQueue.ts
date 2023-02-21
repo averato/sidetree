@@ -49,7 +49,7 @@ export default class MongoDbOperationQueue extends MongoDbStore implements IOper
         operationBufferBsonBinary: new Binary(operationBuffer)
       };
 
-      await this.collection!.insertOne(queuedOperation);
+      await this.collection.insertOne(queuedOperation);
     } catch (error) {
       // Duplicate insert errors (error code 11000).
       if (error instanceof SidetreeError && error.code === '11000') {
@@ -65,9 +65,9 @@ export default class MongoDbOperationQueue extends MongoDbStore implements IOper
       return [];
     }
 
-    const queuedOperations = await this.collection!.find().sort({ _id: 1 }).limit(count).toArray();
+    const queuedOperations = await this.collection.find().sort({ _id: 1 }).limit(count).toArray();
     const lastOperation = queuedOperations[queuedOperations.length - 1];
-    await this.collection!.deleteMany({ _id: { $lte: lastOperation._id } });
+    await this.collection.deleteMany({ _id: { $lte: lastOperation._id } });
 
     return queuedOperations.map((operation) => MongoDbOperationQueue.convertToQueuedOperationModel(operation));
   }
@@ -78,7 +78,7 @@ export default class MongoDbOperationQueue extends MongoDbStore implements IOper
     }
 
     // NOTE: `_id` is the default index that is sorted based by create time.
-    const queuedOperations = await this.collection!.find().sort({ _id: 1 }).limit(count).toArray();
+    const queuedOperations = await this.collection.find().sort({ _id: 1 }).limit(count).toArray();
 
     return queuedOperations.map((operation) => MongoDbOperationQueue.convertToQueuedOperationModel(operation));
   }
@@ -87,19 +87,19 @@ export default class MongoDbOperationQueue extends MongoDbStore implements IOper
    * Checks to see if the queue already contains an operation for the given DID unique suffix.
    */
   async contains (didUniqueSuffix: string): Promise<boolean> {
-    const operations = await this.collection!.find({ didUniqueSuffix }).limit(1).toArray();
+    const operations = await this.collection.find({ didUniqueSuffix }).limit(1).toArray();
     return operations.length > 0;
   }
 
   async getSize (): Promise<number> {
-    const size = await this.collection!.estimatedDocumentCount();
+    const size = await this.collection.estimatedDocumentCount();
     return size;
   }
 
   private static convertToQueuedOperationModel (mongoQueuedOperation: IMongoQueuedOperation): QueuedOperationModel {
     return {
       didUniqueSuffix: mongoQueuedOperation.didUniqueSuffix,
-      operationBuffer: Buffer.from(mongoQueuedOperation.operationBufferBsonBinary.buffer) 
+      operationBuffer: Buffer.from(mongoQueuedOperation.operationBufferBsonBinary.buffer)
     };
   }
 }

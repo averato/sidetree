@@ -75,7 +75,7 @@ describe('LockMonitor', () => {
       const handlePollingSpy = spyOn(lockMonitor as any, 'handlePeriodicPolling').and.returnValue(Promise.resolve());
 
       const setTimeoutOutput = 12344 as any;
-      const setTimeoutSpy = spyOn(global, 'setTimeout').and.returnValue(setTimeoutOutput as any);
+      const setTimeoutSpy = spyOn(global, 'setTimeout').and.returnValue(setTimeoutOutput);
 
       const mockPeriodicPollTimeoutId = 98765 as any;
       lockMonitor['periodicPollTimeoutId'] = mockPeriodicPollTimeoutId;

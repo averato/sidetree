@@ -206,9 +206,9 @@ describe('Observer', async () => {
       // NOTE: if anything throws, we retry.
       throw new Error('Incorrect number of changes to the processed transactions list.');
     }, {
-//      retries: 10,
-//      minTimeout: 500, // milliseconds
-//      maxTimeout: 500 // milliseconds
+      //      retries: 10,
+      //      minTimeout: 500, // milliseconds
+      //      maxTimeout: 500 // milliseconds
     });
 
     observer.stopPeriodicProcessing(); // Asynchronously stops Observer from processing more transactions after the initial processing cycle.
@@ -453,9 +453,9 @@ describe('Observer', async () => {
       // NOTE: the `retry` library retries if error is thrown.
       throw new Error('Block reorganization not handled.');
     }, {
- //     retries: 10,
- //     minTimeout: 1000, // milliseconds
- //     maxTimeout: 1000 // milliseconds
+      //     retries: 10,
+      //     minTimeout: 1000, // milliseconds
+      //     maxTimeout: 1000 // milliseconds
     });
 
     expect(processedTransactions.length).toEqual(4);
@@ -503,9 +503,9 @@ describe('Observer', async () => {
       // NOTE: the `retry` library retries if error is thrown.
       throw new Error('Two transaction processing cycles have not occurred yet.');
     }, {
-//      retries: 3,
-//      minTimeout: 1000, // milliseconds
-//      maxTimeout: 1000 // milliseconds
+      //      retries: 3,
+      //      minTimeout: 1000, // milliseconds
+      //      maxTimeout: 1000 // milliseconds
     });
 
     // throughput limiter applies logic to filter out some transactions
@@ -558,13 +558,13 @@ describe('Observer', async () => {
 
       // NOTE: the `retry` library retries if error is thrown.
       throw new Error('Two transaction processing cycles have not occurred yet.');
-    },  
+    },
     {
-//      onRetry: ,
-//      delay: 1000, // milliseconds
-//      // maxTimeout: 1000 // milliseconds
+      //      onRetry: ,
+      //      delay: 1000, // milliseconds
+      //      // maxTimeout: 1000 // milliseconds
     }
-   );
+    );
 
     expect(revertInvalidTransactionsSpy).toHaveBeenCalledTimes(0);
     expect(getFirstValidTransactionSpy).toHaveBeenCalledTimes(0);

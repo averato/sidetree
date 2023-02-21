@@ -26,7 +26,7 @@ export default class MongoDbBlockMetadataStore extends MongoDbStore implements I
   }
 
   public async add (arrayOfBlockMetadata: BlockMetadata[]): Promise<void> {
-    const bulkOperations = this.collection!.initializeOrderedBulkOp();
+    const bulkOperations = this.collection.initializeOrderedBulkOp();
 
     arrayOfBlockMetadata.sort((a, b) => a.height - b.height);
     for (const blockMetadata of arrayOfBlockMetadata) {
@@ -43,14 +43,14 @@ export default class MongoDbBlockMetadataStore extends MongoDbStore implements I
       return;
     }
 
-    await this.collection!.deleteMany({ height: { $gt: blockHeight } });
+    await this.collection.deleteMany({ height: { $gt: blockHeight } });
   }
 
   public async get (fromInclusiveHeight: number, toExclusiveHeight: number): Promise<BlockMetadata[]> {
     let dbCursor: FindCursor<BlockMetadata>;
 
     // Add filter to query.
-    dbCursor = this.collection!.find({
+    dbCursor = this.collection.find({
       $and: [
         { height: { $gte: fromInclusiveHeight } },
         { height: { $lt: toExclusiveHeight } }
@@ -66,7 +66,7 @@ export default class MongoDbBlockMetadataStore extends MongoDbStore implements I
   }
 
   public async getLast (): Promise<BlockMetadata | undefined> {
-    const blocks = await this.collection!.find().sort({ height: -1 }).limit(1).toArray();
+    const blocks = await this.collection.find().sort({ height: -1 }).limit(1).toArray();
     if (blocks.length === 0) {
       return undefined;
     }
@@ -79,7 +79,7 @@ export default class MongoDbBlockMetadataStore extends MongoDbStore implements I
    * Gets the first block (block with lowest height).
    */
   private async getFirst (): Promise<BlockMetadata | undefined> {
-    const blocks = await this.collection!.find().sort({ height: 1 }).limit(1).toArray();
+    const blocks = await this.collection.find().sort({ height: 1 }).limit(1).toArray();
     if (blocks.length === 0) {
       return undefined;
     }
@@ -107,9 +107,9 @@ export default class MongoDbBlockMetadataStore extends MongoDbStore implements I
       lookBackDistance *= 2;
     }
 
-    const exponentiallySpacedBlocks = await this.collection!.find<BlockMetadata>(
-      { height: { $in: heightOfBlocksToReturn } },
-     // MongoDbBlockMetadataStore.optionToExcludeIdField
+    const exponentiallySpacedBlocks = await this.collection.find<BlockMetadata>(
+      { height: { $in: heightOfBlocksToReturn } }
+      // MongoDbBlockMetadataStore.optionToExcludeIdField
     ).toArray();
     exponentiallySpacedBlocks.sort((a, b) => b.height - a.height); // Sort in height descending order.
 

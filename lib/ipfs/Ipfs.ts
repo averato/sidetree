@@ -80,7 +80,7 @@ export default class Ipfs implements ICas {
     } catch (error) {
       if (error instanceof SidetreeError) {
         Logger.info(`'${casUri}' is not a valid CID: ${SidetreeError.stringify(error)}`);
-        return {code: FetchResultCode.InvalidHash};
+        return { code: FetchResultCode.InvalidHash };
       }
 
       throw error;
@@ -103,7 +103,7 @@ export default class Ipfs implements ICas {
             `Investigate and fix: ${SidetreeError.stringify(error)}`;
           Logger.error(errorMessage);
         }
-      }   
+      }
 
       // Mark content as `not found` if any error is thrown while fetching.
       return { code: FetchResultCode.NotFound };
@@ -162,7 +162,7 @@ export default class Ipfs implements ICas {
       fetchResult.content = await ReadableStream.readAll(response.body, maxSizeInBytes);
       return fetchResult;
     } catch (error) {
-      if (error instanceof SidetreeError && 
+      if (error instanceof SidetreeError &&
           error.code === SharedErrorCode.ReadableStreamMaxAllowedDataSizeExceeded) {
         return { code: FetchResultCode.MaxSizeExceeded };
       }

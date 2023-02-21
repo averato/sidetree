@@ -22,7 +22,7 @@ export default class Compressor {
     const result = await Compressor.gzipAsync(inputAsBuffer);
 
     // Casting result to Buffer as that's what is returned by gzip
-    return result as Buffer;
+    return result;
   }
 
   /**

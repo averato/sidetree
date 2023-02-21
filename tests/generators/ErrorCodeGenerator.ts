@@ -53,7 +53,7 @@ export default {
 `;
 
   const errorCodeNames = [];
-  for (var code in ErrorCode) {
+  for (const code in ErrorCode) {
     if (isNaN(Number(code))) {
       errorCodeNames.push(code);
     }
@@ -72,7 +72,7 @@ export default {
       }
     } else {
       console.info(`${errorCodeNames[i]} is removed from ErrorCode because it is not used.`);
-    };
+    }
   }
 
   errorCodeFileContent +=

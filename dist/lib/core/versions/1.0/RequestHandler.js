@@ -104,6 +104,7 @@ class RequestHandler {
             const didString = `did:${this.didMethodName}:${operationModel.didUniqueSuffix}`;
             const published = false;
             const did = yield Did_1.default.create(didString, this.didMethodName);
+            Logger_1.default.info(`DiD object: ${JSON.stringify(did)}`);
             const document = DocumentComposer_1.default.transformToExternalDocument(didState, did, published);
             return {
                 status: ResponseStatus_1.default.Succeeded,

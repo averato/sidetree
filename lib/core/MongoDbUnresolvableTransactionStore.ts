@@ -38,7 +38,7 @@ export default class MongoDbUnresolvableTransactionStore extends MongoDbStore im
     const transactionTime = transaction.transactionTime;
     const transactionNumber = transaction.transactionNumber;
     const searchFilter = { transactionTime, transactionNumber: Long.fromNumber(transactionNumber) };
-    const findResults = await this.collection!.find(searchFilter).toArray();
+    const findResults = await this.collection.find(searchFilter).toArray();
     let unresolvableTransaction: UnresolvableTransactionModel | undefined;
     if (findResults && findResults.length > 0) {
       unresolvableTransaction = findResults[0];
@@ -60,7 +60,7 @@ export default class MongoDbUnresolvableTransactionStore extends MongoDbStore im
         nextRetryTime: Date.now()
       };
 
-      await this.collection!.insertOne(newUnresolvableTransaction);
+      await this.collection.insertOne(newUnresolvableTransaction);
     } else {
       const retryAttempts = unresolvableTransaction.retryAttempts + 1;
 
@@ -72,14 +72,14 @@ export default class MongoDbUnresolvableTransactionStore extends MongoDbStore im
       const nextRetryTime = unresolvableTransaction.firstFetchTime + requiredElapsedTimeSinceFirstFetchBeforeNextRetry;
 
       const searchFilter = { transactionTime, transactionNumber: Long.fromNumber(transactionNumber) };
-      await this.collection!.updateOne(searchFilter, { $set: { retryAttempts, nextRetryTime } });
+      await this.collection.updateOne(searchFilter, { $set: { retryAttempts, nextRetryTime } });
     }
   }
 
   public async removeUnresolvableTransaction (transaction: TransactionModel): Promise<void> {
     const transactionTime = transaction.transactionTime;
     const transactionNumber = transaction.transactionNumber;
-    await this.collection!.deleteOne({ transactionTime, transactionNumber: Long.fromNumber(transactionNumber) });
+    await this.collection.deleteOne({ transactionTime, transactionNumber: Long.fromNumber(transactionNumber) });
   }
 
   public async getUnresolvableTransactionsDueForRetry (maximumReturnCount?: number): Promise<TransactionModel[]> {
@@ -91,7 +91,7 @@ export default class MongoDbUnresolvableTransactionStore extends MongoDbStore im
 
     const now = Date.now();
     const unresolvableTransactionsToRetry =
-      await this.collection!.find({ nextRetryTime: { $lte: now } }).sort({ nextRetryTime: 1 }).limit(returnCount).toArray();
+      await this.collection.find({ nextRetryTime: { $lte: now } }).sort({ nextRetryTime: 1 }).limit(returnCount).toArray();
 
     return unresolvableTransactionsToRetry;
   }
@@ -103,7 +103,7 @@ export default class MongoDbUnresolvableTransactionStore extends MongoDbStore im
       return;
     }
 
-    await this.collection!.deleteMany({ transactionNumber: { $gt: Long.fromNumber(transactionNumber) } });
+    await this.collection.deleteMany({ transactionNumber: { $gt: Long.fromNumber(transactionNumber) } });
   }
 
   /**
@@ -111,7 +111,7 @@ export default class MongoDbUnresolvableTransactionStore extends MongoDbStore im
    * Mainly used for test purposes.
    */
   public async getUnresolvableTransactions (): Promise<UnresolvableTransactionModel[]> {
-    const transactions = await this.collection!.find().sort({ transactionTime: 1, transactionNumber: 1 }).toArray();
+    const transactions = await this.collection.find().sort({ transactionTime: 1, transactionNumber: 1 }).toArray();
     return transactions;
   }
 

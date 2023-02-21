@@ -185,7 +185,6 @@ class BitcoinClient {
                     throw e;
                 }
             }
-            ;
         });
     }
     loadWallet() {
@@ -208,7 +207,6 @@ class BitcoinClient {
                     throw e;
                 }
             }
-            ;
         });
     }
     getBlock(hash) {

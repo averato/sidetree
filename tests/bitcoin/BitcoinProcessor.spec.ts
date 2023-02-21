@@ -23,15 +23,15 @@ import TransactionNumber from '../../lib/bitcoin/TransactionNumber';
 import ValueTimeLockModel from '../../lib/common/models/ValueTimeLockModel';
 import VersionModel from '../../lib/bitcoin/models/BitcoinVersionModel';
 
-function randomString (length: number = 16): string {
+function randomString (length = 16): string {
   return Math.round(Math.random() * Number.MAX_SAFE_INTEGER).toString(16).substring(0, length);
 }
 
-function randomNumber (max: number = 256): number {
+function randomNumber (max = 256): number {
   return Math.round(Math.random() * max);
 }
 
-function randomBlock (above: number = 0): IBlockInfo {
+function randomBlock (above = 0): IBlockInfo {
   return { height: above + randomNumber(), hash: randomString(), previousHash: randomString() };
 }
 
@@ -435,7 +435,7 @@ describe('BitcoinProcessor', () => {
         fail('expect to throw but did not');
       } catch (e) {
         expect(e).toEqual(new RequestError(ResponseStatus.ServerError, ErrorCode.BitcoinBlockMetadataNotFound));
-      };
+      }
       done();
     });
 

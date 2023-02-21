@@ -36,7 +36,7 @@ export default class ProvisionalIndexFile {
       if (error instanceof SidetreeError) {
         throw SidetreeError.createFromError(ErrorCode.ProvisionalIndexFileDecompressionFailure, error);
       }
-      
+
       throw error;
     }
 

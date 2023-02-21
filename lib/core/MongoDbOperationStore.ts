@@ -41,7 +41,7 @@ export default class MongoDbOperationStore extends MongoDbStore implements IOper
   }
 
   public async insertOrReplace (operations: AnchoredOperationModel[]): Promise<void> {
-    const bulkOperations = this.collection!.initializeUnorderedBulkOp();
+    const bulkOperations = this.collection.initializeUnorderedBulkOp();
 
     for (const operation of operations) {
       const mongoOperation = MongoDbOperationStore.convertToMongoOperation(operation);
@@ -61,7 +61,7 @@ export default class MongoDbOperationStore extends MongoDbStore implements IOper
    * Gets all operations of the given DID unique suffix in ascending chronological order.
    */
   public async get (didUniqueSuffix: string): Promise<AnchoredOperationModel[]> {
-    const mongoOperations = await this.collection!
+    const mongoOperations = await this.collection
       .find({ didSuffix: didUniqueSuffix })
       .sort({ didSuffix: 1, txnNumber: 1, opIndex: 1 })
       .maxTimeMS(MongoDbStore.defaultQueryTimeoutInMilliseconds)
@@ -72,14 +72,14 @@ export default class MongoDbOperationStore extends MongoDbStore implements IOper
 
   public async delete (transactionNumber?: number): Promise<void> {
     if (transactionNumber) {
-      await this.collection!.deleteMany({ txnNumber: { $gt: Long.fromNumber(transactionNumber) } });
+      await this.collection.deleteMany({ txnNumber: { $gt: Long.fromNumber(transactionNumber) } });
     } else {
-      await this.collection!.deleteMany({});
+      await this.collection.deleteMany({});
     }
   }
 
   public async deleteUpdatesEarlierThan (didUniqueSuffix: string, transactionNumber: number, operationIndex: number): Promise<void> {
-    await this.collection!.deleteMany({
+    await this.collection.deleteMany({
       $or: [
         {
           didSuffix: didUniqueSuffix,

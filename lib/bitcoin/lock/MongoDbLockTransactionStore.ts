@@ -36,14 +36,14 @@ export default class MongoDbLockTransactionStore extends MongoDbStore {
       type: bitcoinLock.type
     };
 
-    await this.collection!.insertOne(lockInMongoDb);
+    await this.collection.insertOne(lockInMongoDb);
   }
 
   /**
    * Gets the latest lock (highest create timestamp) saved in the db; or undefined if nothing saved.
    */
   public async getLastLock (): Promise<SavedLockModel | undefined> {
-    const lastLocks = await this.collection!
+    const lastLocks = await this.collection
       .find()
       .limit(1)
       .sort({ createTimestamp: -1 })

@@ -17,13 +17,13 @@ export default class MongoDb {
       // Otherwise, assume the database is already running
       const prefix = 'mongodb://localhost:';
       if (config.mongoDbConnectionString.startsWith(prefix)) {
- //      const port = parseInt(config.mongoDbConnectionString.substr(prefix.length));
- //        await MongoMemoryServer.create({
- //          instance: {
- //            port
- //          },
- //          binary: { version: '6.0.4' },
- //        });
+        //      const port = parseInt(config.mongoDbConnectionString.substr(prefix.length));
+        //        await MongoMemoryServer.create({
+        //          instance: {
+        //            port
+        //          },
+        //          binary: { version: '6.0.4' },
+        //        });
       }
       MongoDb.initialized = true;
     }

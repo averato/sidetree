@@ -13,7 +13,7 @@ export default class JasmineSidetreeErrorValidator {
    * @param expectedContainedStringInMessage The string expected to be part of (need not be full error message) the error message.
    */
   public static expectSidetreeErrorToBeThrown (functionToExecute: () => any, expectedErrorCode: string, expectedContainedStringInMessage?: string): void {
-    let validated: boolean = false;
+    let validated = false;
 
     try {
       functionToExecute();
@@ -46,7 +46,7 @@ export default class JasmineSidetreeErrorValidator {
     expectedErrorCode: string,
     expectedContainedStringInMessage?: string
   ): Promise<void> {
-    let validated: boolean = false;
+    let validated = false;
     let actualError;
 
     try {

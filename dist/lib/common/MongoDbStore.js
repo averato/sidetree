@@ -23,7 +23,7 @@ class MongoDbStore {
     initialize() {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             const client = yield mongodb_1.MongoClient.connect(this.serverUrl, {
-                monitorCommands: true,
+                monitorCommands: true
             });
             MongoDbStore.enableCommandResultLogging(client);
             this.db = client.db(this.databaseName);

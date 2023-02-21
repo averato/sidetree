@@ -81,7 +81,6 @@ class OperationProcessor {
             if (!isMatchingDelta) {
                 return newDidState;
             }
-            ;
             const delta = operation.delta;
             newDidState.nextUpdateCommitmentHash = delta.updateCommitment;
             try {
@@ -119,7 +118,6 @@ class OperationProcessor {
             if (!isMatchingDelta) {
                 return didState;
             }
-            ;
             const newDidState = {
                 nextRecoveryCommitmentHash: didState.nextRecoveryCommitmentHash,
                 document: didState.document,
@@ -166,7 +164,6 @@ class OperationProcessor {
             if (!isMatchingDelta) {
                 return newDidState;
             }
-            ;
             const delta = operation.delta;
             newDidState.nextUpdateCommitmentHash = delta.updateCommitment;
             try {

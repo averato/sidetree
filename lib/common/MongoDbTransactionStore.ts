@@ -28,12 +28,12 @@ export default class MongoDbTransactionStore extends MongoDbStore implements ITr
    * Mainly used by tests.
    */
   public async getTransactionsCount (): Promise<number> {
-    const transactionCount = await this.collection!.count();
+    const transactionCount = await this.collection.count();
     return transactionCount;
   }
 
   public async getTransaction (transactionNumber: number): Promise<TransactionModel | undefined> {
-    const transactions = await this.collection!.find({ transactionNumber: Long.fromNumber(transactionNumber) }).toArray();
+    const transactions = await this.collection.find({ transactionNumber: Long.fromNumber(transactionNumber) }).toArray();
     if (transactions.length === 0) {
       return undefined;
     }
@@ -51,9 +51,9 @@ export default class MongoDbTransactionStore extends MongoDbStore implements ITr
 
       // If given `undefined`, return transactions from the start.
       if (transactionNumber === undefined) {
-        dbCursor = this.collection!.find();
+        dbCursor = this.collection.find();
       } else {
-        dbCursor = this.collection!.find({ transactionNumber: { $gt: Long.fromNumber(transactionNumber) } });
+        dbCursor = this.collection.find({ transactionNumber: { $gt: Long.fromNumber(transactionNumber) } });
       }
 
       // If a limit is defined then set it.
@@ -86,7 +86,7 @@ export default class MongoDbTransactionStore extends MongoDbStore implements ITr
         normalizedTransactionFee: transaction.normalizedTransactionFee,
         writer: transaction.writer
       };
-      await this.collection!.insertOne(transactionInMongoDb);
+      await this.collection.insertOne(transactionInMongoDb);
     } catch (error) {
       // Swallow duplicate insert errors (error code 11000) as no-op; rethrow others
       if (error instanceof SidetreeError && error.code !== '11000') {
@@ -96,7 +96,7 @@ export default class MongoDbTransactionStore extends MongoDbStore implements ITr
   }
 
   async getLastTransaction (): Promise<TransactionModel | undefined> {
-    const lastTransactions = await this.collection!.find().limit(1).sort({ transactionNumber: -1 }).toArray();
+    const lastTransactions = await this.collection.find().limit(1).sort({ transactionNumber: -1 }).toArray();
     if (lastTransactions.length === 0) {
       return undefined;
     }
@@ -107,7 +107,7 @@ export default class MongoDbTransactionStore extends MongoDbStore implements ITr
 
   async getExponentiallySpacedTransactions (): Promise<TransactionModel[]> {
     const exponentiallySpacedTransactions: TransactionModel[] = [];
-    const allTransactions = await this.collection!.find().sort({ transactionNumber: 1 }).toArray();
+    const allTransactions = await this.collection.find().sort({ transactionNumber: 1 }).toArray();
 
     let index = allTransactions.length - 1;
     let distance = 1;
@@ -126,7 +126,7 @@ export default class MongoDbTransactionStore extends MongoDbStore implements ITr
       return;
     }
 
-    await this.collection!.deleteMany({ transactionNumber: { $gt: Long.fromNumber(transactionNumber) } });
+    await this.collection.deleteMany({ transactionNumber: { $gt: Long.fromNumber(transactionNumber) } });
   }
 
   /**
@@ -134,7 +134,7 @@ export default class MongoDbTransactionStore extends MongoDbStore implements ITr
    * @param transactionTimeHash the transaction time hash which the transactions should be removed for
    */
   public async removeTransactionByTransactionTimeHash (transactionTimeHash: string) {
-    await this.collection!.deleteMany({ transactionTimeHash: { $eq: transactionTimeHash } });
+    await this.collection.deleteMany({ transactionTimeHash: { $eq: transactionTimeHash } });
   }
 
   /**
@@ -142,7 +142,7 @@ export default class MongoDbTransactionStore extends MongoDbStore implements ITr
    * Mainly used for test purposes.
    */
   public async getTransactions (): Promise<TransactionModel[]> {
-    const transactions = await this.collection!.find().sort({ transactionNumber: 1 }).toArray();
+    const transactions = await this.collection.find().sort({ transactionNumber: 1 }).toArray();
     return transactions;
   }
 
@@ -155,9 +155,9 @@ export default class MongoDbTransactionStore extends MongoDbStore implements ITr
     let cursor: FindCursor<any>;
     if (inclusiveBeginTransactionTime === exclusiveEndTransactionTime) {
       // if begin === end, query for 1 transaction time
-      cursor = this.collection!.find({ transactionTime: { $eq: Long.fromNumber(inclusiveBeginTransactionTime) } });
+      cursor = this.collection.find({ transactionTime: { $eq: Long.fromNumber(inclusiveBeginTransactionTime) } });
     } else {
-      cursor = this.collection!.find({
+      cursor = this.collection.find({
         $and: [
           { transactionTime: { $gte: Long.fromNumber(inclusiveBeginTransactionTime) } },
           { transactionTime: { $lt: Long.fromNumber(exclusiveEndTransactionTime) } }

@@ -7,11 +7,11 @@ import BitcoinClient from '../../lib/bitcoin/BitcoinClient';
  */
 export default class BitcoinDataGenerator {
 
-  private static randomString (length: number = 16): string {
+  private static randomString (length = 16): string {
     return Math.round(Math.random() * Number.MAX_SAFE_INTEGER).toString(16).substring(0, length);
   }
 
-  private static randomNumber (max: number = 256): number {
+  private static randomNumber (max = 256): number {
     return Math.round(Math.random() * max);
   }
 
@@ -20,7 +20,7 @@ export default class BitcoinDataGenerator {
    * @param wif Input to generate the private key.
    * @param satoshis The amount of satoshis to include in the transaction
    */
-  public static generateBitcoinTransaction (wif: string, satoshis: number = 1): Transaction {
+  public static generateBitcoinTransaction (wif: string, satoshis = 1): Transaction {
     const keyObject: PrivateKey = (PrivateKey as any).fromWIF(wif);
     const address = keyObject.toAddress();
     const transaction = new Transaction();

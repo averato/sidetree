@@ -74,7 +74,7 @@ export default class CoreProofFile {
       coreProofFileModel = await JsonAsync.parse(coreProofFileDecompressedBuffer);
     } catch (error) {
       if (error instanceof SidetreeError) throw SidetreeError.createFromError(ErrorCode.CoreProofFileNotJson, error);
-      
+
       throw error;
     }
 

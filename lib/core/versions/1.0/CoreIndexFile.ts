@@ -57,9 +57,9 @@ export default class CoreIndexFile {
     try {
       coreIndexFileModel = await JsonAsync.parse(coreIndexFileDecompressedBuffer);
     } catch (e) {
-     if (e instanceof SidetreeError) throw SidetreeError.createFromError(ErrorCode.CoreIndexFileNotJson, e);
+      if (e instanceof SidetreeError) throw SidetreeError.createFromError(ErrorCode.CoreIndexFileNotJson, e);
 
-     throw e;
+      throw e;
     }
 
     const allowedProperties = new Set(['provisionalIndexFileUri', 'coreProofFileUri', 'operations', 'writerLockId']);

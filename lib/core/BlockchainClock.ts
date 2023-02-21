@@ -10,7 +10,7 @@ import ServiceStateModel from './models/ServiceStateModel';
  */
 export default class BlockchainClock {
   // used only for testing purposes to stop periodic pulling
-  private continuePulling: boolean = true;
+  private continuePulling = true;
 
   /**
    * The interval which to pull and update blockchain time

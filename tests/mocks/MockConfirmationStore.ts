@@ -5,7 +5,7 @@ import IConfirmationStore, { ConfirmationModel } from '../../lib/core/interfaces
 
 export default class MockConfirmationStore implements IConfirmationStore {
   private entries: ConfirmationModel[] = [];
-  public clear () : void{
+  public clear () : void {
     this.entries = [];
   }
 

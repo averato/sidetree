@@ -107,9 +107,9 @@ export default class Jws {
       if (error instanceof SidetreeError) {
         Logger.info(`Input '${compactJws}' failed signature verification: ${SidetreeError.createFromError(ErrorCode.JwsFailedSignatureValidation, error)}`);
         return false;
-      } 
-      
-      return false;  
+      }
+
+      return false;
     }
   }
 

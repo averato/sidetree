@@ -19,7 +19,7 @@ describe('MongoDbStore', async () => {
     spyOn(Logger, 'warn');
     spyOn(Logger, 'error');
     const client = await MongoClient.connect(config.mongoDbConnectionString, {
-//      useNewUrlParser: true,
+      //      useNewUrlParser: true,
       monitorCommands: true
     });
     MongoDbStore.enableCommandResultLogging(client);
@@ -27,12 +27,14 @@ describe('MongoDbStore', async () => {
     expect(Logger.info).toHaveBeenCalledWith(jasmine.objectContaining({ commandName: 'find' }));
     await expectAsync(client.db('sidetree-test').collection('service').dropIndex('test')).toBeRejected();
     expect(Logger.warn).toHaveBeenCalledWith(jasmine.objectContaining({ commandName: 'dropIndexes' }));
-    client.emit('commandSucceeded', { commandName: 'ping'
-                                    , address: 'ping'
-                                    , requestId: 0
-                                    , duration: 1000
-                                    , reply: 'pong'
-                                    , hasServiceId: false});
+    client.emit('commandSucceeded', {
+      commandName: 'ping',
+      address: 'ping',
+      requestId: 0,
+      duration: 1000,
+      reply: 'pong',
+      hasServiceId: false
+    });
     expect(Logger.info).not.toHaveBeenCalledWith(jasmine.objectContaining({ commandName: 'ping' }));
   });
 

@@ -16,12 +16,12 @@ export default class MongoDbServiceStateStore<T> extends MongoDbStore implements
   }
 
   async put (serviceState: any) {
-    await this.collection!.replaceOne({ }, serviceState, { upsert: true }); // { } filter results in replacement of the first document returned.
+    await this.collection.replaceOne({ }, serviceState, { upsert: true }); // { } filter results in replacement of the first document returned.
   }
 
   public async get (): Promise<T> {
     // const queryOptions = { fields: { _id: 0 } }; // Exclude `_id` field from being returned.
-    const serviceState = await this.collection!.findOne({ });
+    const serviceState = await this.collection.findOne({ });
 
     return serviceState ? serviceState : { };
   }

@@ -392,7 +392,7 @@ export default class TransactionProcessor implements ITransactionProcessor {
       const composedRequest = {
         type: OperationType.Recover,
         didSuffix: recoverDidSuffixes[i],
-        revealValue: coreIndexFile.model!.operations!.recover![i].revealValue,
+        revealValue: coreIndexFile.model.operations!.recover![i].revealValue,
         signedData: recoverProofs[i],
         delta: recoverDeltas?.[i] // Add `delta` property if chunk file found.
       };
@@ -434,7 +434,7 @@ export default class TransactionProcessor implements ITransactionProcessor {
       const composedRequest = {
         type: OperationType.Deactivate,
         didSuffix: deactivateDidSuffixes[i],
-        revealValue: coreIndexFile.model!.operations!.deactivate![i].revealValue,
+        revealValue: coreIndexFile.model.operations!.deactivate![i].revealValue,
         signedData: deactivateProofs[i]
       };
 
@@ -474,7 +474,7 @@ export default class TransactionProcessor implements ITransactionProcessor {
     let updateDeltas;
     if (chunkFile !== undefined) {
       const updateDeltaStartIndex = coreIndexFile.createDidSuffixes.length + coreIndexFile.recoverDidSuffixes.length;
-      updateDeltas = chunkFile!.deltas.slice(updateDeltaStartIndex);
+      updateDeltas = chunkFile.deltas.slice(updateDeltaStartIndex);
     }
 
     const updateDidSuffixes = provisionalIndexFile.didUniqueSuffixes;
@@ -486,7 +486,7 @@ export default class TransactionProcessor implements ITransactionProcessor {
       const composedRequest = {
         type: OperationType.Update,
         didSuffix: updateDidSuffixes[i],
-        revealValue: provisionalIndexFile.model!.operations!.update[i].revealValue,
+        revealValue: provisionalIndexFile.model.operations!.update[i].revealValue,
         signedData: updateProofs[i],
         delta: updateDeltas?.[i] // Add `delta` property if chunk file found.
       };

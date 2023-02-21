@@ -29,6 +29,6 @@ export default class SidetreeError extends Error {
   }
 
   /**
-   * Give proper resposne 
-   */ 
+   * Give proper resposne
+   */
 }

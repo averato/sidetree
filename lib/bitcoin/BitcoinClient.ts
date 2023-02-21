@@ -302,7 +302,7 @@ export default class BitcoinClient {
       } else {
         throw e;
       }
-    };
+    }
   }
 
   private async loadWallet () {
@@ -325,7 +325,7 @@ export default class BitcoinClient {
       } else {
         throw e;
       }
-    };
+    }
   }
 
   /**

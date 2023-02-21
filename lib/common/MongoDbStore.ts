@@ -35,19 +35,19 @@ export default class MongoDbStore {
    * @param _message The message is already included in the state so there is no need to log the message twice.
    * @param state The complete logging event state
    */
-//  public static customLogger (_message: string | undefined, undefined): void {
-//    if (state === undefined) {
-//      return;
-//    }
-//
-//    switch (state.type) {
-//      case 'error':
-//        Logger.error(state);
-//        break;
-//      default:
-//        Logger.info(state);
-//    }
-//  };
+  //  public static customLogger (_message: string | undefined, undefined): void {
+  //    if (state === undefined) {
+  //      return;
+  //    }
+  //
+  //    switch (state.type) {
+  //      case 'error':
+  //        Logger.error(state);
+  //        break;
+  //      default:
+  //        Logger.info(state);
+  //    }
+  //  };
 
   /**
    * Constructs a `MongoDbStore`;
@@ -62,7 +62,7 @@ export default class MongoDbStore {
     const client = await MongoClient.connect(this.serverUrl, {
       // useNewUrlParser: true,
       // logger: MongoDbStore.customLogger,
-      monitorCommands: true,
+      monitorCommands: true
       // loggerLevel: 'error',
       // useUnifiedTopology: true // prevents unrecoverable lost of connection: https://jira.mongodb.org/browse/NODE-3252
     });

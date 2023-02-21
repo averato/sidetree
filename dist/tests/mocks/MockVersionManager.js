@@ -1,21 +1,25 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
 class MockVersionManager {
-    getBatchWriter(blockchainTime) {
-        throw new Error('Not implemented. Use spyOn to override the functionality. Input: ' + blockchainTime);
-    }
-    getOperationProcessor(blockchainTime) {
-        throw new Error('Not implemented. Use spyOn to override the functionality. Input: ' + blockchainTime);
-    }
-    getRequestHandler(blockchainTime) {
-        throw new Error('Not implemented. Use spyOn to override the functionality. Input: ' + blockchainTime);
-    }
-    getTransactionProcessor(blockchainTime) {
-        throw new Error('Not implemented. Use spyOn to override the functionality. Input: ' + blockchainTime);
-    }
-    getTransactionSelector(blockchainTime) {
-        throw new Error('Not implemented. Use spyOn to override the functionality. Input: ' + blockchainTime);
-    }
+  getBatchWriter (blockchainTime) {
+    throw new Error('Not implemented. Use spyOn to override the functionality. Input: ' + blockchainTime);
+  }
+
+  getOperationProcessor (blockchainTime) {
+    throw new Error('Not implemented. Use spyOn to override the functionality. Input: ' + blockchainTime);
+  }
+
+  getRequestHandler (blockchainTime) {
+    throw new Error('Not implemented. Use spyOn to override the functionality. Input: ' + blockchainTime);
+  }
+
+  getTransactionProcessor (blockchainTime) {
+    throw new Error('Not implemented. Use spyOn to override the functionality. Input: ' + blockchainTime);
+  }
+
+  getTransactionSelector (blockchainTime) {
+    throw new Error('Not implemented. Use spyOn to override the functionality. Input: ' + blockchainTime);
+  }
 }
 exports.default = MockVersionManager;
-//# sourceMappingURL=MockVersionManager.js.map
+// # sourceMappingURL=MockVersionManager.js.map

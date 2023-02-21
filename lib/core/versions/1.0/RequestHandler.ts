@@ -136,6 +136,9 @@ export default class RequestHandler implements IRequestHandler {
     const didString = `did:${this.didMethodName}:${operationModel.didUniqueSuffix}`;
     const published = false;
     const did = await Did.create(didString, this.didMethodName);
+    
+    Logger.info(`DiD object: ${JSON.stringify(did)}`); 
+    
     const document = DocumentComposer.transformToExternalDocument(didState, did, published);
 
     return {

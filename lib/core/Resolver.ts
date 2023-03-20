@@ -24,7 +24,7 @@ export default class Resolver {
 
     const operations = await this.operationStore.get(didUniqueSuffix);
     const operationsByType = Resolver.categorizeOperationsByType(operations);
-    Logger.info(`DiD contains operations: ${JSON.stringify(operationsByType)}`);  
+    Logger.info(`DiD contains operations: ${JSON.stringify(operationsByType)}`);
     // Find and apply a valid create operation.
     let didState = await this.applyCreateOperation(operationsByType.createOperations);
 

@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const chalk = tslib_1.__importStar(require("chalk"));
+const chalk_1 = tslib_1.__importDefault(require("chalk"));
 class LogColor {
 }
 exports.default = LogColor;
-LogColor.lightBlue = chalk.hex('#75b0eb');
-LogColor.green = chalk.green;
-LogColor.yellow = chalk.yellow;
-LogColor.red = chalk.red;
+LogColor.lightBlue = chalk_1.default.hex('#75b0eb');
+LogColor.green = chalk_1.default.green;
+LogColor.yellow = chalk_1.default.yellow;
+LogColor.red = chalk_1.default.red;
 //# sourceMappingURL=LogColor.js.map

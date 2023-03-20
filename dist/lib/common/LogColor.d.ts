@@ -1,4 +1,4 @@
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 export default class LogColor {
     static lightBlue: chalk.Chalk;
     static green: chalk.Chalk;

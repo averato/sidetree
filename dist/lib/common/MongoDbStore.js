@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const mongodb_1 = require("mongodb");
-const Logger_1 = require("../common/Logger");
+const Logger_1 = tslib_1.__importDefault(require("../common/Logger"));
 class MongoDbStore {
     static enableCommandResultLogging(client) {
         client.on('commandSucceeded', (event) => {

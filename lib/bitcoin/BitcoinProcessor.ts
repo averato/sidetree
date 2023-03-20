@@ -1,5 +1,5 @@
-import * as semver from 'semver';
-import * as timeSpan from 'time-span';
+import semver from 'semver';
+import timeSpan from 'time-span';
 import { ISidetreeEventEmitter, ISidetreeLogger } from '..';
 import BitcoinBlockDataIterator from './BitcoinBlockDataIterator';
 import BitcoinBlockModel from './models/BitcoinBlockModel';

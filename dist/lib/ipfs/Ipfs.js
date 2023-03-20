@@ -1,16 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const HttpStatus = require("http-status");
-const crypto = require("crypto");
-const FetchResultCode_1 = require("../common/enums/FetchResultCode");
-const IpfsErrorCode_1 = require("../ipfs/IpfsErrorCode");
-const Logger_1 = require("../common/Logger");
-const ReadableStream_1 = require("../common/ReadableStream");
-const SharedErrorCode_1 = require("../common/SharedErrorCode");
-const SidetreeError_1 = require("../common/SidetreeError");
-const Timeout_1 = require("./Util/Timeout");
-const node_fetch_1 = require("node-fetch");
+const HttpStatus = tslib_1.__importStar(require("http-status"));
+const crypto = tslib_1.__importStar(require("crypto"));
+const FetchResultCode_1 = tslib_1.__importDefault(require("../common/enums/FetchResultCode"));
+const IpfsErrorCode_1 = tslib_1.__importDefault(require("../ipfs/IpfsErrorCode"));
+const Logger_1 = tslib_1.__importDefault(require("../common/Logger"));
+const ReadableStream_1 = tslib_1.__importDefault(require("../common/ReadableStream"));
+const SharedErrorCode_1 = tslib_1.__importDefault(require("../common/SharedErrorCode"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../common/SidetreeError"));
+const Timeout_1 = tslib_1.__importDefault(require("./Util/Timeout"));
+const node_fetch_1 = tslib_1.__importDefault(require("node-fetch"));
 const Cids = require('cids');
 class Ipfs {
     constructor(uri, fetchTimeoutInSeconds) {

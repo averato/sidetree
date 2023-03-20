@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const IpfsErrorCode_1 = require("../IpfsErrorCode");
-const SidetreeError_1 = require("../../common/SidetreeError");
+const IpfsErrorCode_1 = tslib_1.__importDefault(require("../IpfsErrorCode"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../common/SidetreeError"));
 class Timeout {
     static timeout(task, timeoutInMilliseconds) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {

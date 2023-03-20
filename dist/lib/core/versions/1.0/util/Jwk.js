@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const ErrorCode_1 = require("../ErrorCode");
+const ErrorCode_1 = tslib_1.__importDefault(require("../ErrorCode"));
 const jose_1 = require("jose");
-const SidetreeError_1 = require("../../../../common/SidetreeError");
+const SidetreeError_1 = tslib_1.__importDefault(require("../../../../common/SidetreeError"));
 class Jwk {
     static generateEs256kKeyPair() {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {

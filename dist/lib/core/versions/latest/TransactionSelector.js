@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const AnchoredDataSerializer_1 = require("./AnchoredDataSerializer");
-const ErrorCode_1 = require("./ErrorCode");
-const Logger_1 = require("../../../common/Logger");
-const priorityqueue_1 = require("priorityqueue");
-const ProtocolParameters_1 = require("./ProtocolParameters");
-const SidetreeError_1 = require("../../../common/SidetreeError");
+const AnchoredDataSerializer_1 = tslib_1.__importDefault(require("./AnchoredDataSerializer"));
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const Logger_1 = tslib_1.__importDefault(require("../../../common/Logger"));
+const priorityqueue_1 = tslib_1.__importDefault(require("priorityqueue"));
+const ProtocolParameters_1 = tslib_1.__importDefault(require("./ProtocolParameters"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../../common/SidetreeError"));
 class TransactionSelector {
     constructor(transactionStore) {
         this.transactionStore = transactionStore;

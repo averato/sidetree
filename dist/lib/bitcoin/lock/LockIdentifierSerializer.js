@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const ErrorCode_1 = require("../ErrorCode");
-const SidetreeError_1 = require("../../common/SidetreeError");
-const base64url_1 = require("base64url");
+const tslib_1 = require("tslib");
+const ErrorCode_1 = tslib_1.__importDefault(require("../ErrorCode"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../common/SidetreeError"));
+const base64url_1 = tslib_1.__importDefault(require("base64url"));
 class LockIdentifierSerializer {
     static serialize(lockIdentifier) {
         const delim = LockIdentifierSerializer.delimiter;

@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const Logger_1 = require("../common/Logger");
-const TransactionNumber_1 = require("./TransactionNumber");
+const Logger_1 = tslib_1.__importDefault(require("../common/Logger"));
+const TransactionNumber_1 = tslib_1.__importDefault(require("./TransactionNumber"));
 class SpendingMonitor {
     constructor(bitcoinFeeSpendingCutoffPeriodInBlocks, bitcoinFeeSpendingCutoffInSatoshis, transactionStore) {
         this.bitcoinFeeSpendingCutoffPeriodInBlocks = bitcoinFeeSpendingCutoffPeriodInBlocks;

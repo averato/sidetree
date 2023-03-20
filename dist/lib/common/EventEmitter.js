@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const LogColor_1 = require("./LogColor");
-const Logger_1 = require("./Logger");
+const LogColor_1 = tslib_1.__importDefault(require("./LogColor"));
+const Logger_1 = tslib_1.__importDefault(require("./Logger"));
 class EventEmitter {
     static initialize(customEventEmitter) {
         if (customEventEmitter !== undefined) {

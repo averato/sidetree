@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const Logger_1 = require("../common/Logger");
-const Multihash_1 = require("./versions/latest/Multihash");
-const OperationType_1 = require("./enums/OperationType");
-const SidetreeError_1 = require("../common/SidetreeError");
+const Logger_1 = tslib_1.__importDefault(require("../common/Logger"));
+const Multihash_1 = tslib_1.__importDefault(require("./versions/latest/Multihash"));
+const OperationType_1 = tslib_1.__importDefault(require("./enums/OperationType"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../common/SidetreeError"));
 class Resolver {
     constructor(versionManager, operationStore) {
         this.versionManager = versionManager;

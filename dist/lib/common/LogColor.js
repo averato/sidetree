@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const chalk = require("chalk");
+const tslib_1 = require("tslib");
+const chalk = tslib_1.__importStar(require("chalk"));
 class LogColor {
 }
 exports.default = LogColor;

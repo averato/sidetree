@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Response_1 = require("../common/Response");
+const tslib_1 = require("tslib");
+const Response_1 = tslib_1.__importDefault(require("../common/Response"));
 class RequestError extends Error {
     get status() {
         return Response_1.default.toHttpStatus(this.responseCode);

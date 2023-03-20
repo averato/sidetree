@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const EventCode_1 = require("../core/EventCode");
-const EventEmitter_1 = require("../common/EventEmitter");
-const Logger_1 = require("../common/Logger");
+const EventCode_1 = tslib_1.__importDefault(require("../core/EventCode"));
+const EventEmitter_1 = tslib_1.__importDefault(require("../common/EventEmitter"));
+const Logger_1 = tslib_1.__importDefault(require("../common/Logger"));
 class BlockchainClock {
     constructor(blockchain, serviceStateStore, enableRealBlockchainTimePull) {
         this.blockchain = blockchain;

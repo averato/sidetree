@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const ErrorCode_1 = require("../ErrorCode");
-const LockIdentifierSerializer_1 = require("./LockIdentifierSerializer");
-const Logger_1 = require("../../common/Logger");
+const ErrorCode_1 = tslib_1.__importDefault(require("../ErrorCode"));
+const LockIdentifierSerializer_1 = tslib_1.__importDefault(require("./LockIdentifierSerializer"));
+const Logger_1 = tslib_1.__importDefault(require("../../common/Logger"));
 const bitcore_lib_1 = require("bitcore-lib");
-const SidetreeError_1 = require("../../common/SidetreeError");
+const SidetreeError_1 = tslib_1.__importDefault(require("../../common/SidetreeError"));
 class LockResolver {
     constructor(versionManager, bitcoinClient) {
         this.versionManager = versionManager;

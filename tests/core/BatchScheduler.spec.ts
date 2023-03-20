@@ -1,4 +1,4 @@
-import * as retry from 'async-retry';
+import retry from 'async-retry';
 import BatchScheduler from '../../lib/core/BatchScheduler';
 import EventCode from '../../lib/core/EventCode';
 import EventEmitter from '../../lib/common/EventEmitter';

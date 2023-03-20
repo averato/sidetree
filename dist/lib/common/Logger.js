@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const ConsoleLogger_1 = require("./ConsoleLogger");
+const tslib_1 = require("tslib");
+const ConsoleLogger_1 = tslib_1.__importDefault(require("./ConsoleLogger"));
 class Logger {
     static initialize(customLogger) {
         if (customLogger !== undefined) {

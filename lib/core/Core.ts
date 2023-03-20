@@ -1,5 +1,5 @@
-import * as semver from 'semver';
-import * as timeSpan from 'time-span';
+import semver from 'semver';
+import timeSpan from 'time-span';
 import { ISidetreeCas, ISidetreeEventEmitter, ISidetreeLogger } from '..';
 import BatchScheduler from './BatchScheduler';
 import Blockchain from './Blockchain';

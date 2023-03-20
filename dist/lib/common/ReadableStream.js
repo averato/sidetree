@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const SharedErrorCode_1 = require("../common/SharedErrorCode");
-const SidetreeError_1 = require("./SidetreeError");
+const SharedErrorCode_1 = tslib_1.__importDefault(require("../common/SharedErrorCode"));
+const SidetreeError_1 = tslib_1.__importDefault(require("./SidetreeError"));
 class ReadableStream {
     static readAll(stream, maxAllowedSizeInBytes) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {

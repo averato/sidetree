@@ -1,4 +1,4 @@
-import * as retry from 'async-retry';
+import retry from 'async-retry';
 import AnchoredDataSerializer from '../../lib/core/versions/latest/AnchoredDataSerializer';
 import Blockchain from '../../lib/core/Blockchain';
 import ChunkFile from '../../lib/core/versions/latest/ChunkFile';

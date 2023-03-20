@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const ErrorCode_1 = require("./ErrorCode");
-const SidetreeError_1 = require("../common/SidetreeError");
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../common/SidetreeError"));
 class VersionManager {
     constructor() {
         this.versionsReverseSorted = [];
@@ -45,7 +45,7 @@ class VersionManager {
     loadDefaultExportsForVersion(version, className) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             var _a;
-            const defaults = (yield (_a = `./versions/${version}/${className}`, Promise.resolve().then(() => require(_a)))).default;
+            const defaults = (yield (_a = `./versions/${version}/${className}`, Promise.resolve().then(() => tslib_1.__importStar(require(_a))))).default;
             return defaults;
         });
     }

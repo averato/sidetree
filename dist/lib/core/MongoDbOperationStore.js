@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const mongodb_1 = require("mongodb");
-const MongoDbStore_1 = require("../common/MongoDbStore");
-const OperationType_1 = require("./enums/OperationType");
+const MongoDbStore_1 = tslib_1.__importDefault(require("../common/MongoDbStore"));
+const OperationType_1 = tslib_1.__importDefault(require("./enums/OperationType"));
 class MongoDbOperationStore extends MongoDbStore_1.default {
     constructor(serverUrl, databaseName) {
         super(serverUrl, MongoDbOperationStore.collectionName, databaseName);

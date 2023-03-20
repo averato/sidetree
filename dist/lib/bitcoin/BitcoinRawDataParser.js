@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const BitcoinClient_1 = require("./BitcoinClient");
+const tslib_1 = require("tslib");
+const BitcoinClient_1 = tslib_1.__importDefault(require("./BitcoinClient"));
 const bitcore_lib_1 = require("bitcore-lib");
-const ErrorCode_1 = require("./ErrorCode");
-const Logger_1 = require("../common/Logger");
-const SidetreeError_1 = require("../common/SidetreeError");
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const Logger_1 = tslib_1.__importDefault(require("../common/Logger"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../common/SidetreeError"));
 class BitcoinRawDataParser {
     static parseRawDataFile(rawBlockDataFileBuffer) {
         const processedBlocks = [];

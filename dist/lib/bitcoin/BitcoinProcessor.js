@@ -1,31 +1,31 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const semver = require("semver");
-const timeSpan = require("time-span");
-const BitcoinBlockDataIterator_1 = require("./BitcoinBlockDataIterator");
-const BitcoinClient_1 = require("./BitcoinClient");
-const ErrorCode_1 = require("./ErrorCode");
-const EventCode_1 = require("./EventCode");
-const EventEmitter_1 = require("../common/EventEmitter");
-const LockMonitor_1 = require("./lock/LockMonitor");
-const LockResolver_1 = require("./lock/LockResolver");
-const LogColor_1 = require("../common/LogColor");
-const Logger_1 = require("../common/Logger");
-const MongoDbBlockMetadataStore_1 = require("./MongoDbBlockMetadataStore");
-const MongoDbLockTransactionStore_1 = require("./lock/MongoDbLockTransactionStore");
-const MongoDbServiceStateStore_1 = require("../common/MongoDbServiceStateStore");
-const MongoDbTransactionStore_1 = require("../common/MongoDbTransactionStore");
-const Monitor_1 = require("./Monitor");
-const RequestError_1 = require("./RequestError");
-const ResponseStatus_1 = require("../common/enums/ResponseStatus");
-const ServiceInfoProvider_1 = require("../common/ServiceInfoProvider");
-const SharedErrorCode_1 = require("../common/SharedErrorCode");
-const SidetreeError_1 = require("../common/SidetreeError");
-const SidetreeTransactionParser_1 = require("./SidetreeTransactionParser");
-const SpendingMonitor_1 = require("./SpendingMonitor");
-const TransactionNumber_1 = require("./TransactionNumber");
-const VersionManager_1 = require("./VersionManager");
+const semver_1 = tslib_1.__importDefault(require("semver"));
+const time_span_1 = tslib_1.__importDefault(require("time-span"));
+const BitcoinBlockDataIterator_1 = tslib_1.__importDefault(require("./BitcoinBlockDataIterator"));
+const BitcoinClient_1 = tslib_1.__importDefault(require("./BitcoinClient"));
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const EventCode_1 = tslib_1.__importDefault(require("./EventCode"));
+const EventEmitter_1 = tslib_1.__importDefault(require("../common/EventEmitter"));
+const LockMonitor_1 = tslib_1.__importDefault(require("./lock/LockMonitor"));
+const LockResolver_1 = tslib_1.__importDefault(require("./lock/LockResolver"));
+const LogColor_1 = tslib_1.__importDefault(require("../common/LogColor"));
+const Logger_1 = tslib_1.__importDefault(require("../common/Logger"));
+const MongoDbBlockMetadataStore_1 = tslib_1.__importDefault(require("./MongoDbBlockMetadataStore"));
+const MongoDbLockTransactionStore_1 = tslib_1.__importDefault(require("./lock/MongoDbLockTransactionStore"));
+const MongoDbServiceStateStore_1 = tslib_1.__importDefault(require("../common/MongoDbServiceStateStore"));
+const MongoDbTransactionStore_1 = tslib_1.__importDefault(require("../common/MongoDbTransactionStore"));
+const Monitor_1 = tslib_1.__importDefault(require("./Monitor"));
+const RequestError_1 = tslib_1.__importDefault(require("./RequestError"));
+const ResponseStatus_1 = tslib_1.__importDefault(require("../common/enums/ResponseStatus"));
+const ServiceInfoProvider_1 = tslib_1.__importDefault(require("../common/ServiceInfoProvider"));
+const SharedErrorCode_1 = tslib_1.__importDefault(require("../common/SharedErrorCode"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../common/SidetreeError"));
+const SidetreeTransactionParser_1 = tslib_1.__importDefault(require("./SidetreeTransactionParser"));
+const SpendingMonitor_1 = tslib_1.__importDefault(require("./SpendingMonitor"));
+const TransactionNumber_1 = tslib_1.__importDefault(require("./TransactionNumber"));
+const VersionManager_1 = tslib_1.__importDefault(require("./VersionManager"));
 class BitcoinProcessor {
     constructor(config) {
         this.config = config;
@@ -90,12 +90,12 @@ class BitcoinProcessor {
             if (expectedDbVersion === actualDbVersion) {
                 return;
             }
-            if (actualDbVersion !== undefined && semver.lt(expectedDbVersion, actualDbVersion)) {
+            if (actualDbVersion !== undefined && semver_1.default.lt(expectedDbVersion, actualDbVersion)) {
                 Logger_1.default.error(LogColor_1.default.red(`Downgrading DB from version ${LogColor_1.default.green(actualDbVersion)} to  ${LogColor_1.default.green(expectedDbVersion)} is not allowed.`));
                 throw new SidetreeError_1.default(ErrorCode_1.default.DatabaseDowngradeNotAllowed);
             }
             Logger_1.default.warn(LogColor_1.default.yellow(`Upgrading DB from version ${LogColor_1.default.green(actualDbVersion)} to ${LogColor_1.default.green(expectedDbVersion)}...`));
-            const timer = timeSpan();
+            const timer = (0, time_span_1.default)();
             yield this.blockMetadataStore.clearCollection();
             yield this.transactionStore.clearCollection();
             yield this.serviceStateStore.put({ databaseVersion: expectedDbVersion });
@@ -122,7 +122,7 @@ class BitcoinProcessor {
                 }
             }
             yield this.removeTransactionsInInvalidBlocks(notYetValidatedBlocks);
-            const timer = timeSpan();
+            const timer = (0, time_span_1.default)();
             const validatedBlocksOrderedByHeight = validatedBlocks.reverse();
             yield this.writeBlocksToMetadataStoreWithFee(validatedBlocksOrderedByHeight);
             Logger_1.default.info(`Inserted metadata of ${validatedBlocks.length} blocks to DB. Duration: ${timer.rounded()} ms.`);

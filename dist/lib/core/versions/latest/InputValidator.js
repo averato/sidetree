@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Encoder_1 = require("./Encoder");
-const ErrorCode_1 = require("./ErrorCode");
-const Multihash_1 = require("./Multihash");
-const ProtocolParameters_1 = require("./ProtocolParameters");
-const SidetreeError_1 = require("../../../common/SidetreeError");
+const tslib_1 = require("tslib");
+const Encoder_1 = tslib_1.__importDefault(require("./Encoder"));
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const Multihash_1 = tslib_1.__importDefault(require("./Multihash"));
+const ProtocolParameters_1 = tslib_1.__importDefault(require("./ProtocolParameters"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../../common/SidetreeError"));
 class InputValidator {
     static validateNonArrayObject(input, inputContextForErrorLogging) {
         if (typeof input !== 'object') {

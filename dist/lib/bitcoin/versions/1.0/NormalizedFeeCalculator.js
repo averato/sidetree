@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const ErrorCode_1 = require("../../ErrorCode");
-const LogColor_1 = require("../../../common/LogColor");
-const Logger_1 = require("../../../common/Logger");
-const SidetreeError_1 = require("../../../common/SidetreeError");
+const ErrorCode_1 = tslib_1.__importDefault(require("../../ErrorCode"));
+const LogColor_1 = tslib_1.__importDefault(require("../../../common/LogColor"));
+const Logger_1 = tslib_1.__importDefault(require("../../../common/Logger"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../../common/SidetreeError"));
 class NormalizedFeeCalculator {
     constructor(blockMetadataStore, genesisBlockNumber, initialNormalizedFeeInSatoshis, feeLookBackWindowInBlocks, feeMaxFluctuationMultiplierPerBlock) {
         this.blockMetadataStore = blockMetadataStore;

@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const timeSpan = require("time-span");
+const time_span_1 = tslib_1.__importDefault(require("time-span"));
 const TransactionUnderProcessingModel_1 = require("./models/TransactionUnderProcessingModel");
-const EventCode_1 = require("./EventCode");
-const EventEmitter_1 = require("../common/EventEmitter");
-const Logger_1 = require("../common/Logger");
-const SharedErrorCode_1 = require("../common/SharedErrorCode");
-const SidetreeError_1 = require("../common/SidetreeError");
-const ThroughputLimiter_1 = require("./ThroughputLimiter");
+const EventCode_1 = tslib_1.__importDefault(require("./EventCode"));
+const EventEmitter_1 = tslib_1.__importDefault(require("../common/EventEmitter"));
+const Logger_1 = tslib_1.__importDefault(require("../common/Logger"));
+const SharedErrorCode_1 = tslib_1.__importDefault(require("../common/SharedErrorCode"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../common/SidetreeError"));
+const ThroughputLimiter_1 = tslib_1.__importDefault(require("./ThroughputLimiter"));
 class Observer {
     constructor(versionManager, blockchain, maxConcurrentDownloads, operationStore, transactionStore, unresolvableTransactionStore, confirmationStore, observingIntervalInSeconds) {
         this.versionManager = versionManager;
@@ -50,7 +50,7 @@ class Observer {
                     const cursorTransactionTime = this.cursorTransaction ? this.cursorTransaction.transactionTime : 0;
                     let invalidTransactionNumberOrTimeHash = false;
                     let readResult;
-                    const endTimer = timeSpan();
+                    const endTimer = (0, time_span_1.default)();
                     try {
                         Logger_1.default.info('Fetching Sidetree transactions from blockchain service...');
                         readResult = yield this.blockchain.read(cursorTransactionNumber, cursorTransactionTimeHash);
@@ -150,7 +150,7 @@ class Observer {
     processUnresolvableTransactions() {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             Logger_1.default.info(`Processing previously unresolvable transactions if any...`);
-            const endTimer = timeSpan();
+            const endTimer = (0, time_span_1.default)();
             const unresolvableTransactions = yield this.unresolvableTransactionStore.getUnresolvableTransactionsDueForRetry();
             Logger_1.default.info(`Fetched ${unresolvableTransactions.length} unresolvable transactions to retry in ${endTimer.rounded()} ms.`);
             const unresolvableTransactionStatus = [];

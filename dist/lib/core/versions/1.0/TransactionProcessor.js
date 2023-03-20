@@ -1,22 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const AnchoredDataSerializer_1 = require("./AnchoredDataSerializer");
-const ArrayMethods_1 = require("./util/ArrayMethods");
-const ChunkFile_1 = require("./ChunkFile");
-const CoreIndexFile_1 = require("./CoreIndexFile");
-const CoreProofFile_1 = require("./CoreProofFile");
-const ErrorCode_1 = require("./ErrorCode");
-const FeeManager_1 = require("./FeeManager");
-const FetchResultCode_1 = require("../../../common/enums/FetchResultCode");
-const LogColor_1 = require("../../../common/LogColor");
-const Logger_1 = require("../../../common/Logger");
-const OperationType_1 = require("../../enums/OperationType");
-const ProtocolParameters_1 = require("./ProtocolParameters");
-const ProvisionalIndexFile_1 = require("./ProvisionalIndexFile");
-const ProvisionalProofFile_1 = require("./ProvisionalProofFile");
-const SidetreeError_1 = require("../../../common/SidetreeError");
-const ValueTimeLockVerifier_1 = require("./ValueTimeLockVerifier");
+const AnchoredDataSerializer_1 = tslib_1.__importDefault(require("./AnchoredDataSerializer"));
+const ArrayMethods_1 = tslib_1.__importDefault(require("./util/ArrayMethods"));
+const ChunkFile_1 = tslib_1.__importDefault(require("./ChunkFile"));
+const CoreIndexFile_1 = tslib_1.__importDefault(require("./CoreIndexFile"));
+const CoreProofFile_1 = tslib_1.__importDefault(require("./CoreProofFile"));
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const FeeManager_1 = tslib_1.__importDefault(require("./FeeManager"));
+const FetchResultCode_1 = tslib_1.__importDefault(require("../../../common/enums/FetchResultCode"));
+const LogColor_1 = tslib_1.__importDefault(require("../../../common/LogColor"));
+const Logger_1 = tslib_1.__importDefault(require("../../../common/Logger"));
+const OperationType_1 = tslib_1.__importDefault(require("../../enums/OperationType"));
+const ProtocolParameters_1 = tslib_1.__importDefault(require("./ProtocolParameters"));
+const ProvisionalIndexFile_1 = tslib_1.__importDefault(require("./ProvisionalIndexFile"));
+const ProvisionalProofFile_1 = tslib_1.__importDefault(require("./ProvisionalProofFile"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../../common/SidetreeError"));
+const ValueTimeLockVerifier_1 = tslib_1.__importDefault(require("./ValueTimeLockVerifier"));
 class TransactionProcessor {
     constructor(downloadManager, operationStore, blockchain, versionMetadataFetcher) {
         this.downloadManager = downloadManager;

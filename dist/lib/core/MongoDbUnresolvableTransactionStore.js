@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const Logger_1 = require("../common/Logger");
+const Logger_1 = tslib_1.__importDefault(require("../common/Logger"));
 const mongodb_1 = require("mongodb");
-const MongoDbStore_1 = require("../common/MongoDbStore");
+const MongoDbStore_1 = tslib_1.__importDefault(require("../common/MongoDbStore"));
 class MongoDbUnresolvableTransactionStore extends MongoDbStore_1.default {
     constructor(serverUrl, databaseName, retryExponentialDelayFactor) {
         super(serverUrl, MongoDbUnresolvableTransactionStore.unresolvableTransactionCollectionName, databaseName);

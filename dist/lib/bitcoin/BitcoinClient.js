@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const httpStatus = require("http-status");
+const httpStatus = tslib_1.__importStar(require("http-status"));
 const bitcore_lib_1 = require("bitcore-lib");
-const node_fetch_1 = require("node-fetch");
-const BitcoinWallet_1 = require("./BitcoinWallet");
-const ErrorCode_1 = require("./ErrorCode");
-const LogColor_1 = require("../common/LogColor");
-const Logger_1 = require("../common/Logger");
-const ReadableStream_1 = require("../common/ReadableStream");
-const SidetreeError_1 = require("../common/SidetreeError");
+const node_fetch_1 = tslib_1.__importStar(require("node-fetch"));
+const BitcoinWallet_1 = tslib_1.__importDefault(require("./BitcoinWallet"));
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const LogColor_1 = tslib_1.__importDefault(require("../common/LogColor"));
+const Logger_1 = tslib_1.__importDefault(require("../common/Logger"));
+const ReadableStream_1 = tslib_1.__importDefault(require("../common/ReadableStream"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../common/SidetreeError"));
 class BitcoinClient {
     constructor(bitcoinPeerUri, bitcoinRpcUsername, bitcoinRpcPassword, bitcoinWalletOrImportString, requestTimeout, requestMaxRetries, sidetreeTransactionFeeMarkupPercentage, estimatedFeeSatoshiPerKB) {
         this.bitcoinPeerUri = bitcoinPeerUri;

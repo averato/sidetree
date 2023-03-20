@@ -1,28 +1,28 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const semver = require("semver");
-const timeSpan = require("time-span");
-const BatchScheduler_1 = require("./BatchScheduler");
-const Blockchain_1 = require("./Blockchain");
-const BlockchainClock_1 = require("./BlockchainClock");
-const DownloadManager_1 = require("./DownloadManager");
-const ErrorCode_1 = require("./ErrorCode");
-const EventEmitter_1 = require("../common/EventEmitter");
-const LogColor_1 = require("../common/LogColor");
-const Logger_1 = require("../common/Logger");
-const MongoDbConfirmationStore_1 = require("./MongoDbConfirmationStore");
-const MongoDbOperationStore_1 = require("./MongoDbOperationStore");
-const MongoDbServiceStateStore_1 = require("../common/MongoDbServiceStateStore");
-const MongoDbTransactionStore_1 = require("../common/MongoDbTransactionStore");
-const MongoDbUnresolvableTransactionStore_1 = require("./MongoDbUnresolvableTransactionStore");
-const Monitor_1 = require("./Monitor");
-const Observer_1 = require("./Observer");
-const Resolver_1 = require("./Resolver");
-const ResponseStatus_1 = require("../common/enums/ResponseStatus");
-const ServiceInfoProvider_1 = require("../common/ServiceInfoProvider");
-const SidetreeError_1 = require("../common/SidetreeError");
-const VersionManager_1 = require("./VersionManager");
+const semver_1 = tslib_1.__importDefault(require("semver"));
+const time_span_1 = tslib_1.__importDefault(require("time-span"));
+const BatchScheduler_1 = tslib_1.__importDefault(require("./BatchScheduler"));
+const Blockchain_1 = tslib_1.__importDefault(require("./Blockchain"));
+const BlockchainClock_1 = tslib_1.__importDefault(require("./BlockchainClock"));
+const DownloadManager_1 = tslib_1.__importDefault(require("./DownloadManager"));
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const EventEmitter_1 = tslib_1.__importDefault(require("../common/EventEmitter"));
+const LogColor_1 = tslib_1.__importDefault(require("../common/LogColor"));
+const Logger_1 = tslib_1.__importDefault(require("../common/Logger"));
+const MongoDbConfirmationStore_1 = tslib_1.__importDefault(require("./MongoDbConfirmationStore"));
+const MongoDbOperationStore_1 = tslib_1.__importDefault(require("./MongoDbOperationStore"));
+const MongoDbServiceStateStore_1 = tslib_1.__importDefault(require("../common/MongoDbServiceStateStore"));
+const MongoDbTransactionStore_1 = tslib_1.__importDefault(require("../common/MongoDbTransactionStore"));
+const MongoDbUnresolvableTransactionStore_1 = tslib_1.__importDefault(require("./MongoDbUnresolvableTransactionStore"));
+const Monitor_1 = tslib_1.__importDefault(require("./Monitor"));
+const Observer_1 = tslib_1.__importDefault(require("./Observer"));
+const Resolver_1 = tslib_1.__importDefault(require("./Resolver"));
+const ResponseStatus_1 = tslib_1.__importDefault(require("../common/enums/ResponseStatus"));
+const ServiceInfoProvider_1 = tslib_1.__importDefault(require("../common/ServiceInfoProvider"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../common/SidetreeError"));
+const VersionManager_1 = tslib_1.__importDefault(require("./VersionManager"));
 class Core {
     constructor(config, versionModels, cas, blockchain = new Blockchain_1.default(config.blockchainServiceUri)) {
         this.config = config;
@@ -125,12 +125,12 @@ class Core {
             if (expectedDbVersion === actualDbVersion) {
                 return;
             }
-            if (actualDbVersion !== undefined && semver.lt(expectedDbVersion, actualDbVersion)) {
+            if (actualDbVersion !== undefined && semver_1.default.lt(expectedDbVersion, actualDbVersion)) {
                 Logger_1.default.error(LogColor_1.default.red(`Downgrading DB from version ${LogColor_1.default.green(actualDbVersion)} to  ${LogColor_1.default.green(expectedDbVersion)} is not allowed.`));
                 throw new SidetreeError_1.default(ErrorCode_1.default.DatabaseDowngradeNotAllowed);
             }
             Logger_1.default.warn(LogColor_1.default.yellow(`Upgrading DB from version ${LogColor_1.default.green(actualDbVersion)} to ${LogColor_1.default.green(expectedDbVersion)}...`));
-            const timer = timeSpan();
+            const timer = (0, time_span_1.default)();
             yield this.operationStore.delete();
             yield this.transactionStore.clearCollection();
             yield this.unresolvableTransactionStore.clearCollection();

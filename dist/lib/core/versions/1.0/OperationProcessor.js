@@ -1,20 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const CreateOperation_1 = require("./CreateOperation");
-const DeactivateOperation_1 = require("./DeactivateOperation");
-const DocumentComposer_1 = require("./DocumentComposer");
-const Encoder_1 = require("./Encoder");
-const ErrorCode_1 = require("./ErrorCode");
-const JsObject_1 = require("./util/JsObject");
-const JsonCanonicalizer_1 = require("./util/JsonCanonicalizer");
-const Logger_1 = require("../../../common/Logger");
-const Multihash_1 = require("./Multihash");
-const Operation_1 = require("./Operation");
-const OperationType_1 = require("../../enums/OperationType");
-const RecoverOperation_1 = require("./RecoverOperation");
-const SidetreeError_1 = require("../../../common/SidetreeError");
-const UpdateOperation_1 = require("./UpdateOperation");
+const CreateOperation_1 = tslib_1.__importDefault(require("./CreateOperation"));
+const DeactivateOperation_1 = tslib_1.__importDefault(require("./DeactivateOperation"));
+const DocumentComposer_1 = tslib_1.__importDefault(require("./DocumentComposer"));
+const Encoder_1 = tslib_1.__importDefault(require("./Encoder"));
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const JsObject_1 = tslib_1.__importDefault(require("./util/JsObject"));
+const JsonCanonicalizer_1 = tslib_1.__importDefault(require("./util/JsonCanonicalizer"));
+const Logger_1 = tslib_1.__importDefault(require("../../../common/Logger"));
+const Multihash_1 = tslib_1.__importDefault(require("./Multihash"));
+const Operation_1 = tslib_1.__importDefault(require("./Operation"));
+const OperationType_1 = tslib_1.__importDefault(require("../../enums/OperationType"));
+const RecoverOperation_1 = tslib_1.__importDefault(require("./RecoverOperation"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../../common/SidetreeError"));
+const UpdateOperation_1 = tslib_1.__importDefault(require("./UpdateOperation"));
 class OperationProcessor {
     apply(anchoredOperationModel, didState) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {

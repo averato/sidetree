@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const BitcoinFileReader_1 = require("./BitcoinFileReader");
-const BitcoinRawDataParser_1 = require("./BitcoinRawDataParser");
-const Logger_1 = require("../common/Logger");
+const tslib_1 = require("tslib");
+const BitcoinFileReader_1 = tslib_1.__importDefault(require("./BitcoinFileReader"));
+const BitcoinRawDataParser_1 = tslib_1.__importDefault(require("./BitcoinRawDataParser"));
+const Logger_1 = tslib_1.__importDefault(require("../common/Logger"));
 class BitcoinBlockDataIterator {
     constructor(path) {
         this.fileReader = new BitcoinFileReader_1.default(path);

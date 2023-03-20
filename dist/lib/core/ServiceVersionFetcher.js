@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const Logger_1 = require("../common/Logger");
-const ReadableStream_1 = require("../common/ReadableStream");
-const node_fetch_1 = require("node-fetch");
+const Logger_1 = tslib_1.__importDefault(require("../common/Logger"));
+const ReadableStream_1 = tslib_1.__importDefault(require("../common/ReadableStream"));
+const node_fetch_1 = tslib_1.__importDefault(require("node-fetch"));
 class ServiceVersionFetcher {
     constructor(uri) {
         this.uri = uri;

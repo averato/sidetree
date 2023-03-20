@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const ResponseStatus_1 = require("./enums/ResponseStatus");
+const tslib_1 = require("tslib");
+const ResponseStatus_1 = tslib_1.__importDefault(require("./enums/ResponseStatus"));
 class Response {
     static toHttpStatus(status) {
         switch (status) {

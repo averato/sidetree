@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const timeSpan = require("time-span");
-const ErrorCode_1 = require("./ErrorCode");
-const EventCode_1 = require("./EventCode");
-const EventEmitter_1 = require("../common/EventEmitter");
-const Logger_1 = require("../common/Logger");
-const SidetreeError_1 = require("../common/SidetreeError");
+const time_span_1 = tslib_1.__importDefault(require("time-span"));
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const EventCode_1 = tslib_1.__importDefault(require("./EventCode"));
+const EventEmitter_1 = tslib_1.__importDefault(require("../common/EventEmitter"));
+const Logger_1 = tslib_1.__importDefault(require("../common/Logger"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../common/SidetreeError"));
 class BatchScheduler {
     constructor(versionManager, blockchain, batchingIntervalInSeconds) {
         this.versionManager = versionManager;
@@ -24,7 +24,7 @@ class BatchScheduler {
     }
     writeOperationBatch() {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
-            const endTimer = timeSpan();
+            const endTimer = (0, time_span_1.default)();
             try {
                 Logger_1.default.info('Start operation batch writing...');
                 const currentTime = (yield this.blockchain.getLatestTime()).time;

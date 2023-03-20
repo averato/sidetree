@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const MongoDbStore_1 = require("./MongoDbStore");
+const MongoDbStore_1 = tslib_1.__importDefault(require("./MongoDbStore"));
 class MongoDbServiceStateStore extends MongoDbStore_1.default {
     constructor(serverUrl, databaseName) {
         super(serverUrl, MongoDbServiceStateStore.collectionName, databaseName);

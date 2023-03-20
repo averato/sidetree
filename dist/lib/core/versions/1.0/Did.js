@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const CreateOperation_1 = require("./CreateOperation");
-const Delta_1 = require("./Delta");
-const Encoder_1 = require("./Encoder");
-const ErrorCode_1 = require("./ErrorCode");
-const JsonCanonicalizer_1 = require("./util/JsonCanonicalizer");
-const Multihash_1 = require("./Multihash");
-const OperationType_1 = require("../../enums/OperationType");
-const SidetreeError_1 = require("../../../common/SidetreeError");
+const CreateOperation_1 = tslib_1.__importDefault(require("./CreateOperation"));
+const Delta_1 = tslib_1.__importDefault(require("./Delta"));
+const Encoder_1 = tslib_1.__importDefault(require("./Encoder"));
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const JsonCanonicalizer_1 = tslib_1.__importDefault(require("./util/JsonCanonicalizer"));
+const Multihash_1 = tslib_1.__importDefault(require("./Multihash"));
+const OperationType_1 = tslib_1.__importDefault(require("../../enums/OperationType"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../../common/SidetreeError"));
 class Did {
     constructor(did, didMethodName) {
         this.didMethodName = didMethodName;

@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const crypto = require("crypto");
-const EventCode_1 = require("./EventCode");
-const EventEmitter_1 = require("../common/EventEmitter");
-const Logger_1 = require("../common/Logger");
+const crypto = tslib_1.__importStar(require("crypto"));
+const EventCode_1 = tslib_1.__importDefault(require("./EventCode"));
+const EventEmitter_1 = tslib_1.__importDefault(require("../common/EventEmitter"));
+const Logger_1 = tslib_1.__importDefault(require("../common/Logger"));
 class DownloadManager {
     constructor(maxConcurrentDownloads, cas) {
         this.maxConcurrentDownloads = maxConcurrentDownloads;

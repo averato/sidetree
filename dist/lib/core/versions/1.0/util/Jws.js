@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const Encoder_1 = require("../Encoder");
-const ErrorCode_1 = require("../ErrorCode");
+const Encoder_1 = tslib_1.__importDefault(require("../Encoder"));
+const ErrorCode_1 = tslib_1.__importDefault(require("../ErrorCode"));
 const jose_1 = require("jose");
-const Logger_1 = require("../../../../common/Logger");
-const SidetreeError_1 = require("../../../../common/SidetreeError");
+const Logger_1 = tslib_1.__importDefault(require("../../../../common/Logger"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../../../common/SidetreeError"));
 class Jws {
     constructor(compactJws) {
         if (typeof compactJws !== 'string') {

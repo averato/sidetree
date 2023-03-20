@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const BatchWriter_1 = require("./versions/latest/BatchWriter");
-const MongoDbOperationQueue_1 = require("./versions/latest/MongoDbOperationQueue");
-const MongoDbTransactionStore_1 = require("../common/MongoDbTransactionStore");
+const BatchWriter_1 = tslib_1.__importDefault(require("./versions/latest/BatchWriter"));
+const MongoDbOperationQueue_1 = tslib_1.__importDefault(require("./versions/latest/MongoDbOperationQueue"));
+const MongoDbTransactionStore_1 = tslib_1.__importDefault(require("../common/MongoDbTransactionStore"));
 class Monitor {
     constructor(config, versionManager, blockchain) {
         this.operationQueue = new MongoDbOperationQueue_1.default(config.mongoDbConnectionString, config.databaseName);

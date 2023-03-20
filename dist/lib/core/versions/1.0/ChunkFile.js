@@ -1,18 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const timeSpan = require("time-span");
-const Compressor_1 = require("./util/Compressor");
-const Delta_1 = require("./Delta");
-const ErrorCode_1 = require("./ErrorCode");
-const JsonAsync_1 = require("./util/JsonAsync");
-const Logger_1 = require("../../../common/Logger");
-const ProtocolParameters_1 = require("./ProtocolParameters");
-const SidetreeError_1 = require("../../../common/SidetreeError");
+const time_span_1 = tslib_1.__importDefault(require("time-span"));
+const Compressor_1 = tslib_1.__importDefault(require("./util/Compressor"));
+const Delta_1 = tslib_1.__importDefault(require("./Delta"));
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const JsonAsync_1 = tslib_1.__importDefault(require("./util/JsonAsync"));
+const Logger_1 = tslib_1.__importDefault(require("../../../common/Logger"));
+const ProtocolParameters_1 = tslib_1.__importDefault(require("./ProtocolParameters"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../../common/SidetreeError"));
 class ChunkFile {
     static parse(chunkFileBuffer) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
-            const endTimer = timeSpan();
+            const endTimer = (0, time_span_1.default)();
             const maxAllowedDecompressedSizeInBytes = ProtocolParameters_1.default.maxChunkFileSizeInBytes * Compressor_1.default.estimatedDecompressionMultiplier;
             const decompressedChunkFileBuffer = yield Compressor_1.default.decompress(chunkFileBuffer, maxAllowedDecompressedSizeInBytes);
             const chunkFileObject = yield JsonAsync_1.default.parse(decompressedChunkFileBuffer);

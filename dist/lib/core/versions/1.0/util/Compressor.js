@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const util = require("util");
-const zlib = require("zlib");
-const ErrorCode_1 = require("../ErrorCode");
-const SidetreeError_1 = require("../../../../common/SidetreeError");
+const util = tslib_1.__importStar(require("util"));
+const zlib = tslib_1.__importStar(require("zlib"));
+const ErrorCode_1 = tslib_1.__importDefault(require("../ErrorCode"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../../../common/SidetreeError"));
 class Compressor {
     static compress(inputAsBuffer) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {

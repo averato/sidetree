@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const Compressor_1 = require("./util/Compressor");
-const ErrorCode_1 = require("./ErrorCode");
-const InputValidator_1 = require("./InputValidator");
-const JsonAsync_1 = require("./util/JsonAsync");
-const Jws_1 = require("./util/Jws");
-const ProtocolParameters_1 = require("./ProtocolParameters");
-const SidetreeError_1 = require("../../../common/SidetreeError");
-const UpdateOperation_1 = require("./UpdateOperation");
+const Compressor_1 = tslib_1.__importDefault(require("./util/Compressor"));
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const InputValidator_1 = tslib_1.__importDefault(require("./InputValidator"));
+const JsonAsync_1 = tslib_1.__importDefault(require("./util/JsonAsync"));
+const Jws_1 = tslib_1.__importDefault(require("./util/Jws"));
+const ProtocolParameters_1 = tslib_1.__importDefault(require("./ProtocolParameters"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../../common/SidetreeError"));
+const UpdateOperation_1 = tslib_1.__importDefault(require("./UpdateOperation"));
 class ProvisionalProofFile {
     constructor(provisionalProofFileModel, updateProofs) {
         this.provisionalProofFileModel = provisionalProofFileModel;

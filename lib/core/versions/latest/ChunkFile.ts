@@ -1,4 +1,4 @@
-import * as timeSpan from 'time-span';
+import timeSpan from 'time-span';
 import ChunkFileModel from './models/ChunkFileModel';
 import Compressor from './util/Compressor';
 import CreateOperation from './CreateOperation';

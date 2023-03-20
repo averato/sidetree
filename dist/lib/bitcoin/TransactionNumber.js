@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const ErrorCode_1 = require("./ErrorCode");
-const SidetreeError_1 = require("../common/SidetreeError");
+const tslib_1 = require("tslib");
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../common/SidetreeError"));
 class TransactionNumber {
     static construct(blockNumber, transactionIndexInBlock) {
         if (transactionIndexInBlock > TransactionNumber.maxTransactionIndexInBlock) {

@@ -1,11 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const crypto = require("crypto");
-const Encoder_1 = require("./Encoder");
-const ErrorCode_1 = require("./ErrorCode");
-const JsonCanonicalizer_1 = require("./util/JsonCanonicalizer");
-const Logger_1 = require("../../../common/Logger");
-const SidetreeError_1 = require("../../../common/SidetreeError");
+const tslib_1 = require("tslib");
+const crypto = tslib_1.__importStar(require("crypto"));
+const Encoder_1 = tslib_1.__importDefault(require("./Encoder"));
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const JsonCanonicalizer_1 = tslib_1.__importDefault(require("./util/JsonCanonicalizer"));
+const Logger_1 = tslib_1.__importDefault(require("../../../common/Logger"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../../common/SidetreeError"));
 const multihashes = require('multihashes');
 class Multihash {
     static hash(content, hashAlgorithmInMultihashCode) {

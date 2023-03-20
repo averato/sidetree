@@ -1,4 +1,4 @@
-import * as timeSpan from 'time-span';
+import timeSpan from 'time-span';
 import DownloadManager from '../../lib/core/DownloadManager';
 import ICas from '../../lib/core/interfaces/ICas';
 import Logger from '../../lib/common/Logger';

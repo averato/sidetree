@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const bitcore_lib_1 = require("bitcore-lib");
-const ErrorCode_1 = require("./ErrorCode");
-const SidetreeError_1 = require("../common/SidetreeError");
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../common/SidetreeError"));
 class BitcoinWallet {
     constructor(bitcoinWalletImportString) {
         try {

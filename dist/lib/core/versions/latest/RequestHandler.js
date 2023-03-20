@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const Delta_1 = require("./Delta");
-const Did_1 = require("./Did");
-const DocumentComposer_1 = require("./DocumentComposer");
-const ErrorCode_1 = require("./ErrorCode");
-const JsonAsync_1 = require("./util/JsonAsync");
-const Logger_1 = require("../../../common/Logger");
-const Operation_1 = require("./Operation");
-const OperationProcessor_1 = require("./OperationProcessor");
-const OperationType_1 = require("../../enums/OperationType");
-const ResponseStatus_1 = require("../../../common/enums/ResponseStatus");
-const SidetreeError_1 = require("../../../common/SidetreeError");
+const Delta_1 = tslib_1.__importDefault(require("./Delta"));
+const Did_1 = tslib_1.__importDefault(require("./Did"));
+const DocumentComposer_1 = tslib_1.__importDefault(require("./DocumentComposer"));
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const JsonAsync_1 = tslib_1.__importDefault(require("./util/JsonAsync"));
+const Logger_1 = tslib_1.__importDefault(require("../../../common/Logger"));
+const Operation_1 = tslib_1.__importDefault(require("./Operation"));
+const OperationProcessor_1 = tslib_1.__importDefault(require("./OperationProcessor"));
+const OperationType_1 = tslib_1.__importDefault(require("../../enums/OperationType"));
+const ResponseStatus_1 = tslib_1.__importDefault(require("../../../common/enums/ResponseStatus"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../../common/SidetreeError"));
 class RequestHandler {
     constructor(resolver, operationQueue, didMethodName) {
         this.resolver = resolver;

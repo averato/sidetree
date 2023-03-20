@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const HttpStatus = require("http-status");
-const ErrorCode_1 = require("./ErrorCode");
-const JsonAsync_1 = require("./versions/latest/util/JsonAsync");
-const Logger_1 = require("../common/Logger");
-const ReadableStream_1 = require("../common/ReadableStream");
-const ServiceVersionFetcher_1 = require("./ServiceVersionFetcher");
-const SharedErrorCode_1 = require("../common/SharedErrorCode");
-const SidetreeError_1 = require("../common/SidetreeError");
-const node_fetch_1 = require("node-fetch");
+const HttpStatus = tslib_1.__importStar(require("http-status"));
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const JsonAsync_1 = tslib_1.__importDefault(require("./versions/latest/util/JsonAsync"));
+const Logger_1 = tslib_1.__importDefault(require("../common/Logger"));
+const ReadableStream_1 = tslib_1.__importDefault(require("../common/ReadableStream"));
+const ServiceVersionFetcher_1 = tslib_1.__importDefault(require("./ServiceVersionFetcher"));
+const SharedErrorCode_1 = tslib_1.__importDefault(require("../common/SharedErrorCode"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../common/SidetreeError"));
+const node_fetch_1 = tslib_1.__importDefault(require("node-fetch"));
 class Blockchain {
     constructor(uri) {
         this.uri = uri;

@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const Compressor_1 = require("./util/Compressor");
-const DeactivateOperation_1 = require("./DeactivateOperation");
-const ErrorCode_1 = require("./ErrorCode");
-const InputValidator_1 = require("./InputValidator");
-const JsonAsync_1 = require("./util/JsonAsync");
-const Jws_1 = require("./util/Jws");
-const ProtocolParameters_1 = require("./ProtocolParameters");
-const RecoverOperation_1 = require("./RecoverOperation");
-const SidetreeError_1 = require("../../../common/SidetreeError");
+const Compressor_1 = tslib_1.__importDefault(require("./util/Compressor"));
+const DeactivateOperation_1 = tslib_1.__importDefault(require("./DeactivateOperation"));
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const InputValidator_1 = tslib_1.__importDefault(require("./InputValidator"));
+const JsonAsync_1 = tslib_1.__importDefault(require("./util/JsonAsync"));
+const Jws_1 = tslib_1.__importDefault(require("./util/Jws"));
+const ProtocolParameters_1 = tslib_1.__importDefault(require("./ProtocolParameters"));
+const RecoverOperation_1 = tslib_1.__importDefault(require("./RecoverOperation"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../../common/SidetreeError"));
 class CoreProofFile {
     constructor(coreProofFileModel, recoverProofs, deactivateProofs) {
         this.coreProofFileModel = coreProofFileModel;

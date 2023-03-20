@@ -1,14 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const URI = require("uri-js");
-const ArrayMethods_1 = require("./util/ArrayMethods");
-const Encoder_1 = require("./Encoder");
-const ErrorCode_1 = require("./ErrorCode");
-const InputValidator_1 = require("./InputValidator");
-const JsObject_1 = require("./util/JsObject");
-const PatchAction_1 = require("./PatchAction");
-const PublicKeyPurpose_1 = require("./PublicKeyPurpose");
-const SidetreeError_1 = require("../../../common/SidetreeError");
+const tslib_1 = require("tslib");
+const URI = tslib_1.__importStar(require("uri-js"));
+const ArrayMethods_1 = tslib_1.__importDefault(require("./util/ArrayMethods"));
+const Encoder_1 = tslib_1.__importDefault(require("./Encoder"));
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const InputValidator_1 = tslib_1.__importDefault(require("./InputValidator"));
+const JsObject_1 = tslib_1.__importDefault(require("./util/JsObject"));
+const PatchAction_1 = tslib_1.__importDefault(require("./PatchAction"));
+const PublicKeyPurpose_1 = tslib_1.__importDefault(require("./PublicKeyPurpose"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../../common/SidetreeError"));
 class DocumentComposer {
     static transformToExternalDocument(didState, did, published) {
         if (didState.nextRecoveryCommitmentHash === undefined) {

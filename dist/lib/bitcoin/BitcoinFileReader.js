@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs = require("fs");
-const ErrorCode_1 = require("./ErrorCode");
-const SidetreeError_1 = require("../common/SidetreeError");
+const tslib_1 = require("tslib");
+const fs = tslib_1.__importStar(require("fs"));
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../common/SidetreeError"));
 class BitcoinFileReader {
     constructor(bitcoinDataDirectory) {
         this.bitcoinDataDirectory = bitcoinDataDirectory;

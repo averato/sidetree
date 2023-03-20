@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const mongodb_1 = require("mongodb");
-const ErrorCode_1 = require("./ErrorCode");
-const MongoDbStore_1 = require("../../../common/MongoDbStore");
-const SidetreeError_1 = require("../../../common/SidetreeError");
+const ErrorCode_1 = tslib_1.__importDefault(require("./ErrorCode"));
+const MongoDbStore_1 = tslib_1.__importDefault(require("../../../common/MongoDbStore"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../../common/SidetreeError"));
 class MongoDbOperationQueue extends MongoDbStore_1.default {
     constructor(serverUrl, databaseName) {
         super(serverUrl, MongoDbOperationQueue.collectionName, databaseName);

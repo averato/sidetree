@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const ErrorCode_1 = require("../ErrorCode");
-const EventCode_1 = require("../EventCode");
-const EventEmitter_1 = require("../../common/EventEmitter");
-const LockIdentifierSerializer_1 = require("./LockIdentifierSerializer");
-const LogColor_1 = require("../../common/LogColor");
-const Logger_1 = require("../../common/Logger");
-const SavedLockType_1 = require("../enums/SavedLockType");
-const SidetreeError_1 = require("../../common/SidetreeError");
+const ErrorCode_1 = tslib_1.__importDefault(require("../ErrorCode"));
+const EventCode_1 = tslib_1.__importDefault(require("../EventCode"));
+const EventEmitter_1 = tslib_1.__importDefault(require("../../common/EventEmitter"));
+const LockIdentifierSerializer_1 = tslib_1.__importDefault(require("./LockIdentifierSerializer"));
+const LogColor_1 = tslib_1.__importDefault(require("../../common/LogColor"));
+const Logger_1 = tslib_1.__importDefault(require("../../common/Logger"));
+const SavedLockType_1 = tslib_1.__importDefault(require("../enums/SavedLockType"));
+const SidetreeError_1 = tslib_1.__importDefault(require("../../common/SidetreeError"));
 var LockStatus;
 (function (LockStatus) {
     LockStatus["Confirmed"] = "confirmed";

@@ -1,4 +1,4 @@
-import * as timeSpan from 'time-span';
+import timeSpan from 'time-span';
 import ErrorCode from './ErrorCode';
 import EventCode from './EventCode';
 import EventEmitter from '../common/EventEmitter';

@@ -1,7 +1,7 @@
-import * as fs from 'fs';
-import ErrorCode from './ErrorCode';
-import IBitcoinFileReader from './interfaces/IBitcoinFileReader';
-import SidetreeError from '../common/SidetreeError';
+// import * as fs from 'fs';
+import ErrorCode from './ErrorCode.ts';
+import IBitcoinFileReader from './interfaces/IBitcoinFileReader.ts';
+import SidetreeError from '../common/SidetreeError.ts';
 
 /**
  * concrete implementation of BitcoinFileReader
@@ -17,19 +17,19 @@ export default class BitcoinFileReader implements IBitcoinFileReader {
     const blocksDataDirectoryPath = `${this.bitcoinDataDirectory}/blocks`;
     let blockDataDir;
     try {
-      blockDataDir = fs.readdirSync(blocksDataDirectoryPath);
+      blockDataDir = Deno.readDirSync(blocksDataDirectoryPath); // fs.readdirSync(blocksDataDirectoryPath);
     } catch (e) {
       if (e instanceof SidetreeError) throw SidetreeError.createFromError(ErrorCode.BitcoinFileReaderBlockCannotReadDirectory, e);
 
       throw e;
     }
-    const blockFileList = blockDataDir.filter((fileName) => { return fileName.startsWith('blk'); });
+    const blockFileList = blockDataDir.filter((dirEntry) => { return dirEntry.name.startsWith('blk'); });
     return blockFileList;
   }
 
   public readBlockFile (fileName: string): Buffer {
     try {
-      return fs.readFileSync(`${this.bitcoinDataDirectory}/blocks/${fileName}`);
+      return Deno.readFileSync(`${this.bitcoinDataDirectory}/blocks/${fileName}`);
     } catch (e) {
       if (e instanceof SidetreeError) throw SidetreeError.createFromError(ErrorCode.BitcoinFileReaderBlockCannotReadFile, e);
 

@@ -1,15 +1,15 @@
-import Compressor from './util/Compressor';
-import CoreProofFileModel from './models/CoreProofFileModel';
-import DeactivateOperation from './DeactivateOperation';
-import DeactivateSignedDataModel from './models/DeactivateSignedDataModel';
-import ErrorCode from './ErrorCode';
-import InputValidator from './InputValidator';
-import JsonAsync from './util/JsonAsync';
-import Jws from './util/Jws';
-import ProtocolParameters from './ProtocolParameters';
-import RecoverOperation from './RecoverOperation';
-import RecoverSignedDataModel from './models/RecoverSignedDataModel';
-import SidetreeError from '../../../common/SidetreeError';
+import Compressor from './util/Compressor.ts';
+import CoreProofFileModel from './models/CoreProofFileModel.ts';
+import DeactivateOperation from './DeactivateOperation.ts';
+import DeactivateSignedDataModel from './models/DeactivateSignedDataModel.ts';
+import ErrorCode from './ErrorCode.ts';
+import InputValidator from './InputValidator.ts';
+import JsonAsync from './util/JsonAsync.ts';
+import Jws from './util/Jws.ts';
+import ProtocolParameters from './ProtocolParameters.ts';
+import RecoverOperation from './RecoverOperation.ts';
+import RecoverSignedDataModel from './models/RecoverSignedDataModel.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
 
 /**
  * Defines operations related to a Core Proof File.

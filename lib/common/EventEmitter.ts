@@ -1,6 +1,6 @@
-import IEventEmitter from './interfaces/IEventEmitter';
-import LogColor from './LogColor';
-import Logger from './Logger';
+import IEventEmitter from './interfaces/IEventEmitter.ts';
+import LogColor from './LogColor.ts';
+import Logger from './Logger.ts';
 
 /**
  * Event emitter used in Sidetree.

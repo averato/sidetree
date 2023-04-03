@@ -1,8 +1,8 @@
-import IBatchWriter from './IBatchWriter';
-import IOperationProcessor from './IOperationProcessor';
-import IRequestHandler from './IRequestHandler';
-import ITransactionProcessor from './ITransactionProcessor';
-import ITransactionSelector from './ITransactionSelector';
+import IBatchWriter from './IBatchWriter.ts';
+import IOperationProcessor from './IOperationProcessor.ts';
+import IRequestHandler from './IRequestHandler.ts';
+import ITransactionProcessor from './ITransactionProcessor.ts';
+import ITransactionSelector from './ITransactionSelector.ts';
 
 /**
  * Defines an interface to return the correct 'version-ed' objects.

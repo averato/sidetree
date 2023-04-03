@@ -1,4 +1,4 @@
-import ResponseStatus from './enums/ResponseStatus';
+import ResponseStatus from './enums/ResponseStatus.ts';
 
 /**
  * Contains operations related to `IResponse`.

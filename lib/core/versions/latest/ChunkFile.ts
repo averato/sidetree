@@ -1,15 +1,15 @@
 import timeSpan from 'time-span';
-import ChunkFileModel from './models/ChunkFileModel';
-import Compressor from './util/Compressor';
-import CreateOperation from './CreateOperation';
-import Delta from './Delta';
-import ErrorCode from './ErrorCode';
-import JsonAsync from './util/JsonAsync';
-import Logger from '../../../common/Logger';
-import ProtocolParameters from './ProtocolParameters';
-import RecoverOperation from './RecoverOperation';
-import SidetreeError from '../../../common/SidetreeError';
-import UpdateOperation from './UpdateOperation';
+import ChunkFileModel from './models/ChunkFileModel.ts';
+import Compressor from './util/Compressor.ts';
+import CreateOperation from './CreateOperation.ts';
+import Delta from './Delta.ts';
+import ErrorCode from './ErrorCode.ts';
+import JsonAsync from './util/JsonAsync.ts';
+import Logger from '../../../common/Logger.ts';
+import ProtocolParameters from './ProtocolParameters.ts';
+import RecoverOperation from './RecoverOperation.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
+import UpdateOperation from './UpdateOperation.ts';
 
 /**
  * Defines operations related to a Chunk File.

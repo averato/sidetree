@@ -1,4 +1,4 @@
-import AbstractVersionMetadata from '../abstracts/AbstractVersionMetadata';
+import AbstractVersionMetadata from '../abstracts/AbstractVersionMetadata.ts';
 
 /**
  * An interface that helps versioned code access metadata from other versions

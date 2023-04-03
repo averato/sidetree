@@ -1,10 +1,10 @@
-import BatchWriter from './versions/latest/BatchWriter';
-import Config from './models/Config';
-import IBlockchain from '../core/interfaces/IBlockchain';
-import MongoDbOperationQueue from './versions/latest/MongoDbOperationQueue';
-import MongoDbTransactionStore from '../common/MongoDbTransactionStore';
-import TransactionModel from '../common/models/TransactionModel';
-import VersionManager from './VersionManager';
+import BatchWriter from './versions/latest/BatchWriter.ts';
+import Config from './models/Config.ts';
+import IBlockchain from '../core/interfaces/IBlockchain.ts';
+import MongoDbOperationQueue from './versions/latest/MongoDbOperationQueue.ts';
+import MongoDbTransactionStore from '../common/MongoDbTransactionStore.ts';
+import TransactionModel from '../common/models/TransactionModel.ts';
+import VersionManager from './VersionManager.ts';
 
 /**
  * An class to monitor the Core.

@@ -1,14 +1,14 @@
-import BitcoinClient from '../BitcoinClient';
-import BitcoinOutputModel from '../models/BitcoinOutputModel';
-import BitcoinTransactionModel from '../models/BitcoinTransactionModel';
-import ErrorCode from '../ErrorCode';
-import LockIdentifierModel from '../models/LockIdentifierModel';
-import LockIdentifierSerializer from './LockIdentifierSerializer';
-import Logger from '../../common/Logger';
+import BitcoinClient from '../BitcoinClient.ts';
+import BitcoinOutputModel from '../models/BitcoinOutputModel.ts';
+import BitcoinTransactionModel from '../models/BitcoinTransactionModel.ts';
+import ErrorCode from '../ErrorCode.ts';
+import LockIdentifierModel from '../models/LockIdentifierModel.ts';
+import LockIdentifierSerializer from './LockIdentifierSerializer.ts';
+import Logger from '../../common/Logger.ts';
 import { Script } from 'bitcore-lib';
-import SidetreeError from '../../common/SidetreeError';
-import ValueTimeLockModel from '../../common/models/ValueTimeLockModel';
-import VersionManager from '../VersionManager';
+import SidetreeError from '../../common/SidetreeError.ts';
+import ValueTimeLockModel from '../../common/models/ValueTimeLockModel.ts';
+import VersionManager from '../VersionManager.ts';
 
 /** Structure (internal for this class) to hold the redeem script verification results */
 interface LockScriptVerifyResult {

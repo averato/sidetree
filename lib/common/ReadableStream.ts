@@ -1,5 +1,5 @@
-import ErrorCode from '../common/SharedErrorCode';
-import SidetreeError from './SidetreeError';
+import ErrorCode from '../common/SharedErrorCode.ts';
+import SidetreeError from './SidetreeError.ts';
 
 /* global NodeJS */
 

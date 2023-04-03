@@ -1,7 +1,7 @@
 import { Address, PrivateKey, Script, Transaction } from 'bitcore-lib';
-import ErrorCode from './ErrorCode';
-import IBitcoinWallet from './interfaces/IBitcoinWallet';
-import SidetreeError from '../common/SidetreeError';
+import ErrorCode from './ErrorCode.ts';
+import IBitcoinWallet from './interfaces/IBitcoinWallet.ts';
+import SidetreeError from '../common/SidetreeError.ts';
 
 /**
  * Represents a bitcoin wallet.

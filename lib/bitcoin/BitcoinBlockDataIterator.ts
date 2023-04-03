@@ -1,7 +1,7 @@
-import BitcoinBlockModel from './models/BitcoinBlockModel';
-import BitcoinFileReader from './BitcoinFileReader';
-import BitcoinRawDataParser from './BitcoinRawDataParser';
-import Logger from '../common/Logger';
+import BitcoinBlockModel from './models/BitcoinBlockModel.ts';
+import BitcoinFileReader from './BitcoinFileReader.ts';
+import BitcoinRawDataParser from './BitcoinRawDataParser.ts';
+import Logger from '../common/Logger.ts';
 
 /**
  * Iterates through block data by parsing raw block data file from latest file to earliest

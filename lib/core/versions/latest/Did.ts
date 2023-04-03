@@ -1,12 +1,12 @@
-import CreateOperation from './CreateOperation';
-import Delta from './Delta';
-import Encoder from './Encoder';
-import ErrorCode from './ErrorCode';
-import JsonCanonicalizer from './util/JsonCanonicalizer';
-import Multihash from './Multihash';
-import OperationType from '../../enums/OperationType';
-import SidetreeError from '../../../common/SidetreeError';
-import SuffixDataModel from './models/SuffixDataModel';
+import CreateOperation from './CreateOperation.ts';
+import Delta from './Delta.ts';
+import Encoder from './Encoder.ts';
+import ErrorCode from './ErrorCode.ts';
+import JsonCanonicalizer from './util/JsonCanonicalizer.ts';
+import Multihash from './Multihash.ts';
+import OperationType from '../../enums/OperationType.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
+import SuffixDataModel from './models/SuffixDataModel.ts';
 
 /**
  * Class containing reusable Sidetree DID related operations.

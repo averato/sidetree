@@ -1,10 +1,10 @@
-import Encoder from '../Encoder';
-import ErrorCode from '../ErrorCode';
+import Encoder from '../Encoder.ts';
+import ErrorCode from '../ErrorCode.ts';
 import { JWS } from 'jose';
-import JwkEs256k from '../../../models/JwkEs256k';
-import JwsModel from '../models/JwsModel';
-import Logger from '../../../../common/Logger';
-import SidetreeError from '../../../../common/SidetreeError';
+import JwkEs256k from '../../../models/JwkEs256k.ts';
+import JwsModel from '../models/JwsModel.ts';
+import Logger from '../../../../common/Logger.ts';
+import SidetreeError from '../../../../common/SidetreeError.ts';
 
 /**
  * Class containing reusable JWS operations.

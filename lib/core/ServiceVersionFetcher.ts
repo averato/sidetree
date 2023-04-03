@@ -1,6 +1,6 @@
-import Logger from '../common/Logger';
-import ReadableStream from '../common/ReadableStream';
-import ServiceVersionModel from '../common/models/ServiceVersionModel';
+import Logger from '../common/Logger.ts';
+import ReadableStream from '../common/ReadableStream.ts';
+import ServiceVersionModel from '../common/models/ServiceVersionModel.ts';
 import nodeFetch from 'node-fetch';
 
 /**

@@ -1,7 +1,7 @@
-import BlockMetadata from './models/BlockMetadata';
+import BlockMetadata from './models/BlockMetadata.ts';
 import { FindCursor } from 'mongodb';
-import IBlockMetadataStore from './interfaces/IBlockMetadataStore';
-import MongoDbStore from '../common/MongoDbStore';
+import IBlockMetadataStore from './interfaces/IBlockMetadataStore.ts';
+import MongoDbStore from '../common/MongoDbStore.ts';
 
 /**
  * Implementation of IBlockMetadataStore using MongoDB database.

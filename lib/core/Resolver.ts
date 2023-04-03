@@ -1,11 +1,11 @@
-import AnchoredOperationModel from './models/AnchoredOperationModel';
-import DidState from './models/DidState';
-import IOperationStore from './interfaces/IOperationStore';
-import IVersionManager from './interfaces/IVersionManager';
-import Logger from '../common/Logger';
-import Multihash from './versions/latest/Multihash';
-import OperationType from './enums/OperationType';
-import SidetreeError from '../common/SidetreeError';
+import AnchoredOperationModel from './models/AnchoredOperationModel.ts';
+import DidState from './models/DidState.ts';
+import IOperationStore from './interfaces/IOperationStore.ts';
+import IVersionManager from './interfaces/IVersionManager.ts';
+import Logger from '../common/Logger.ts';
+import Multihash from './versions/latest/Multihash.ts';
+import OperationType from './enums/OperationType.ts';
+import SidetreeError from '../common/SidetreeError.ts';
 
 /**
  * NOTE: Resolver cannot be versioned because it needs to be aware of `VersionManager` to fetch versioned operation processors.

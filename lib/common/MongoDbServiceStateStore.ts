@@ -1,5 +1,5 @@
-import IServiceStateStore from './interfaces/IServiceStateStore';
-import MongoDbStore from './MongoDbStore';
+import IServiceStateStore from './interfaces/IServiceStateStore.ts';
+import MongoDbStore from './MongoDbStore.ts';
 
 /**
  * Implementation of IServiceStateStore using MongoDB database.

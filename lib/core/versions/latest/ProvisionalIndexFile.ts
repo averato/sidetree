@@ -1,13 +1,13 @@
-import ArrayMethods from './util/ArrayMethods';
-import Compressor from './util/Compressor';
-import ErrorCode from './ErrorCode';
-import InputValidator from './InputValidator';
-import JsonAsync from './util/JsonAsync';
-import OperationReferenceModel from './models/OperationReferenceModel';
-import ProtocolParameters from './ProtocolParameters';
-import ProvisionalIndexFileModel from './models/ProvisionalIndexFileModel';
-import SidetreeError from '../../../common/SidetreeError';
-import UpdateOperation from './UpdateOperation';
+import ArrayMethods from './util/ArrayMethods.ts';
+import Compressor from './util/Compressor.ts';
+import ErrorCode from './ErrorCode.ts';
+import InputValidator from './InputValidator.ts';
+import JsonAsync from './util/JsonAsync.ts';
+import OperationReferenceModel from './models/OperationReferenceModel.ts';
+import ProtocolParameters from './ProtocolParameters.ts';
+import ProvisionalIndexFileModel from './models/ProvisionalIndexFileModel.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
+import UpdateOperation from './UpdateOperation.ts';
 
 /**
  * Class containing Map File related operations.

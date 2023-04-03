@@ -1,4 +1,4 @@
-import IBitcoinWallet from './interfaces/IBitcoinWallet';
+import IBitcoinWallet from './interfaces/IBitcoinWallet.ts';
 
 /**
  * Defines all the configuration parameters needed to initialize Sidetree bitcoin service.

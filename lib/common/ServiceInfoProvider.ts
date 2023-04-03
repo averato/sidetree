@@ -1,4 +1,4 @@
-import ServiceVersionModel from './models/ServiceVersionModel';
+import ServiceVersionModel from './models/ServiceVersionModel.ts';
 /**
  * Encapsulates the functionality to get the information about the service such as
  * version info.

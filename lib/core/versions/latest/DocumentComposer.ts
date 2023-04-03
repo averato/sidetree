@@ -1,15 +1,15 @@
 import * as URI from 'uri-js';
-import ArrayMethods from './util/ArrayMethods';
-import Did from './Did';
-import DidState from '../../models/DidState';
-import DocumentModel from './models/DocumentModel';
-import Encoder from './Encoder';
-import ErrorCode from './ErrorCode';
-import InputValidator from './InputValidator';
-import JsObject from './util/JsObject';
-import PatchAction from './PatchAction';
-import PublicKeyPurpose from './PublicKeyPurpose';
-import SidetreeError from '../../../common/SidetreeError';
+import ArrayMethods from './util/ArrayMethods.ts';
+import Did from './Did.ts';
+import DidState from '../../models/DidState.ts';
+import DocumentModel from './models/DocumentModel.ts';
+import Encoder from './Encoder.ts';
+import ErrorCode from './ErrorCode.ts';
+import InputValidator from './InputValidator.ts';
+import JsObject from './util/JsObject.ts';
+import PatchAction from './PatchAction.ts';
+import PublicKeyPurpose from './PublicKeyPurpose.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
 
 /**
  * Class that handles the composition of operations into final external-facing document.

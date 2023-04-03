@@ -1,5 +1,5 @@
-import BlockMetadata from '../models/BlockMetadata';
-import BlockMetadataWithoutNormalizedFee from '../models/BlockMetadataWithoutNormalizedFee';
+import BlockMetadata from '../models/BlockMetadata.ts';
+import BlockMetadataWithoutNormalizedFee from '../models/BlockMetadataWithoutNormalizedFee.ts';
 
 /**
  * Encapsulates the functionality for calculating the fees for blocks.

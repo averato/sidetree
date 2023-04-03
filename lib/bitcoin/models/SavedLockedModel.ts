@@ -1,4 +1,4 @@
-import LockTransactionType from '../enums/SavedLockType';
+import LockTransactionType from '../enums/SavedLockType.ts';
 
 /**
  * Encapsulates the data about a bitcoin 'lock' transaction saved in the database.

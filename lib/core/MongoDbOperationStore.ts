@@ -1,8 +1,8 @@
 import { Binary, Long } from 'mongodb';
-import AnchoredOperationModel from './models/AnchoredOperationModel';
-import IOperationStore from './interfaces/IOperationStore';
-import MongoDbStore from '../common/MongoDbStore';
-import OperationType from './enums/OperationType';
+import AnchoredOperationModel from './models/AnchoredOperationModel.ts';
+import IOperationStore from './interfaces/IOperationStore.ts';
+import MongoDbStore from '../common/MongoDbStore.ts';
+import OperationType from './enums/OperationType.ts';
 
 /**
  * Sidetree operation stored in MongoDb.

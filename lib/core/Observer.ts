@@ -1,19 +1,19 @@
 import timeSpan from 'time-span';
-import TransactionUnderProcessingModel, { TransactionProcessingStatus } from './models/TransactionUnderProcessingModel';
-import EventCode from './EventCode';
-import EventEmitter from '../common/EventEmitter';
-import IBlockchain from './interfaces/IBlockchain';
-import IConfirmationStore from './interfaces/IConfirmationStore';
-import IOperationStore from './interfaces/IOperationStore';
-import ITransactionProcessor from './interfaces/ITransactionProcessor';
-import ITransactionStore from './interfaces/ITransactionStore';
-import IUnresolvableTransactionStore from './interfaces/IUnresolvableTransactionStore';
-import IVersionManager from './interfaces/IVersionManager';
-import Logger from '../common/Logger';
-import SharedErrorCode from '../common/SharedErrorCode';
-import SidetreeError from '../common/SidetreeError';
-import ThroughputLimiter from './ThroughputLimiter';
-import TransactionModel from '../common/models/TransactionModel';
+import TransactionUnderProcessingModel, { TransactionProcessingStatus } from './models/TransactionUnderProcessingModel.ts';
+import EventCode from './EventCode.ts';
+import EventEmitter from '../common/EventEmitter.ts';
+import IBlockchain from './interfaces/IBlockchain.ts';
+import IConfirmationStore from './interfaces/IConfirmationStore.ts';
+import IOperationStore from './interfaces/IOperationStore.ts';
+import ITransactionProcessor from './interfaces/ITransactionProcessor.ts';
+import ITransactionStore from './interfaces/ITransactionStore.ts';
+import IUnresolvableTransactionStore from './interfaces/IUnresolvableTransactionStore.ts';
+import IVersionManager from './interfaces/IVersionManager.ts';
+import Logger from '../common/Logger.ts';
+import SharedErrorCode from '../common/SharedErrorCode.ts';
+import SidetreeError from '../common/SidetreeError.ts';
+import ThroughputLimiter from './ThroughputLimiter.ts';
+import TransactionModel from '../common/models/TransactionModel.ts';
 
 /**
  * Class that performs periodic processing of batches of Sidetree operations anchored to the blockchain.

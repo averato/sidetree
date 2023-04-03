@@ -1,6 +1,6 @@
-import ErrorCode from '../ErrorCode';
-import LockIdentifierModel from '../models/LockIdentifierModel';
-import SidetreeError from '../../common/SidetreeError';
+import ErrorCode from '../ErrorCode.ts';
+import LockIdentifierModel from '../models/LockIdentifierModel.ts';
+import SidetreeError from '../../common/SidetreeError.ts';
 import base64url from 'base64url';
 
 /**

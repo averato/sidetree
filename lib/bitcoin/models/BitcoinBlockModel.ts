@@ -1,4 +1,4 @@
-import BitcoinTransactionModel from './BitcoinTransactionModel';
+import BitcoinTransactionModel from './BitcoinTransactionModel.ts';
 
 /**
  * Encapsulates the block data returned by the bitcoin service or block parsed directly from file.

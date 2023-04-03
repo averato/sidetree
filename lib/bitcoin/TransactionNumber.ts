@@ -1,5 +1,5 @@
-import ErrorCode from './ErrorCode';
-import SidetreeError from '../common/SidetreeError';
+import ErrorCode from './ErrorCode.ts';
+import SidetreeError from '../common/SidetreeError.ts';
 
 /**
  * Defines the TransactionNumber as a combination of block number and transaction index within the block.

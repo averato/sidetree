@@ -1,10 +1,10 @@
-import BitcoinClient from './BitcoinClient';
-import BitcoinInputModel from './models/BitcoinInputModel';
-import BitcoinOutputModel from './models/BitcoinOutputModel';
-import BitcoinTransactionModel from './models/BitcoinTransactionModel';
-import Logger from '../common/Logger';
-import SidetreeError from '../common/SidetreeError';
-import SidetreeTransactionModel from './models/SidetreeTransactionModel';
+import BitcoinClient from './BitcoinClient.ts';
+import BitcoinInputModel from './models/BitcoinInputModel.ts';
+import BitcoinOutputModel from './models/BitcoinOutputModel.ts';
+import BitcoinTransactionModel from './models/BitcoinTransactionModel.ts';
+import Logger from '../common/Logger.ts';
+import SidetreeError from '../common/SidetreeError.ts';
+import SidetreeTransactionModel from './models/SidetreeTransactionModel.ts';
 
 /**
  * Encapsulates functionality about parsing a sidetree transaction written on the bitcoin.

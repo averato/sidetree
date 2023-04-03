@@ -1,16 +1,16 @@
 import * as HttpStatus from 'http-status';
-import BlockchainTimeModel from './models/BlockchainTimeModel';
-import CoreErrorCode from './ErrorCode';
-import IBlockchain from './interfaces/IBlockchain';
-import JsonAsync from './versions/latest/util/JsonAsync';
-import Logger from '../common/Logger';
-import ReadableStream from '../common/ReadableStream';
-import ServiceVersionFetcher from './ServiceVersionFetcher';
-import ServiceVersionModel from '../common/models/ServiceVersionModel';
-import SharedErrorCode from '../common/SharedErrorCode';
-import SidetreeError from '../common/SidetreeError';
-import TransactionModel from '../common/models/TransactionModel';
-import ValueTimeLockModel from '../common/models/ValueTimeLockModel';
+import BlockchainTimeModel from './models/BlockchainTimeModel.ts';
+import CoreErrorCode from './ErrorCode.ts';
+import IBlockchain from './interfaces/IBlockchain.ts';
+import JsonAsync from './versions/latest/util/JsonAsync.ts';
+import Logger from '../common/Logger.ts';
+import ReadableStream from '../common/ReadableStream.ts';
+import ServiceVersionFetcher from './ServiceVersionFetcher.ts';
+import ServiceVersionModel from '../common/models/ServiceVersionModel.ts';
+import SharedErrorCode from '../common/SharedErrorCode.ts';
+import SidetreeError from '../common/SidetreeError.ts';
+import TransactionModel from '../common/models/TransactionModel.ts';
+import ValueTimeLockModel from '../common/models/ValueTimeLockModel.ts';
 import nodeFetch from 'node-fetch';
 
 /**

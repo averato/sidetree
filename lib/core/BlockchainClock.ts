@@ -1,9 +1,9 @@
-import EventCode from '../core/EventCode';
-import EventEmitter from '../common/EventEmitter';
-import IBlockchain from '../core/interfaces/IBlockchain';
-import IServiceStateStore from '../common/interfaces/IServiceStateStore';
-import Logger from '../common/Logger';
-import ServiceStateModel from './models/ServiceStateModel';
+import EventCode from '../core/EventCode.ts';
+import EventEmitter from '../common/EventEmitter.ts';
+import IBlockchain from '../core/interfaces/IBlockchain.ts';
+import IServiceStateStore from '../common/interfaces/IServiceStateStore.ts';
+import Logger from '../common/Logger.ts';
+import ServiceStateModel from './models/ServiceStateModel.ts';
 
 /**
  * Class used to manage approximate blockchain time

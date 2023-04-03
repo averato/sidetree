@@ -1,20 +1,20 @@
 import * as httpStatus from 'http-status';
 import { Address, Block, Networks, PrivateKey, Script, Transaction, Unit, crypto } from 'bitcore-lib';
 import nodeFetch, { FetchError, RequestInit, Response } from 'node-fetch';
-import BitcoinBlockModel from './models/BitcoinBlockModel';
-import BitcoinInputModel from './models/BitcoinInputModel';
-import BitcoinLockTransactionModel from './models/BitcoinLockTransactionModel';
-import BitcoinOutputModel from './models/BitcoinOutputModel';
-import BitcoinSidetreeTransactionModel from './models/BitcoinSidetreeTransactionModel';
-import BitcoinTransactionModel from './models/BitcoinTransactionModel';
-import BitcoinWallet from './BitcoinWallet';
-import ErrorCode from './ErrorCode';
-import IBitcoinWallet from './interfaces/IBitcoinWallet';
-import { IBlockInfo } from './BitcoinProcessor';
-import LogColor from '../common/LogColor';
-import Logger from '../common/Logger';
-import ReadableStream from '../common/ReadableStream';
-import SidetreeError from '../common/SidetreeError';
+import BitcoinBlockModel from './models/BitcoinBlockModel.ts';
+import BitcoinInputModel from './models/BitcoinInputModel.ts';
+import BitcoinLockTransactionModel from './models/BitcoinLockTransactionModel.ts';
+import BitcoinOutputModel from './models/BitcoinOutputModel.ts';
+import BitcoinSidetreeTransactionModel from './models/BitcoinSidetreeTransactionModel.ts';
+import BitcoinTransactionModel from './models/BitcoinTransactionModel.ts';
+import BitcoinWallet from './BitcoinWallet.ts';
+import ErrorCode from './ErrorCode.ts';
+import IBitcoinWallet from './interfaces/IBitcoinWallet.ts';
+import { IBlockInfo } from './BitcoinProcessor.ts';
+import LogColor from '../common/LogColor.ts';
+import Logger from '../common/Logger.ts';
+import ReadableStream from '../common/ReadableStream.ts';
+import SidetreeError from '../common/SidetreeError.ts';
 
 /**
  * Structure (internal to this class) to store the transaction information

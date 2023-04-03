@@ -1,9 +1,9 @@
-import * as crypto from 'crypto';
-import EventCode from './EventCode';
-import EventEmitter from '../common/EventEmitter';
-import FetchResult from '../common/models/FetchResult';
-import ICas from './interfaces/ICas';
-import Logger from '../common/Logger';
+import * as crypto from 'node:crypto';
+import EventCode from './EventCode.ts';
+import EventEmitter from '../common/EventEmitter.ts';
+import FetchResult from '../common/models/FetchResult.ts';
+import ICas from './interfaces/ICas.ts';
+import Logger from '../common/Logger.ts';
 
 /**
  * Interface containing information regarding each queued CAS download.

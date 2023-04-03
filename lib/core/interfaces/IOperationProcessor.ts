@@ -1,5 +1,5 @@
-import AnchoredOperationModel from '../models/AnchoredOperationModel';
-import DidState from '../models/DidState';
+import AnchoredOperationModel from '../models/AnchoredOperationModel.ts';
+import DidState from '../models/DidState.ts';
 
 /**
  * Interface that defines a class that can process operations.

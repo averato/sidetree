@@ -1,4 +1,4 @@
-import { FindCursor, Long } from 'mongodb';
+import { FindCursor, Long } from 'npm:mongodb';
 import ITransactionStore from '../core/interfaces/ITransactionStore.ts';
 import Logger from '../common/Logger.ts';
 import MongoDbStore from './MongoDbStore.ts';

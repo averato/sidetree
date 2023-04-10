@@ -1,4 +1,4 @@
-import { Long } from 'mongodb';
+import { Long } from 'npm:mongodb';
 import MongoDbStore from '../../common/MongoDbStore.ts';
 import SavedLockModel from './../models/SavedLockedModel.ts';
 

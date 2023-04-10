@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import chalk from 'npm:chalk';
 
 /**
  * Abstraction for colored logs.

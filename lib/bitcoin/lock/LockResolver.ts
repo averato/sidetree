@@ -5,10 +5,12 @@ import ErrorCode from '../ErrorCode.ts';
 import LockIdentifierModel from '../models/LockIdentifierModel.ts';
 import LockIdentifierSerializer from './LockIdentifierSerializer.ts';
 import Logger from '../../common/Logger.ts';
-import { Script } from 'bitcore-lib';
+import * as Bitcoin from 'npm:bitcoinjs-lib';
 import SidetreeError from '../../common/SidetreeError.ts';
 import ValueTimeLockModel from '../../common/models/ValueTimeLockModel.ts';
 import VersionManager from '../VersionManager.ts';
+
+type Script =Bitcoin.script;
 
 /** Structure (internal for this class) to hold the redeem script verification results */
 interface LockScriptVerifyResult {
@@ -37,7 +39,7 @@ export default class LockResolver {
   public async resolveSerializedLockIdentifierAndThrowOnError (serializedLockIdentifier: string): Promise<ValueTimeLockModel> {
     const lockIdentifier = LockIdentifierSerializer.deserialize(serializedLockIdentifier);
 
-    return this.resolveLockIdentifierAndThrowOnError(lockIdentifier);
+    return await this.resolveLockIdentifierAndThrowOnError(lockIdentifier);
   }
 
   /**
@@ -171,7 +173,7 @@ export default class LockResolver {
 
   private async getTransaction (transactionId: string): Promise<BitcoinTransactionModel> {
     try {
-      return this.bitcoinClient.getRawTransaction(transactionId);
+      return await this.bitcoinClient.getRawTransaction(transactionId);
     } catch (e) {
       if (e instanceof SidetreeError) throw SidetreeError.createFromError(ErrorCode.LockResolverTransactionNotFound, e);
 

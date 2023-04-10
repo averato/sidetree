@@ -1,4 +1,4 @@
-import { Collection, Db, MongoClient } from 'mongodb';
+import { Collection, Db, MongoClient } from 'npm:mongodb';
 import Logger from '../common/Logger.ts';
 
 /**

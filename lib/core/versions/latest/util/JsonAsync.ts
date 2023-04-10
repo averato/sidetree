@@ -1,4 +1,4 @@
-const yieldableJson = require('yieldable-json');
+import yieldableJson from 'npm:yieldable-json';
 
 /**
  * A JSON library that performs operations asynchronously.

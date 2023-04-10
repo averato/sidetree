@@ -95,7 +95,7 @@ export default class Did {
       did.createOperation = createOperation;
     }
 
-    return did;
+    return await did;
   }
 
   /**

@@ -241,7 +241,7 @@ export default class CoreIndexFile {
       coreIndexFileModel.coreProofFileUri = coreProofFileUri;
     }
 
-    return coreIndexFileModel;
+    return await coreIndexFileModel;
   }
 
   /**

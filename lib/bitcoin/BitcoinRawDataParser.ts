@@ -1,9 +1,15 @@
 import BitcoinBlockModel from './models/BitcoinBlockModel.ts';
 import BitcoinClient from './BitcoinClient.ts';
-import { Block } from 'bitcore-lib';
+import * as Bitcoin from 'npm:bitcoinjs-lib';
 import ErrorCode from './ErrorCode.ts';
 import Logger from '../common/Logger.ts';
 import SidetreeError from '../common/SidetreeError.ts';
+// import { Buffer } from "https://deno.land/std@0.182.0/io/buffer.ts";
+import { Buffer } from 'node:buffer';
+
+type Block = Bitcoin.Block;
+const Block = Bitcoin.Block;
+
 
 /**
  * Parser for raw bitcoin block data
@@ -63,7 +69,7 @@ export default class BitcoinRawDataParser {
 
       let block: Block;
       try {
-        block = new Block(blockData);
+        block = Block.fromHex(blockData);
       } catch (e) {
         if (e instanceof SidetreeError) throw SidetreeError.createFromError(ErrorCode.BitcoinRawDataParserInvalidBlockData, e);
 

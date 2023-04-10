@@ -1,10 +1,11 @@
 import Encoder from '../Encoder.ts';
 import ErrorCode from '../ErrorCode.ts';
-import { JWS } from 'jose';
+// import { JWS } from 'jose';
 import JwkEs256k from '../../../models/JwkEs256k.ts';
 import JwsModel from '../models/JwsModel.ts';
 import Logger from '../../../../common/Logger.ts';
 import SidetreeError from '../../../../common/SidetreeError.ts';
+import * as jose from 'https://deno.land/x/jose@v4.13.1/index.ts';
 
 /**
  * Class containing reusable JWS operations.
@@ -101,7 +102,7 @@ export default class Jws {
    */
   public static verifyCompactJws (compactJws: string, publicKeyJwk: any): boolean {
     try {
-      JWS.verify(compactJws, publicKeyJwk);
+      jose.JWS.verify(compactJws, publicKeyJwk);
       return true;
     } catch (error) {
       if (error instanceof SidetreeError) {
@@ -126,7 +127,7 @@ export default class Jws {
     privateKey: JwkEs256k
   ): Promise<JwsModel> {
 
-    const flattenedJws = JWS.sign.flattened(payload, privateKey as any, protectedHeader);
+    const flattenedJws = jose.JWS.sign.flattened(payload, privateKey as any, protectedHeader);
     const jws = {
       protected: flattenedJws.protected!,
       payload: flattenedJws.payload,
@@ -141,7 +142,7 @@ export default class Jws {
    * This is mainly used by tests to create valid test data.
    */
   public static signAsCompactJws (payload: object, privateKey: any, protectedHeader?: object): string {
-    const compactJws = JWS.sign(payload, privateKey, protectedHeader);
+    const compactJws = jose.JWS.sign(payload, privateKey, protectedHeader);
     return compactJws;
   }
 

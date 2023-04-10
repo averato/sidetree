@@ -1,6 +1,6 @@
 import IUnresolvableTransactionStore from './interfaces/IUnresolvableTransactionStore.ts';
 import Logger from '../common/Logger.ts';
-import { Long } from 'mongodb';
+import { Long } from 'npm:mongodb';
 import MongoDbStore from '../common/MongoDbStore.ts';
 import TransactionModel from '../common/models/TransactionModel.ts';
 import UnresolvableTransactionModel from './models/UnresolvableTransactionModel.ts';

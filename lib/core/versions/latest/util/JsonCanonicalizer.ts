@@ -1,4 +1,4 @@
-const canonicalize = require('canonicalize');
+import canonicalize from 'npm:canonicalize';
 
 /**
  * Class containing reusable JSON canonicalization operations using JSON Canonicalization Scheme (JCS).

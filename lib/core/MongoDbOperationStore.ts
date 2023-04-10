@@ -1,4 +1,4 @@
-import { Binary, Long } from 'mongodb';
+import { Binary, Long } from 'npm:mongodb';
 import AnchoredOperationModel from './models/AnchoredOperationModel.ts';
 import IOperationStore from './interfaces/IOperationStore.ts';
 import MongoDbStore from '../common/MongoDbStore.ts';

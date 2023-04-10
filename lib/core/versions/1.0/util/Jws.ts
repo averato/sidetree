@@ -1,10 +1,11 @@
 import Encoder from '../Encoder';
 import ErrorCode from '../ErrorCode';
-import { JWS } from 'jose';
+// import { JWS } from 'jose';
 import JwkEs256k from '../../../models/JwkEs256k';
 import JwsModel from '../models/JwsModel';
 import Logger from '../../../../common/Logger';
 import SidetreeError from '../../../../common/SidetreeError';
+import * as jose from 'https://deno.land/x/jose@v4.13.1/index.ts';
 
 /**
  * Class containing reusable JWS operations.
@@ -92,7 +93,7 @@ export default class Jws {
   ): Promise<boolean> {
     const jwsSigningInput = encodedProtectedHeader + '.' + encodedPayload + '.' + signature;
     const signatureValid = Jws.verifyCompactJws(jwsSigningInput, publicKey);
-    return signatureValid;
+    return await signatureValid;
   }
 
   /**
@@ -101,7 +102,7 @@ export default class Jws {
    */
   public static verifyCompactJws (compactJws: string, publicKeyJwk: any): boolean {
     try {
-      JWS.verify(compactJws, publicKeyJwk);
+      jose.JWS.verify(compactJws, publicKeyJwk);
       return true;
     } catch (error) {
       if (error instanceof SidetreeError) Logger.info(`Input '${compactJws}' failed signature verification: ${SidetreeError.createFromError(ErrorCode.JwsFailedSignatureValidation, error)}`);
@@ -122,14 +123,14 @@ export default class Jws {
     privateKey: JwkEs256k
   ): Promise<JwsModel> {
 
-    const flattenedJws = JWS.sign.flattened(payload, privateKey as any, protectedHeader);
+    const flattenedJws = jose.JWS.sign.flattened(payload, privateKey as any, protectedHeader);
     const jws = {
       protected: flattenedJws.protected!,
       payload: flattenedJws.payload,
       signature: flattenedJws.signature
     };
 
-    return jws;
+    return await jws;
   }
 
   /**
@@ -137,7 +138,7 @@ export default class Jws {
    * This is mainly used by tests to create valid test data.
    */
   public static signAsCompactJws (payload: object, privateKey: any, protectedHeader?: object): string {
-    const compactJws = JWS.sign(payload, privateKey, protectedHeader);
+    const compactJws = jose.JWS.sign(payload, privateKey, protectedHeader);
     return compactJws;
   }
 

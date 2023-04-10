@@ -1,4 +1,4 @@
-import timeSpan from 'time-span';
+import timeSpan from 'npm:time-span';
 import ChunkFileModel from './models/ChunkFileModel.ts';
 import Compressor from './util/Compressor.ts';
 import CreateOperation from './CreateOperation.ts';

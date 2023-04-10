@@ -4,8 +4,7 @@ import ErrorCode from './ErrorCode.ts';
 import JsonCanonicalizer from './util/JsonCanonicalizer.ts';
 import Logger from '../../../common/Logger.ts';
 import SidetreeError from '../../../common/SidetreeError.ts';
-
-const multihashes = require('multihashes');
+import multihashes from 'npm:multihashes';
 
 /**
  * Class that performs hashing operations using the multihash format.

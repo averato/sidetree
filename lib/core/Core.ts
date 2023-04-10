@@ -1,5 +1,5 @@
-import semver from 'semver';
-import timeSpan from 'time-span';
+import semver from 'npm:semver';
+import timeSpan from 'npm:time-span';
 import ISidetreeCas from '../core/interfaces/ICas.ts'; 
 import ISidetreeEventEmitter from '../common/interfaces/IEventEmitter.ts';
 import ISidetreeLogger from '../common/interfaces/ILogger.ts';

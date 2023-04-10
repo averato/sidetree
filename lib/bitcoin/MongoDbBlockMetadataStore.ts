@@ -1,5 +1,5 @@
 import BlockMetadata from './models/BlockMetadata.ts';
-import { FindCursor } from 'mongodb';
+import { FindCursor } from 'npm:mongodb';
 import IBlockMetadataStore from './interfaces/IBlockMetadataStore.ts';
 import MongoDbStore from '../common/MongoDbStore.ts';
 

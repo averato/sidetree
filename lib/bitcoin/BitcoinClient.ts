@@ -1,7 +1,9 @@
-import * as httpStatus from 'http-status';
-import { Address, Block, Networks, PrivateKey, Script, Transaction, Unit, crypto } from 'bitcore-lib';
-import nodeFetch, { FetchError, RequestInit, Response } from 'node-fetch';
-import BitcoinBlockModel from './models/BitcoinBlockModel.ts';
+// deno-lint-ignore-file
+
+import {HttpError, RequestInit, Response, Status} from "https://deno.land/std@0.182.0/http/mod.ts";
+import * as Bitcoin from 'npm:bitcoinjs-lib';
+// import nodeFetch, { FetchError, RequestInit, Response } from 'node-fetch';
+import { BitcoinBlockModel } from './models/BitcoinBlockModel.ts';
 import BitcoinInputModel from './models/BitcoinInputModel.ts';
 import BitcoinLockTransactionModel from './models/BitcoinLockTransactionModel.ts';
 import BitcoinOutputModel from './models/BitcoinOutputModel.ts';
@@ -13,8 +15,11 @@ import IBitcoinWallet from './interfaces/IBitcoinWallet.ts';
 import { IBlockInfo } from './BitcoinProcessor.ts';
 import LogColor from '../common/LogColor.ts';
 import Logger from '../common/Logger.ts';
-import ReadableStream from '../common/ReadableStream.ts';
+import ReadableStreamUtils from '../common/ReadableStreamUtils.ts';
 import SidetreeError from '../common/SidetreeError.ts';
+
+type Transaction = Bitcoin.Transaction;
+const BitcoinTransaction = Bitcoin.Transaction;
 
 /**
  * Structure (internal to this class) to store the transaction information
@@ -25,8 +30,8 @@ interface BitcoreTransactionWrapper {
   id: string;
   blockHash: string;
   confirmations: number;
-  inputs: Transaction.Input[];
-  outputs: Transaction.Output[];
+  inputs: BitcoinTransaction.Input[];
+  outputs: BitcoinTransaction.Output[];
 }
 
 /**
@@ -892,6 +897,7 @@ export default class BitcoinClient {
    * @param timeout Should timeout or not
    * @param isWalletRpc Must set to `true` if the RPC is wallet-specific; `false` otherwise.
    */
+ // deno-lint-ignore no-explicit-any  
   private async rpcCall (request: any, timeout: boolean, isWalletRpc: boolean): Promise<any> {
     // Append some standard RPC parameters.
     request.jsonrpc = '1.0';
@@ -957,10 +963,10 @@ export default class BitcoinClient {
         const params = Object.assign({}, requestParameters);
         params.timeout = requestTimeout;
 
-        response = await nodeFetch(uri, params);
+        response = await fetch(uri, params);
       } catch (error) {
         // Retry-able if request is timed out.
-        if (error instanceof FetchError && error.type === 'request-timeout') {
+        if (error instanceof HttpError && error.type === 'request-timeout') {
           networkError = error;
           Logger.info(`Attempt ${retryCount} timed-out.`);
           continue;
@@ -969,7 +975,7 @@ export default class BitcoinClient {
         throw error;
       }
 
-      const bodyBuffer = await ReadableStream.readAll(response.body);
+      const bodyBuffer = await ReadableStreamUtils.readAll(response.body);
       if (response.status === httpStatus.OK) {
         return bodyBuffer;
       } else {

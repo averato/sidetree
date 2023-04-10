@@ -60,7 +60,7 @@ export default class BatchWriter implements IBatchWriter {
       return 0;
     }
 
-    const operationModels = await Promise.all(queuedOperations.map(async (queuedOperation) => Operation.parse(queuedOperation.operationBuffer)));
+    const operationModels = await Promise.all(queuedOperations.map(async (queuedOperation) => await Operation.parse(queuedOperation.operationBuffer)));
     const createOperations = operationModels.filter(operation => operation.type === OperationType.Create) as CreateOperation[];
     const recoverOperations = operationModels.filter(operation => operation.type === OperationType.Recover) as RecoverOperation[];
     const updateOperations = operationModels.filter(operation => operation.type === OperationType.Update) as UpdateOperation[];

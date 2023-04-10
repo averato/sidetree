@@ -1,6 +1,6 @@
 import ErrorCode from './ErrorCode.ts';
 import SidetreeError from '../../../common/SidetreeError.ts';
-import base64url from 'base64url';
+import base64url from 'npm:base64url';
 
 /**
  * Class that encodes binary blobs into strings.

@@ -1,4 +1,4 @@
-import timeSpan from 'time-span';
+import timeSpan from 'npm:time-span';
 import TransactionUnderProcessingModel, { TransactionProcessingStatus } from './models/TransactionUnderProcessingModel.ts';
 import EventCode from './EventCode.ts';
 import EventEmitter from '../common/EventEmitter.ts';
@@ -55,10 +55,10 @@ export default class Observer {
    */
   public async startPeriodicProcessing () {
     Logger.info(`Starting periodic transactions processing.`);
-    setImmediate(async () => {
+    await setImmediate(async () => {
       this.continuePeriodicProcessing = true;
 
-      this.processTransactions();
+      await this.processTransactions();
     });
   }
 
@@ -195,7 +195,7 @@ export default class Observer {
     } finally {
       if (this.continuePeriodicProcessing) {
         Logger.info(`Waiting for ${this.observingIntervalInSeconds} seconds before fetching and processing transactions again.`);
-        setTimeout(async () => this.processTransactions(), this.observingIntervalInSeconds * 1000);
+        setTimeout(async () => await this.processTransactions(), this.observingIntervalInSeconds * 1000);
       }
     }
   }

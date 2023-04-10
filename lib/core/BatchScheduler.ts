@@ -1,4 +1,4 @@
-import timeSpan from 'time-span';
+import timeSpan from 'npm:time-span';
 import ErrorCode from './ErrorCode.ts';
 import EventCode from './EventCode.ts';
 import EventEmitter from '../common/EventEmitter.ts';

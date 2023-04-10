@@ -87,7 +87,7 @@ export default class VersionManager {
     throw new SidetreeError(BitcoinErrorCode.VersionManagerVersionStringNotFound, `Unable to find version string for block ${blockHeight}.`);
   }
 
-  private async loadDefaultExportsForVersion (version: string, className: string): Promise<any> {
+  private async loadDefaultExportsForVersion (version: string, className: string): Promise<string> {
     const defaults = (await import(`./versions/${version}/${className}`)).default;
 
     return defaults;

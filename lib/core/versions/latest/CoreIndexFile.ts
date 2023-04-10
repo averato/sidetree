@@ -176,7 +176,7 @@ export default class CoreIndexFile {
   /**
    * Creates an `CoreIndexFileModel`.
    */
-  public static async createModel (
+  public static createModel (
     writerLockId: string | undefined,
     provisionalIndexFileUri: string | undefined,
     coreProofFileUri: string | undefined,

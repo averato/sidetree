@@ -1,7 +1,7 @@
 import ErrorCode from '../ErrorCode.ts';
 import LockIdentifierModel from '../models/LockIdentifierModel.ts';
 import SidetreeError from '../../common/SidetreeError.ts';
-import base64url from 'base64url';
+import base64url from 'npm:base64url';
 
 /**
  * Encapsulates functionality to serialize and deserialize a lock identifier.

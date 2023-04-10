@@ -317,7 +317,7 @@ export default class TransactionProcessor implements ITransactionProcessor {
     anchoredOperationModels.push(...anchoredRecoverOperationModels);
     anchoredOperationModels.push(...anchoredDeactivateOperationModels);
     anchoredOperationModels.push(...anchoredUpdateOperationModels);
-    return anchoredOperationModels;
+    return await anchoredOperationModels;
   }
 
   private static composeAnchoredCreateOperationModels (

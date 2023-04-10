@@ -1,12 +1,13 @@
 import ErrorCode from '../common/SharedErrorCode.ts';
 import SidetreeError from './SidetreeError.ts';
+import { Buffer } from 'node:buffer';
 
 /* global NodeJS */
 
 /**
- * ReadableStream utilities
+ * ReadableStreamUtils utilities
  */
-export default class ReadableStream {
+export default class ReadableStreamUtils {
 
   /**
    * Given a readable stream, reads all data only if the content does not exceed given max size.

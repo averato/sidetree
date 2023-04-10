@@ -1,7 +1,9 @@
 import ErrorCode from '../ErrorCode.ts';
-import { JWK } from 'jose';
+// import { JWK } from 'jose';
 import JwkEs256k from '../../../models/JwkEs256k.ts';
 import SidetreeError from '../../../../common/SidetreeError.ts';
+import * as jose from 'https://deno.land/x/jose@v4.13.1/index.ts';
+
 
 /**
  * Class containing reusable JWK operations.
@@ -13,7 +15,7 @@ export default class Jwk {
    * @returns [publicKey, privateKey]
    */
   public static async generateEs256kKeyPair (): Promise<[JwkEs256k, JwkEs256k]> {
-    const keyPair = await JWK.generate('EC', 'secp256k1');
+    const keyPair = await jose.JWK.generate('EC', 'secp256k1');
     const publicKeyInternal = keyPair.toJWK();
 
     // Remove the auto-populated `kid` field.

@@ -1,4 +1,4 @@
-import { Binary } from 'mongodb';
+import { Binary } from 'npm:mongodb';
 import ErrorCode from './ErrorCode.ts';
 import IOperationQueue from './interfaces/IOperationQueue.ts';
 import MongoDbStore from '../../../common/MongoDbStore.ts';

@@ -1,4 +1,4 @@
-import { Address, Script, Transaction } from 'bitcore-lib';
+import { Address, Script, Transaction } from 'npm:bitcore-lib';
 
 /**
  * Represents a bitcoin wallet.

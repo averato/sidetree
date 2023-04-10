@@ -1,4 +1,5 @@
-import * as URI from 'uri-js';
+// deno-lint-ignore-file
+import * as URI from 'npm:uri-js';
 import ArrayMethods from './util/ArrayMethods.ts';
 import Did from './Did.ts';
 import DidState from '../../models/DidState.ts';

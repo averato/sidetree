@@ -98,6 +98,7 @@ export default class Core {
 
     // DB initializations.
     await this.initializeDataStores(this.config.observingIntervalInSeconds);
+    // console.log(`After Data Stores inti!`);		
 
     await this.versionManager.initialize(
       this.blockchain,
@@ -117,13 +118,14 @@ export default class Core {
 
     // Only pull real blockchain time when observer is enabled, else only read from db.
     await this.blockchainClock.startPeriodicPullLatestBlockchainTime();
+    console.log(`After blockchain clock inti!`);		
 
     if (this.config.batchingIntervalInSeconds > 0) {
       this.batchScheduler.startPeriodicBatchWriting();
     } else {
       Logger.warn(LogColor.yellow(`Batch writing is disabled.`));
     }
-
+    console.log(`Before Download manager init!`);		
     this.downloadManager.start();
 
     await this.monitor.initialize();

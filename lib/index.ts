@@ -1,7 +1,7 @@
 // NOTE: Aliases to classes and interfaces are used for external consumption.
 
 import { type IBitcoinConfig as ISidetreeBitcoinConfig } from './bitcoin/IBitcoinConfig.ts';
-import { type ISidetreeBitcoinWallet } from './bitcoin/interfaces/IBitcoinWallet.ts';
+import type ISidetreeBitcoinWallet from './bitcoin/interfaces/IBitcoinWallet.ts';
 import type ISidetreeBlockchain from './core/interfaces/IBlockchain.ts';
 import type ISidetreeCas from './core/interfaces/ICas.ts';
 import type ISidetreeEventEmitter from './common/interfaces/IEventEmitter.ts';
@@ -11,7 +11,7 @@ import SidetreeBitcoinMonitor from './bitcoin/Monitor.ts';
 import SidetreeBitcoinProcessor from './bitcoin/BitcoinProcessor.ts';
 import { type BitcoinVersionModel as SidetreeBitcoinVersionModel } from './bitcoin/models/BitcoinVersionModel.ts';
 import SidetreeBlockchain from './core/Blockchain.ts';
-import { type BlockchainTimemodel as SidetreeBlockchainTimeModel } from './core/models/BlockchainTimeModel.ts';
+import { type BlockchainTimeModel as SidetreeBlockchainTimeModel } from './core/models/BlockchainTimeModel.ts';
 import type SidetreeConfig from './core/models/Config.ts';
 import SidetreeCore from './core/Core.ts';
 import SidetreeEventCode from './core/EventCode.ts';

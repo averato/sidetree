@@ -1,5 +1,5 @@
-import PublicKeyModel from './PublicKeyModel';
-import ServiceModel from './ServiceModel';
+import PublicKeyModel from './PublicKeyModel.ts';
+import ServiceModel from './ServiceModel.ts';
 
 /**
  * Defines INTERNAL data structure used by the `DocumentComposer` to store document state.'

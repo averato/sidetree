@@ -1,5 +1,5 @@
-import AbstractVersionMetadata from '../../abstracts/AbstractVersionMetadata';
-import ProtocolParameters from './ProtocolParameters';
+import AbstractVersionMetadata from '../../abstracts/AbstractVersionMetadata.ts';
+import ProtocolParameters from './ProtocolParameters.ts';
 
 /**
  * Implementation of the abstract VersionMetadata.

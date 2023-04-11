@@ -128,13 +128,14 @@
       "base64url": "base64url@3.0.1",
       "base64url@3.0.1": "base64url@3.0.1",
       "bitcoinjs-lib": "bitcoinjs-lib@6.1.0",
-      "bitcore-lib": "bitcore-lib@10.0.2",
+      "bitcore-lib": "bitcore-lib@10.0.3",
       "bitcore-lib@8.22.2": "bitcore-lib@8.22.2",
       "bitcore-lib@^10.0.0": "bitcore-lib@10.0.2",
       "canonicalize": "canonicalize@2.0.0",
       "canonicalize@1.0.1": "canonicalize@1.0.1",
       "chalk": "chalk@5.2.0",
       "chalk@4.0.0": "chalk@4.0.0",
+      "cids": "cids@1.1.9",
       "cids@1.1.4": "cids@1.1.4",
       "conventional-changelog-cli@2.0.35": "conventional-changelog-cli@2.0.35",
       "conventional-changelog@3.1.18": "conventional-changelog@3.1.18",
@@ -157,15 +158,15 @@
       "jasmine-spec-reporter@4.2.1": "jasmine-spec-reporter@4.2.1",
       "jasmine@^3.7.0": "jasmine@3.99.0",
       "jose@1.28.2": "jose@1.28.2",
-      "mongodb": "mongodb@5.1.0",
+      "mongodb": "mongodb@5.2.0",
       "mongodb-memory-server@^8.5.2": "mongodb-memory-server@8.12.1",
-      "mongodb@^5.0.1": "mongodb@5.1.0",
+      "mongodb@^5.0.1": "mongodb@5.2.0",
       "multihashes": "multihashes@4.0.3",
       "multihashes@0.4.14": "multihashes@0.4.14",
       "node-fetch@2.6.7": "node-fetch@2.6.7",
       "nyc@^15.1.0": "nyc@15.1.0",
       "priorityqueue@1.0.0": "priorityqueue@1.0.0",
-      "semver": "semver@7.3.8",
+      "semver": "semver@7.4.0",
       "semver@7.3.5": "semver@7.3.5",
       "time-span": "time-span@5.1.0",
       "time-span@3.1.0": "time-span@3.1.0",
@@ -1697,6 +1698,19 @@
           "lodash": "lodash@4.17.21"
         }
       },
+      "bitcore-lib@10.0.3": {
+        "integrity": "sha512-mnsuKPjTGh/9KElQ+Ow0PbAq9yGVQYTbJ44aVMAaQKi2oeV8TGGPjg7yJhEYX+L+nGEZQbYEGzdyDDTL7A+6+A==",
+        "dependencies": {
+          "bech32": "bech32@2.0.0",
+          "bip-schnorr": "bip-schnorr@0.6.4",
+          "bn.js": "bn.js@4.11.8",
+          "bs58": "bs58@4.0.1",
+          "buffer-compare": "buffer-compare@1.1.1",
+          "elliptic": "elliptic@6.5.4",
+          "inherits": "inherits@2.0.1",
+          "lodash": "lodash@4.17.21"
+        }
+      },
       "bitcore-lib@8.22.2": {
         "integrity": "sha512-atl/RN7x2R/JQMaIgUzX0EQZ+I/d7fTaOoS2/5k+H5POGc2vygWZ9MWpGJi3T9Yb5jM/cT5aFsrDq8s8l6lqgQ==",
         "dependencies": {
@@ -1777,6 +1791,10 @@
       },
       "bson@5.1.0": {
         "integrity": "sha512-FEecNHkhYRBe7X9KDkdG12xNuz5VHGeH6mCE0B5sBmYtiR/Ux/9vUH/v4NUoBCDr6NuEhvahjoLiiRogptVW0A==",
+        "dependencies": {}
+      },
+      "bson@5.2.0": {
+        "integrity": "sha512-HevkSpDbpUfsrHWmWiAsNavANKYIErV2ePXllp1bwq5CDreAaFVj6RVlZpJnxK4WWDCJ/5jMUpaY6G526q3Hjg==",
         "dependencies": {}
       },
       "buffer-compare@1.1.1": {
@@ -1914,6 +1932,15 @@
           "multicodec": "multicodec@2.1.3",
           "multihashes": "multihashes@3.1.2",
           "uint8arrays": "uint8arrays@1.1.0"
+        }
+      },
+      "cids@1.1.9": {
+        "integrity": "sha512-l11hWRfugIcbGuTZwAM5PwpjPPjyb6UZOGwlHSnOBV5o07XhQ4gNpBN67FbODvpjyHtd+0Xs6KNvUcGBiDRsdg==",
+        "dependencies": {
+          "multibase": "multibase@4.0.6",
+          "multicodec": "multicodec@3.2.1",
+          "multihashes": "multihashes@4.0.3",
+          "uint8arrays": "uint8arrays@3.1.1"
         }
       },
       "cipher-base@1.0.4": {
@@ -3890,6 +3917,15 @@
           "socks": "socks@2.7.1"
         }
       },
+      "mongodb@5.2.0": {
+        "integrity": "sha512-nLgo95eP1acvjBcOdrUV3aqpWwHZCZwhYA2opB8StybbtQL/WoE5pk92qUUfjbKOWcGLYJczTqQbfOQhYtrkKg==",
+        "dependencies": {
+          "bson": "bson@5.2.0",
+          "mongodb-connection-string-url": "mongodb-connection-string-url@2.6.0",
+          "saslprep": "saslprep@1.0.3",
+          "socks": "socks@2.7.1"
+        }
+      },
       "ms@2.1.2": {
         "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==",
         "dependencies": {}
@@ -3911,6 +3947,13 @@
         "integrity": "sha512-0tOH2Gtio39uO41o+2xl9UhRkCWxU5ZmZSbFCh/OjGzkWJI8e6lkN/s4Mj1YfyWoBod+2+S3W+6wO6nhkwN8pA==",
         "dependencies": {
           "uint8arrays": "uint8arrays@1.1.0",
+          "varint": "varint@6.0.0"
+        }
+      },
+      "multicodec@3.2.1": {
+        "integrity": "sha512-+expTPftro8VAW8kfvcuNNNBgb9gPeNYV9dn+z1kJRWF2vih+/S79f2RVeIwmrJBUJ6NT9IUPWnZDQvegEh5pw==",
+        "dependencies": {
+          "uint8arrays": "uint8arrays@3.1.1",
           "varint": "varint@6.0.0"
         }
       },
@@ -4563,6 +4606,12 @@
       },
       "semver@7.3.8": {
         "integrity": "sha512-NB1ctGL5rlHrPJtFDVIVzTyQylMLu9N9VICA6HSFJo8MCGVTMW6gfpicwKmmK/dAjTOrqu5l63JJOpDSrAis3A==",
+        "dependencies": {
+          "lru-cache": "lru-cache@6.0.0"
+        }
+      },
+      "semver@7.4.0": {
+        "integrity": "sha512-RgOxM8Mw+7Zus0+zcLEUn8+JfoLpj/huFTItQy2hsM4khuC1HYRDp0cU482Ewn/Fcy6bCjufD8vAj7voC66KQw==",
         "dependencies": {
           "lru-cache": "lru-cache@6.0.0"
         }

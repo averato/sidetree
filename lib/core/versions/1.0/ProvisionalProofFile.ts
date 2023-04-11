@@ -1,13 +1,13 @@
-import Compressor from './util/Compressor';
-import ErrorCode from './ErrorCode';
-import InputValidator from './InputValidator';
-import JsonAsync from './util/JsonAsync';
-import Jws from './util/Jws';
-import ProtocolParameters from './ProtocolParameters';
-import ProvisionalProofFileModel from './models/ProvisionalProofFileModel';
-import SidetreeError from '../../../common/SidetreeError';
-import UpdateOperation from './UpdateOperation';
-import UpdateSignedDataModel from './models/UpdateSignedDataModel';
+import Compressor from './util/Compressor.ts';
+import ErrorCode from './ErrorCode.ts';
+import InputValidator from './InputValidator.ts';
+import JsonAsync from './util/JsonAsync.ts';
+import Jws from './util/Jws.ts';
+import ProtocolParameters from './ProtocolParameters.ts';
+import ProvisionalProofFileModel from './models/ProvisionalProofFileModel.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
+import UpdateOperation from './UpdateOperation.ts';
+import UpdateSignedDataModel from './models/UpdateSignedDataModel.ts';
 
 /**
  * Defines operations related to a Provisional Proof File.

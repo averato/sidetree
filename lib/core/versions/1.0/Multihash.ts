@@ -1,11 +1,10 @@
-import * as crypto from 'crypto';
-import Encoder from './Encoder';
-import ErrorCode from './ErrorCode';
-import JsonCanonicalizer from './util/JsonCanonicalizer';
-import Logger from '../../../common/Logger';
-import SidetreeError from '../../../common/SidetreeError';
-
-const multihashes = require('multihashes');
+import * as crypto from 'node:crypto';
+import Encoder from './Encoder.ts';
+import ErrorCode from './ErrorCode.ts';
+import JsonCanonicalizer from './util/JsonCanonicalizer.ts';
+import Logger from '../../../common/Logger.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
+import multihashes from 'npm:multihashes';
 
 /**
  * Class that performs hashing operations using the multihash format.

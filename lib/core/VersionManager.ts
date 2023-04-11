@@ -17,6 +17,7 @@ import IVersionMetadataFetcher from './interfaces/IVersionMetadataFetcher.ts';
 import Resolver from './Resolver.ts';
 import SidetreeError from '../common/SidetreeError.ts';
 import VersionModel from './models/VersionModel.ts';
+// import MongoDbOperationQueue from './versions/latest/MongoDbOperationQueue.ts';
 
 /**
  * The class that handles code versioning.
@@ -166,7 +167,7 @@ export default class VersionManager implements IVersionManager, IVersionMetadata
   }
 
   private async loadDefaultExportsForVersion (version: string, className: string): Promise<any> {
-    const defaults = (await import(`./versions/${version}/${className}`)).default;
+    const defaults = (await import(`./versions/${version}/${className}.ts`)).default;
 
     return defaults;
   }

@@ -1,5 +1,5 @@
 import {Status, isSuccessfulStatus} from "https://deno.land/std@0.182.0/http/http_status.ts";
-import * as crypto from 'npm:crypto';
+import * as crypto from 'node:crypto';
 import FetchResult from '../common/models/FetchResult.ts';
 import FetchResultCode from '../common/enums/FetchResultCode.ts';
 import ICas from '../core/interfaces/ICas.ts';
@@ -10,7 +10,7 @@ import SharedErrorCode from '../common/SharedErrorCode.ts';
 import SidetreeError from '../common/SidetreeError.ts';
 import Timeout from './Util/Timeout.ts';
 import { Buffer } from 'node:buffer';
-import Cids from 'cids';
+import Cids from 'npm:cids';
 
 /**
  * Class that implements the `ICas` interface by communicating with IPFS.

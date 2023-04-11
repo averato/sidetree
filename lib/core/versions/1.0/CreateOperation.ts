@@ -1,13 +1,13 @@
-import DeltaModel from './models/DeltaModel';
-import Did from './Did';
-import ErrorCode from './ErrorCode';
-import InputValidator from './InputValidator';
-import JsonAsync from './util/JsonAsync';
-import Operation from './Operation';
-import OperationModel from './models/OperationModel';
-import OperationType from '../../enums/OperationType';
-import SidetreeError from '../../../common/SidetreeError';
-import SuffixDataModel from './models/SuffixDataModel';
+import DeltaModel from './models/DeltaModel.ts';
+import Did from './Did.ts';
+import ErrorCode from './ErrorCode.ts';
+import InputValidator from './InputValidator.ts';
+import JsonAsync from './util/JsonAsync.ts';
+import Operation from './Operation.ts';
+import OperationModel from './models/OperationModel.ts';
+import OperationType from '../../enums/OperationType.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
+import SuffixDataModel from './models/SuffixDataModel.ts';
 
 /**
  * A class that represents a create operation.

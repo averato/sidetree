@@ -1,8 +1,8 @@
-import ErrorCode from './ErrorCode';
-import IVersionMetadataFetcher from '../../interfaces/IVersionMetadataFetcher';
-import ProtocolParameters from './ProtocolParameters';
-import SidetreeError from '../../../common/SidetreeError';
-import ValueTimeLockModel from '../../../common/models/ValueTimeLockModel';
+import ErrorCode from './ErrorCode.ts';
+import IVersionMetadataFetcher from '../../interfaces/IVersionMetadataFetcher.ts';
+import ProtocolParameters from './ProtocolParameters.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
+import ValueTimeLockModel from '../../../common/models/ValueTimeLockModel.ts';
 
 /**
  * Encapsulates the functionality to compute and verify the value time lock amounts.

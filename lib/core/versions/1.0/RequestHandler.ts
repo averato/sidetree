@@ -1,20 +1,20 @@
-import Delta from './Delta';
-import Did from './Did';
-import DidState from '../../models/DidState';
-import DocumentComposer from './DocumentComposer';
-import ErrorCode from './ErrorCode';
-import IOperationQueue from './interfaces/IOperationQueue';
-import IRequestHandler from '../../interfaces/IRequestHandler';
-import JsonAsync from './util/JsonAsync';
-import Logger from '../../../common/Logger';
-import Operation from './Operation';
-import OperationModel from './models/OperationModel';
-import OperationProcessor from './OperationProcessor';
-import OperationType from '../../enums/OperationType';
-import Resolver from '../../Resolver';
-import ResponseModel from '../../../common/models/ResponseModel';
-import ResponseStatus from '../../../common/enums/ResponseStatus';
-import SidetreeError from '../../../common/SidetreeError';
+import Delta from './Delta.ts';
+import Did from './Did.ts';
+import DidState from '../../models/DidState.ts';
+import DocumentComposer from './DocumentComposer.ts';
+import ErrorCode from './ErrorCode.ts';
+import IOperationQueue from './interfaces/IOperationQueue.ts';
+import IRequestHandler from '../../interfaces/IRequestHandler.ts';
+import JsonAsync from './util/JsonAsync.ts';
+import Logger from '../../../common/Logger.ts';
+import Operation from './Operation.ts';
+import OperationModel from './models/OperationModel.ts';
+import OperationProcessor from './OperationProcessor.ts';
+import OperationType from '../../enums/OperationType.ts';
+import Resolver from '../../Resolver.ts';
+import ResponseModel from '../../../common/models/ResponseModel.ts';
+import ResponseStatus from '../../../common/enums/ResponseStatus.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
 
 /**
  * Sidetree operation request handler.

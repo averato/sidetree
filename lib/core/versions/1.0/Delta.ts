@@ -1,9 +1,9 @@
-import ErrorCode from './ErrorCode';
-import JsonCanonicalizer from './util/JsonCanonicalizer';
-import Logger from '../../../common/Logger';
-import Operation from './Operation';
-import ProtocolParameters from './ProtocolParameters';
-import SidetreeError from '../../../common/SidetreeError';
+import ErrorCode from './ErrorCode.ts';
+import JsonCanonicalizer from './util/JsonCanonicalizer.ts';
+import Logger from '../../../common/Logger.ts';
+import Operation from './Operation.ts';
+import ProtocolParameters from './ProtocolParameters.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
 
 /**
  * Class containing reusable operation delta functionalities.

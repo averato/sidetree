@@ -1,7 +1,6 @@
-import ErrorCode from '../ErrorCode';
-// import { JWK } from 'jose';
-import JwkEs256k from '../../../models/JwkEs256k';
-import SidetreeError from '../../../../common/SidetreeError';
+import ErrorCode from '../ErrorCode.ts';
+import JwkEs256k from '../../../models/JwkEs256k.ts';
+import SidetreeError from '../../../../common/SidetreeError.ts';
 import * as jose from 'https://deno.land/x/jose@v4.13.1/index.ts';
 
 /**

@@ -1,5 +1,5 @@
 import StatusCodes from 'npm:http-status-codes';
-import BlockchainTimeModel from './models/BlockchainTimeModel.ts';
+import { BlockchainTimeModel } from './models/BlockchainTimeModel.ts';
 import CoreErrorCode from './ErrorCode.ts';
 import IBlockchain from './interfaces/IBlockchain.ts';
 import JsonAsync from './versions/latest/util/JsonAsync.ts';
@@ -11,8 +11,6 @@ import SharedErrorCode from '../common/SharedErrorCode.ts';
 import SidetreeError from '../common/SidetreeError.ts';
 import TransactionModel from '../common/models/TransactionModel.ts';
 import ValueTimeLockModel from '../common/models/ValueTimeLockModel.ts';
-// import nodeFetch from 'node-fetch';
-// import { Buffer } from "https://deno.land/std@0.182.0/io/buffer.ts";
 import { Buffer } from 'node:buffer';
 
 /**
@@ -135,14 +133,14 @@ export default class Blockchain implements IBlockchain {
 
     Logger.info(`Posting to first-valid transaction URI '${firstValidTransactionUri} with body: '${bodyString}'...`);
 
-    const response = await this.fetch(firstValidTransactionUri, requestParameters);
+    const response = await fetch(firstValidTransactionUri, requestParameters);
 
     if (response.status === StatusCodes.NOT_FOUND) {
       return undefined;
     }
 
-    const responseBodyString = (response.body.read() as Buffer).toString();
-    const transaction = JSON.parse(responseBodyString);
+    // const responseBodyString = (response.body as Buffer).toString();
+    const transaction = await response.json(); // JSON.parse(responseBodyString);
 
     return transaction;
   }
@@ -160,15 +158,17 @@ export default class Blockchain implements IBlockchain {
   public async getLatestTime (): Promise<BlockchainTimeModel> {
     Logger.info(`Getting blockchain time...`);
     const response = await fetch(this.timeUri);
-    const responseBodyString = (response.body.read() as Buffer).toString();
+    // const responseBodyString = (response.body.read() as Buffer).toString();
 
     if (response.status !== StatusCodes.OK) {
-      const errorMessage = `Encountered an error fetching latest time from blockchain: ${responseBodyString}`;
+      const errResponse  = await response.text();
+      const errorMessage = `Encountered an error fetching latest time from blockchain: ${errResponse}`;
       throw new SidetreeError(CoreErrorCode.BlockchainGetLatestTimeResponseNotOk, errorMessage);
     }
 
-    Logger.info(`Got latest blockchain time: ${responseBodyString}`);
-    const latestBlockchainTimeModel = JSON.parse(responseBodyString) as BlockchainTimeModel;
+    const latestBlockchainTimeModel: BlockchainTimeModel = await response.json(); // JSON.parse(responseBodyString) as BlockchainTimeModel;
+    Logger.info(`Got latest blockchain time: ${JSON.stringify(latestBlockchainTimeModel)}`);
+
     return latestBlockchainTimeModel;
   }
 
@@ -177,8 +177,8 @@ export default class Blockchain implements IBlockchain {
     const readUri = `${this.feeUri}/${transactionTime}`;
 
     const response = await fetch(readUri);
-    const responseBodyString = await ReadableStreamUtils.readAll(response.body);
-    const responseBody = JSON.parse(responseBodyString.toString());
+    // const responseBodyString = await ReadableStreamUtils.readAll(response.body);
+    const responseBody = await response.json(); // BodyString.toString());
 
     if (response.status === StatusCodes.BAD_REQUEST &&
         responseBody.code === SharedErrorCode.BlockchainTimeOutOfRange) {
@@ -187,7 +187,7 @@ export default class Blockchain implements IBlockchain {
 
     if (response.status !== StatusCodes.OK) {
       Logger.error(`Blockchain read error response status: ${response.status}`);
-      Logger.error(`Blockchain read error body: ${responseBodyString}`);
+      Logger.error(`Blockchain read error body: ${JSON.stringify(responseBody)}`);
       throw new SidetreeError(CoreErrorCode.BlockchainGetFeeResponseNotOk);
     }
 
@@ -198,17 +198,17 @@ export default class Blockchain implements IBlockchain {
     const readUri = `${this.locksUri}/${lockIdentifier}`;
 
     const response = await fetch(readUri);
-    const responseBodyString = await ReadableStreamUtils.readAll(response.body);
-
+    // const responseBodyString = await ReadableStreamUtils.readAll(response.body);
+    const responseBody = await response.json();
     if (response.status === StatusCodes.NOT_FOUND) {
       return undefined;
     }
 
     if (response.status !== StatusCodes.OK) {
-      throw new SidetreeError(CoreErrorCode.BlockchainGetLockResponseNotOk, `Response: ${responseBodyString}`);
+      throw new SidetreeError(CoreErrorCode.BlockchainGetLockResponseNotOk, `Response: ${responseBody}`);
     }
 
-    return JsonAsync.parse(responseBodyString);
+    return JsonAsync.parse(responseBody);
   }
 
   public async getWriterValueTimeLock (): Promise<ValueTimeLockModel | undefined> {

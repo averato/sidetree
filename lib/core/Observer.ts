@@ -15,6 +15,7 @@ import SidetreeError from '../common/SidetreeError.ts';
 import ThroughputLimiter from './ThroughputLimiter.ts';
 import TransactionModel from '../common/models/TransactionModel.ts';
 
+
 /**
  * Class that performs periodic processing of batches of Sidetree operations anchored to the blockchain.
  */
@@ -55,11 +56,12 @@ export default class Observer {
    */
   public async startPeriodicProcessing () {
     Logger.info(`Starting periodic transactions processing.`);
-    await setImmediate(async () => {
+    const setNow = setTimeout(async () => {
       this.continuePeriodicProcessing = true;
 
       await this.processTransactions();
     });
+    clearTimeout(setNow);
   }
 
   /**

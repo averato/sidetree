@@ -28,7 +28,8 @@ export default class BatchScheduler {
    */
   public startPeriodicBatchWriting () {
     this.continuePeriodicBatchWriting = true;
-    setImmediate(async () => this.writeOperationBatch());
+    const setNow = setTimeout(async () => await this.writeOperationBatch(), 0);
+    clearTimeout(setNow);
   }
 
   /**

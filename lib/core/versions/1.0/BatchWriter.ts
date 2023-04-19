@@ -24,6 +24,7 @@ import UpdateOperation from './UpdateOperation.ts';
 import ValueTimeLockModel from '../../../common/models/ValueTimeLockModel.ts';
 import ValueTimeLockVerifier from './ValueTimeLockVerifier.ts';
 
+
 /**
  * Implementation of the `IBatchWriter`.
  */

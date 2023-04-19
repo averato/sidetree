@@ -10,6 +10,8 @@ import ProtocolParameters from './ProtocolParameters.ts';
 import RecoverOperation from './RecoverOperation.ts';
 import SidetreeError from '../../../common/SidetreeError.ts';
 import UpdateOperation from './UpdateOperation.ts';
+import { Buffer } from 'node:buffer';
+
 
 /**
  * Defines operations related to a Chunk File.

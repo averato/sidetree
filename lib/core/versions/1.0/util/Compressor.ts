@@ -2,6 +2,7 @@ import * as util from 'npm:util';
 import * as zlib from 'node:zlib';
 import ErrorCode from '../ErrorCode.ts';
 import SidetreeError from '../../../../common/SidetreeError.ts';
+import { Buffer } from 'node:buffer';
 
 /**
  * Encapsulates functionality to compress/decompress data.

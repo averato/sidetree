@@ -8,6 +8,8 @@ import ProtocolParameters from './ProtocolParameters.ts';
 import ProvisionalIndexFileModel from './models/ProvisionalIndexFileModel.ts';
 import SidetreeError from '../../../common/SidetreeError.ts';
 import UpdateOperation from './UpdateOperation.ts';
+import { Buffer } from 'node:buffer';
+
 
 /**
  * Class containing Map File related operations.

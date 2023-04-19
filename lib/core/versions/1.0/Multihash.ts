@@ -5,6 +5,7 @@ import JsonCanonicalizer from './util/JsonCanonicalizer.ts';
 import Logger from '../../../common/Logger.ts';
 import SidetreeError from '../../../common/SidetreeError.ts';
 import multihashes from 'npm:multihashes';
+import { Buffer } from 'node:buffer';
 
 /**
  * Class that performs hashing operations using the multihash format.
@@ -113,7 +114,8 @@ export default class Multihash {
       throw new SidetreeError(ErrorCode.MultihashStringNotAMultihash, `Given ${inputContextForErrorLogging} string '${encodedMultihash}' is not a multihash.`);
     }
 
-    if (!supportedHashAlgorithmsInMultihashCode.includes(multihash.code)) {
+    if (supportedHashAlgorithmsInMultihashCode != undefined
+        &&!supportedHashAlgorithmsInMultihashCode.includes(multihash.code)) {
       throw new SidetreeError(
         ErrorCode.MultihashNotSupported,
         `Given ${inputContextForErrorLogging} uses unsupported multihash algorithm with code ${multihash.code}.`

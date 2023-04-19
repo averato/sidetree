@@ -9,6 +9,8 @@ import OperationModel from './models/OperationModel.ts';
 import OperationType from '../../enums/OperationType.ts';
 import SidetreeError from '../../../common/SidetreeError.ts';
 import SignedDataModel from './models/DeactivateSignedDataModel.ts';
+import { Buffer } from 'node:buffer';
+
 
 /**
  * A class that represents a deactivate operation.

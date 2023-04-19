@@ -8,6 +8,8 @@ import OperationModel from './models/OperationModel.ts';
 import OperationType from '../../enums/OperationType.ts';
 import SidetreeError from '../../../common/SidetreeError.ts';
 import SuffixDataModel from './models/SuffixDataModel.ts';
+import { Buffer } from 'node:buffer';
+
 
 /**
  * A class that represents a create operation.
@@ -32,6 +34,7 @@ export default class CreateOperation implements OperationModel {
     const operationJsonString = operationBuffer.toString();
     const operationObject = await JsonAsync.parse(operationJsonString);
     const createOperation = CreateOperation.parseObject(operationObject, operationBuffer);
+  
     return createOperation;
   }
 
@@ -45,8 +48,8 @@ export default class CreateOperation implements OperationModel {
    */
   public static parseObject (operationObject: any, operationBuffer: Buffer): CreateOperation {
     const expectedPropertyCount = 3;
-
     const properties = Object.keys(operationObject);
+
     if (properties.length !== expectedPropertyCount) {
       throw new SidetreeError(ErrorCode.CreateOperationMissingOrUnknownProperty);
     }
@@ -56,20 +59,23 @@ export default class CreateOperation implements OperationModel {
     }
 
     const suffixData = operationObject.suffixData;
+    // TODO: temporary disabled validation
     InputValidator.validateSuffixData(suffixData);
 
     let delta;
     try {
       Operation.validateDelta(operationObject.delta);
       delta = operationObject.delta;
-    } catch {
+    } catch(error) {
       // For compatibility with data pruning, we have to assume that `delta` may be unavailable,
       // thus an operation with invalid `delta` needs to be processed as an operation with unavailable `delta`,
       // so here we let `delta` be `undefined`.
+      console.log(`Create Operation Error: ${error}`);
+    } finally {
+        const didUniqueSuffix = Did.computeUniqueSuffix(suffixData);
+        const operation = new CreateOperation(operationBuffer, didUniqueSuffix, suffixData, delta);
+
+        return operation;
     }
-
-    const didUniqueSuffix = Did.computeUniqueSuffix(suffixData);
-
-    return new CreateOperation(operationBuffer, didUniqueSuffix, suffixData, delta);
   }
 }

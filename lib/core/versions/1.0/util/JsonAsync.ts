@@ -1,4 +1,5 @@
 import yieldableJson from 'npm:yieldable-json';
+import { Buffer } from 'node:buffer';
 
 /**
  * A JSON library that performs operations asynchronously.

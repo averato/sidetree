@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer';
+
 /**
  * Defines a queued operation.
  */

@@ -8,6 +8,8 @@ import ProvisionalProofFileModel from './models/ProvisionalProofFileModel.ts';
 import SidetreeError from '../../../common/SidetreeError.ts';
 import UpdateOperation from './UpdateOperation.ts';
 import UpdateSignedDataModel from './models/UpdateSignedDataModel.ts';
+import { Buffer } from 'node:buffer';
+
 
 /**
  * Defines operations related to a Provisional Proof File.

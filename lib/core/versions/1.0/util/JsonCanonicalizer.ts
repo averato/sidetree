@@ -1,4 +1,5 @@
 import canonicalize from 'npm:canonicalize';
+import { Buffer } from 'node:buffer';
 
 /**
  * Class containing reusable JSON canonicalization operations using JSON Canonicalization Scheme (JCS).

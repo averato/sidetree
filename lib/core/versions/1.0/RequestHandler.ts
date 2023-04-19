@@ -15,6 +15,8 @@ import Resolver from '../../Resolver.ts';
 import ResponseModel from '../../../common/models/ResponseModel.ts';
 import ResponseStatus from '../../../common/enums/ResponseStatus.ts';
 import SidetreeError from '../../../common/SidetreeError.ts';
+// @deno-types="@types/node"
+import { Buffer } from 'node:buffer';
 
 /**
  * Sidetree operation request handler.
@@ -40,26 +42,29 @@ export default class RequestHandler implements IRequestHandler {
     let operationModel: OperationModel;
     try {
       const operationRequest = await JsonAsync.parse(request);
-      Logger.error(`JSON Parseing outcome: ${operationRequest}`);
       // Check `delta` property data size if they exist in the operation.
       if (operationRequest.type === OperationType.Create ||
           operationRequest.type === OperationType.Recover ||
           operationRequest.type === OperationType.Update) {
+
+        // TODO: temporary disabled to clean pipeline        
         Delta.validateDelta(operationRequest.delta);
       }
 
       operationModel = await Operation.parse(request);
-      Logger.error(`Opearation Parseing outcome: ${operationModel}`);
 
       // Reject operation if there is already an operation for the same DID waiting to be batched and anchored.
       if (await this.operationQueue.contains(operationModel.didUniqueSuffix)) {
         const errorMessage = `An operation request already exists in queue for DID '${operationModel.didUniqueSuffix}', only one is allowed at a time.`;
+        
+        Logger.error(`JSON Operation error: ${errorMessage}`);
+
         throw new SidetreeError(ErrorCode.QueueingMultipleOperationsPerDidNotAllowed, errorMessage);
       }
     } catch (error) {
       // Give meaningful/specific error code and message when possible.
       if (error instanceof SidetreeError) {
-        Logger.info(`Bad request: ${error.code}`);
+        Logger.info(`Bad request: ${error}`);
         Logger.info(`Error message: ${error.message}`);
         return {
           status: ResponseStatus.BadRequest,

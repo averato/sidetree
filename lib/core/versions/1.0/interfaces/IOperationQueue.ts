@@ -1,4 +1,6 @@
 import QueuedOperationModel from '../models/QueuedOperationModel.ts';
+import { Buffer } from 'node:buffer';
+
 
 /**
  * An abstraction of a queue of operations used by the Batch Writer.

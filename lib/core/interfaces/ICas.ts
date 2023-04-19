@@ -1,4 +1,4 @@
-import FetchResult from '../../common/models/FetchResult';
+import FetchResult from '../../common/models/FetchResult.ts';
 /**
  * Interface for accessing the underlying CAS (Content Addressable Store).
  * This interface is mainly useful for creating a mock CAS for testing purposes.

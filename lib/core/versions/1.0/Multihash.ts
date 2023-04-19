@@ -1,11 +1,11 @@
-import * as crypto from 'crypto';
-import Encoder from './Encoder';
-import ErrorCode from './ErrorCode';
-import JsonCanonicalizer from './util/JsonCanonicalizer';
-import Logger from '../../../common/Logger';
-import SidetreeError from '../../../common/SidetreeError';
-
-const multihashes = require('multihashes');
+import * as crypto from 'node:crypto';
+import Encoder from './Encoder.ts';
+import ErrorCode from './ErrorCode.ts';
+import JsonCanonicalizer from './util/JsonCanonicalizer.ts';
+import Logger from '../../../common/Logger.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
+import multihashes from 'npm:multihashes';
+import { Buffer } from 'node:buffer';
 
 /**
  * Class that performs hashing operations using the multihash format.
@@ -114,7 +114,8 @@ export default class Multihash {
       throw new SidetreeError(ErrorCode.MultihashStringNotAMultihash, `Given ${inputContextForErrorLogging} string '${encodedMultihash}' is not a multihash.`);
     }
 
-    if (!supportedHashAlgorithmsInMultihashCode.includes(multihash.code)) {
+    if (supportedHashAlgorithmsInMultihashCode != undefined
+        &&!supportedHashAlgorithmsInMultihashCode.includes(multihash.code)) {
       throw new SidetreeError(
         ErrorCode.MultihashNotSupported,
         `Given ${inputContextForErrorLogging} uses unsupported multihash algorithm with code ${multihash.code}.`

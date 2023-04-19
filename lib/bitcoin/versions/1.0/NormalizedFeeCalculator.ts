@@ -35,7 +35,7 @@ export default class NormalizedFeeCalculator implements IFeeCalculator {
   /**
    * Initializes the normalized fee calculator.
    */
-  public async initialize () {
+  public initialize () {
     Logger.info(`Initializing normalized fee calculator.`);
   }
 

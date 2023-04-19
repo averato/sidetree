@@ -1,5 +1,5 @@
-import IConfirmationStore, { ConfirmationModel } from './interfaces/IConfirmationStore';
-import MongoDbStore from '../common/MongoDbStore';
+import IConfirmationStore, { ConfirmationModel } from './interfaces/IConfirmationStore.ts';
+import MongoDbStore from '../common/MongoDbStore.ts';
 
 /**
  * Implementation of LastWriteStore that stores the last update per write

@@ -1,14 +1,12 @@
-import Logger from '../common/Logger';
-import ReadableStream from '../common/ReadableStream';
-import ServiceVersionModel from '../common/models/ServiceVersionModel';
-import nodeFetch from 'node-fetch';
+import Logger from '../common/Logger.ts';
+import ServiceVersionModel from '../common/models/ServiceVersionModel.ts';
 
 /**
  * Encapsulates the functionality of getting the version information from the dependent services.
  */
 export default class ServiceVersionFetcher {
   private static readonly fetchWaitTimeInMilliseconds = 600000; // 10 minutes
-  private fetch = nodeFetch;
+ //  private fetch = nodeFetch;
   private cachedVersion: ServiceVersionModel;
   private lastTryFetchTime = 0;
 
@@ -47,12 +45,12 @@ export default class ServiceVersionFetcher {
       const versionUri = `${this.uri}/version`;
       Logger.info(`Trying to get the version info from the blockchain service. Url: ${versionUri}`);
 
-      const response = await this.fetch(versionUri);
-      const responseBodyBuffer = await ReadableStream.readAll(response.body);
+      const response = await fetch(versionUri);
+      const responseBodyBuffer = await response.json(); // dableStream.readAll(response.body);
 
       Logger.info(`Received version response from the blockchain service: ${responseBodyBuffer.toString()}`);
 
-      return JSON.parse(responseBodyBuffer.toString());
+      return responseBodyBuffer;
     } catch (e) {
       Logger.error(`Ignoring the exception during blockchain service version retrieval: ${JSON.stringify(e, Object.getOwnPropertyNames(e))}`);
     }

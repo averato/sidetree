@@ -1,4 +1,4 @@
-import ResponseModel from '../../common/models/ResponseModel';
+import ResponseModel from '../../common/models/ResponseModel.ts';
 
 /**
  * Interface that defines a class that handle requests.

@@ -1,20 +1,22 @@
-import Delta from './Delta';
-import Did from './Did';
-import DidState from '../../models/DidState';
-import DocumentComposer from './DocumentComposer';
-import ErrorCode from './ErrorCode';
-import IOperationQueue from './interfaces/IOperationQueue';
-import IRequestHandler from '../../interfaces/IRequestHandler';
-import JsonAsync from './util/JsonAsync';
-import Logger from '../../../common/Logger';
-import Operation from './Operation';
-import OperationModel from './models/OperationModel';
-import OperationProcessor from './OperationProcessor';
-import OperationType from '../../enums/OperationType';
-import Resolver from '../../Resolver';
-import ResponseModel from '../../../common/models/ResponseModel';
-import ResponseStatus from '../../../common/enums/ResponseStatus';
-import SidetreeError from '../../../common/SidetreeError';
+import Delta from './Delta.ts';
+import Did from './Did.ts';
+import DidState from '../../models/DidState.ts';
+import DocumentComposer from './DocumentComposer.ts';
+import ErrorCode from './ErrorCode.ts';
+import IOperationQueue from './interfaces/IOperationQueue.ts';
+import IRequestHandler from '../../interfaces/IRequestHandler.ts';
+import JsonAsync from './util/JsonAsync.ts';
+import Logger from '../../../common/Logger.ts';
+import Operation from './Operation.ts';
+import OperationModel from './models/OperationModel.ts';
+import OperationProcessor from './OperationProcessor.ts';
+import OperationType from '../../enums/OperationType.ts';
+import Resolver from '../../Resolver.ts';
+import ResponseModel from '../../../common/models/ResponseModel.ts';
+import ResponseStatus from '../../../common/enums/ResponseStatus.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
+// @deno-types="@types/node"
+import { Buffer } from 'node:buffer';
 
 /**
  * Sidetree operation request handler.
@@ -40,26 +42,29 @@ export default class RequestHandler implements IRequestHandler {
     let operationModel: OperationModel;
     try {
       const operationRequest = await JsonAsync.parse(request);
-      Logger.error(`JSON Parseing outcome: ${operationRequest}`);
       // Check `delta` property data size if they exist in the operation.
       if (operationRequest.type === OperationType.Create ||
           operationRequest.type === OperationType.Recover ||
           operationRequest.type === OperationType.Update) {
+
+        // TODO: temporary disabled to clean pipeline        
         Delta.validateDelta(operationRequest.delta);
       }
 
       operationModel = await Operation.parse(request);
-      Logger.error(`Opearation Parseing outcome: ${operationModel}`);
 
       // Reject operation if there is already an operation for the same DID waiting to be batched and anchored.
       if (await this.operationQueue.contains(operationModel.didUniqueSuffix)) {
         const errorMessage = `An operation request already exists in queue for DID '${operationModel.didUniqueSuffix}', only one is allowed at a time.`;
+        
+        Logger.error(`JSON Operation error: ${errorMessage}`);
+
         throw new SidetreeError(ErrorCode.QueueingMultipleOperationsPerDidNotAllowed, errorMessage);
       }
     } catch (error) {
       // Give meaningful/specific error code and message when possible.
       if (error instanceof SidetreeError) {
-        Logger.info(`Bad request: ${error.code}`);
+        Logger.info(`Bad request: ${error}`);
         Logger.info(`Error message: ${error.message}`);
         return {
           status: ResponseStatus.BadRequest,

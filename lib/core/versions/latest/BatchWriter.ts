@@ -1,28 +1,28 @@
-import AnchoredData from './models/AnchoredData';
-import AnchoredDataSerializer from './AnchoredDataSerializer';
-import ChunkFile from './ChunkFile';
-import CoreIndexFile from './CoreIndexFile';
-import CoreProofFile from './CoreProofFile';
-import CreateOperation from './CreateOperation';
-import DeactivateOperation from './DeactivateOperation';
-import FeeManager from './FeeManager';
-import IBatchWriter from '../../interfaces/IBatchWriter';
-import IBlockchain from '../../interfaces/IBlockchain';
-import ICas from '../../interfaces/ICas';
-import IConfirmationStore from '../../interfaces/IConfirmationStore';
-import IOperationQueue from './interfaces/IOperationQueue';
-import IVersionMetadataFetcher from '../../interfaces/IVersionMetadataFetcher';
-import LogColor from '../../../common/LogColor';
-import Logger from '../../../common/Logger';
-import Operation from './Operation';
-import OperationType from '../../enums/OperationType';
-import ProtocolParameters from './ProtocolParameters';
-import ProvisionalIndexFile from './ProvisionalIndexFile';
-import ProvisionalProofFile from './ProvisionalProofFile';
-import RecoverOperation from './RecoverOperation';
-import UpdateOperation from './UpdateOperation';
-import ValueTimeLockModel from '../../../common/models/ValueTimeLockModel';
-import ValueTimeLockVerifier from './ValueTimeLockVerifier';
+import AnchoredData from './models/AnchoredData.ts';
+import AnchoredDataSerializer from './AnchoredDataSerializer.ts';
+import ChunkFile from './ChunkFile.ts';
+import CoreIndexFile from './CoreIndexFile.ts';
+import CoreProofFile from './CoreProofFile.ts';
+import CreateOperation from './CreateOperation.ts';
+import DeactivateOperation from './DeactivateOperation.ts';
+import FeeManager from './FeeManager.ts';
+import IBatchWriter from '../../interfaces/IBatchWriter.ts';
+import IBlockchain from '../../interfaces/IBlockchain.ts';
+import ICas from '../../interfaces/ICas.ts';
+import IConfirmationStore from '../../interfaces/IConfirmationStore.ts';
+import IOperationQueue from './interfaces/IOperationQueue.ts';
+import IVersionMetadataFetcher from '../../interfaces/IVersionMetadataFetcher.ts';
+import LogColor from '../../../common/LogColor.ts';
+import Logger from '../../../common/Logger.ts';
+import Operation from './Operation.ts';
+import OperationType from '../../enums/OperationType.ts';
+import ProtocolParameters from './ProtocolParameters.ts';
+import ProvisionalIndexFile from './ProvisionalIndexFile.ts';
+import ProvisionalProofFile from './ProvisionalProofFile.ts';
+import RecoverOperation from './RecoverOperation.ts';
+import UpdateOperation from './UpdateOperation.ts';
+import ValueTimeLockModel from '../../../common/models/ValueTimeLockModel.ts';
+import ValueTimeLockVerifier from './ValueTimeLockVerifier.ts';
 
 /**
  * Implementation of the `IBatchWriter`.
@@ -60,7 +60,7 @@ export default class BatchWriter implements IBatchWriter {
       return 0;
     }
 
-    const operationModels = await Promise.all(queuedOperations.map(async (queuedOperation) => Operation.parse(queuedOperation.operationBuffer)));
+    const operationModels = await Promise.all(queuedOperations.map(async (queuedOperation) => await Operation.parse(queuedOperation.operationBuffer)));
     const createOperations = operationModels.filter(operation => operation.type === OperationType.Create) as CreateOperation[];
     const recoverOperations = operationModels.filter(operation => operation.type === OperationType.Recover) as RecoverOperation[];
     const updateOperations = operationModels.filter(operation => operation.type === OperationType.Update) as UpdateOperation[];

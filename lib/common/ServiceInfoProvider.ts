@@ -1,11 +1,11 @@
-import ServiceVersionModel from './models/ServiceVersionModel';
+import ServiceVersionModel from './models/ServiceVersionModel.ts';
 /**
  * Encapsulates the functionality to get the information about the service such as
  * version info.
  */
 export default class ServiceInfoProvider {
 
-  private static readonly packageJson = require('../../package.json');
+  private static readonly packageJson = JSON.parse(Deno.readTextFileSync('./package.json'));
   private serviceName: string;
 
   constructor (serviceName: string) {

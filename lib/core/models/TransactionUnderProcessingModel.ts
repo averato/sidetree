@@ -1,4 +1,4 @@
-import TransactionModel from '../../common/models/TransactionModel';
+import TransactionModel from '../../common/models/TransactionModel.ts';
 
 /**
  * The state of a transaction that is being processed.

@@ -1,4 +1,4 @@
-import BitcoinClient from './BitcoinClient';
+import BitcoinClient from './BitcoinClient.ts';
 
 /**
  * Monitor for the running Bitcoin service.

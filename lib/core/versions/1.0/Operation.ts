@@ -1,14 +1,15 @@
-import CreateOperation from './CreateOperation';
-import DeactivateOperation from './DeactivateOperation';
-import DocumentComposer from './DocumentComposer';
-import ErrorCode from './ErrorCode';
-import InputValidator from './InputValidator';
-import Logger from '../../../common/Logger';
-import OperationModel from './models/OperationModel';
-import OperationType from '../../enums/OperationType';
-import RecoverOperation from './RecoverOperation';
-import SidetreeError from '../../../common/SidetreeError';
-import UpdateOperation from './UpdateOperation';
+import CreateOperation from './CreateOperation.ts';
+import DeactivateOperation from './DeactivateOperation.ts';
+import DocumentComposer from './DocumentComposer.ts';
+import ErrorCode from './ErrorCode.ts';
+import InputValidator from './InputValidator.ts';
+import Logger from '../../../common/Logger.ts';
+import OperationModel from './models/OperationModel.ts';
+import OperationType from '../../enums/OperationType.ts';
+import RecoverOperation from './RecoverOperation.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
+import UpdateOperation from './UpdateOperation.ts';
+import { Buffer } from 'node:buffer';
 
 /**
  * A class that contains Sidetree operation utility methods.
@@ -23,12 +24,13 @@ export default class Operation {
   public static async parse (operationBuffer: Buffer): Promise<OperationModel> {
     // Parse request buffer into a JS object.
     const operationJsonString = operationBuffer.toString();
-    Logger.info(`Operation params: ${operationJsonString}`);
+    // Logger.info(`Operation params: ${operationJsonString}`);
     const operationObject = JSON.parse(operationJsonString);
-    Logger.info(`Operation parsed object: ${JSON.stringify(operationObject)}`);
     const operationType = operationObject.type;
 
     if (operationType === OperationType.Create) {
+//      Logger.info(`Create Operation parsed object: ${JSON.stringify(operationObject)}`);
+
       return CreateOperation.parseObject(operationObject, operationBuffer);
     } else if (operationType === OperationType.Update) {
       return UpdateOperation.parseObject(operationObject, operationBuffer);
@@ -37,7 +39,10 @@ export default class Operation {
     } else if (operationType === OperationType.Deactivate) {
       return DeactivateOperation.parseObject(operationObject, operationBuffer);
     } else {
-      throw new SidetreeError(ErrorCode.OperationTypeUnknownOrMissing);
+        
+        Logger.error(`Operation error: ${JSON.stringify(operationObject)}`);
+
+        throw new SidetreeError(ErrorCode.OperationTypeUnknownOrMissing);
     }
   }
 
@@ -48,10 +53,11 @@ export default class Operation {
   public static validateDelta (delta: any): void {
     InputValidator.validateNonArrayObject(delta, 'delta');
     InputValidator.validateObjectContainsOnlyAllowedProperties(delta, ['patches', 'updateCommitment'], 'delta');
-
+ 
     // Validate `patches` property using the DocumentComposer.
+    // TODO: make sure it is not broken
     DocumentComposer.validateDocumentPatches(delta.patches);
-
+    
     InputValidator.validateEncodedMultihash(delta.updateCommitment, 'update commitment');
   }
 }

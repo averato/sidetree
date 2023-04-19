@@ -1,9 +1,10 @@
-import ErrorCode from './ErrorCode';
-import JsonCanonicalizer from './util/JsonCanonicalizer';
-import Logger from '../../../common/Logger';
-import Operation from './Operation';
-import ProtocolParameters from './ProtocolParameters';
-import SidetreeError from '../../../common/SidetreeError';
+import ErrorCode from './ErrorCode.ts';
+import JsonCanonicalizer from './util/JsonCanonicalizer.ts';
+import Logger from '../../../common/Logger.ts';
+import Operation from './Operation.ts';
+import ProtocolParameters from './ProtocolParameters.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
+import { Buffer } from 'node:buffer';
 
 /**
  * Class containing reusable operation delta functionalities.
@@ -25,13 +26,14 @@ export default class Delta {
   public static validateDelta (delta: any) {
     // null and undefined cannot be turned into buffer
     Delta.validateDeltaIsDefined(delta);
-    const size = Buffer.byteLength(JsonCanonicalizer.canonicalizeAsBuffer(delta));
-    if (size > ProtocolParameters.maxDeltaSizeInBytes) {
-      const errorMessage = `${size} bytes of 'delta' exceeded limit of ${ProtocolParameters.maxDeltaSizeInBytes} bytes.`;
-      Logger.info(errorMessage);
+    const size =  Buffer.byteLength(JsonCanonicalizer.canonicalizeAsBuffer(delta));
+    const maxSize = ProtocolParameters.maxDeltaSizeInBytes;
+
+    if ( maxSize != undefined && size > maxSize) {
+      const errorMessage = `${size} bytes of 'delta' exceeded limit of ${maxSize} bytes.`;
+      Logger.error(errorMessage);
       throw new SidetreeError(ErrorCode.DeltaExceedsMaximumSize, errorMessage);
     }
-
     // Validate against delta schema.
     Operation.validateDelta(delta);
   }

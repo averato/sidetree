@@ -1,4 +1,4 @@
-import QueuedOperationModel from '../models/QueuedOperationModel';
+import QueuedOperationModel from '../models/QueuedOperationModel.ts';
 
 /**
  * An abstraction of a queue of operations used by the Batch Writer.

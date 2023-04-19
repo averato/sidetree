@@ -1,7 +1,7 @@
-import BlockchainTimeModel from '../models/BlockchainTimeModel';
-import ServiceVersionModel from '../../common/models/ServiceVersionModel';
-import TransactionModel from '../../common/models/TransactionModel';
-import ValueTimeLockModel from '../../common/models/ValueTimeLockModel';
+import BlockchainTimeModel from '../models/BlockchainTimeModel.ts';
+import ServiceVersionModel from '../../common/models/ServiceVersionModel.ts';
+import TransactionModel from '../../common/models/TransactionModel.ts';
+import ValueTimeLockModel from '../../common/models/ValueTimeLockModel.ts';
 
 /**
  * Interface to access the underlying blockchain.

@@ -1,5 +1,5 @@
-import Response from '../common/Response';
-import ResponseStatus from '../common/enums/ResponseStatus';
+import Response from '../common/Response.ts';
+import ResponseStatus from '../common/enums/ResponseStatus.ts';
 
 /**
  * Error class used as a response to external requests.

@@ -1,4 +1,4 @@
-import OperationType from '../../../enums/OperationType';
+import OperationType from '../../../enums/OperationType.ts';
 
 /**
  * Common model for a Sidetree operation.

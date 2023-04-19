@@ -1,6 +1,6 @@
-import { Long } from 'mongodb';
-import MongoDbStore from '../../common/MongoDbStore';
-import SavedLockModel from './../models/SavedLockedModel';
+import { Long } from 'npm:mongodb';
+import MongoDbStore from '../../common/MongoDbStore.ts';
+import SavedLockModel from './../models/SavedLockedModel.ts';
 
 /**
  * Encapsulates functionality to store the bitcoin lock information to Db.

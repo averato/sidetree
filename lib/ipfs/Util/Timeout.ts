@@ -1,5 +1,5 @@
-import IpfsErrorCode from '../IpfsErrorCode';
-import SidetreeError from '../../common/SidetreeError';
+import IpfsErrorCode from '../IpfsErrorCode.ts';
+import SidetreeError from '../../common/SidetreeError.ts';
 
 /**
  * Class containing code execution timeout/timing utilities.

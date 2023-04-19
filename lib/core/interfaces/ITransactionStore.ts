@@ -1,4 +1,4 @@
-import TransactionModel from '../../common/models/TransactionModel';
+import TransactionModel from '../../common/models/TransactionModel.ts';
 
 /**
  * An abstraction for the persistence of Sidetree transactions.

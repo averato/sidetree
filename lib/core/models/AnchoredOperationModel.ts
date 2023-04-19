@@ -1,4 +1,4 @@
-import OperationType from '../enums/OperationType';
+import OperationType from '../enums/OperationType.ts';
 
 /**
  * The minimal contractual properties of an anchored operation across protocol versions.

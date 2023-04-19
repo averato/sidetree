@@ -1,4 +1,4 @@
-import TransactionModel from '../../common/models/TransactionModel';
+import TransactionModel from '../../common/models/TransactionModel.ts';
 
 /**
  * Unresolvable transaction model.

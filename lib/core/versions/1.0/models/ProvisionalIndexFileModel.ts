@@ -1,4 +1,4 @@
-import OperationReferenceModel from './OperationReferenceModel';
+import OperationReferenceModel from './OperationReferenceModel.ts';
 
 /**
  * Defines the external Map File structure.

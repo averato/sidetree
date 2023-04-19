@@ -1,4 +1,4 @@
-import FetchResultCode from '../enums/FetchResultCode';
+import FetchResultCode from '../enums/FetchResultCode.ts';
 
 /**
  * Data structure representing the result of a content fetch from the Content Addressable Storage.

@@ -1,28 +1,28 @@
-import AnchoredData from './models/AnchoredData';
-import AnchoredDataSerializer from './AnchoredDataSerializer';
-import AnchoredOperationModel from '../../models/AnchoredOperationModel';
-import ArrayMethods from './util/ArrayMethods';
-import ChunkFile from './ChunkFile';
-import ChunkFileModel from './models/ChunkFileModel';
-import CoreIndexFile from './CoreIndexFile';
-import CoreProofFile from './CoreProofFile';
-import DownloadManager from '../../DownloadManager';
-import ErrorCode from './ErrorCode';
-import FeeManager from './FeeManager';
-import FetchResultCode from '../../../common/enums/FetchResultCode';
-import IBlockchain from '../../interfaces/IBlockchain';
-import IOperationStore from '../../interfaces/IOperationStore';
-import ITransactionProcessor from '../../interfaces/ITransactionProcessor';
-import IVersionMetadataFetcher from '../../interfaces/IVersionMetadataFetcher';
-import LogColor from '../../../common/LogColor';
-import Logger from '../../../common/Logger';
-import OperationType from '../../enums/OperationType';
-import ProtocolParameters from './ProtocolParameters';
-import ProvisionalIndexFile from './ProvisionalIndexFile';
-import ProvisionalProofFile from './ProvisionalProofFile';
-import SidetreeError from '../../../common/SidetreeError';
-import TransactionModel from '../../../common/models/TransactionModel';
-import ValueTimeLockVerifier from './ValueTimeLockVerifier';
+import AnchoredData from './models/AnchoredData.ts';
+import AnchoredDataSerializer from './AnchoredDataSerializer.ts';
+import AnchoredOperationModel from '../../models/AnchoredOperationModel.ts';
+import ArrayMethods from './util/ArrayMethods.ts';
+import ChunkFile from './ChunkFile.ts';
+import ChunkFileModel from './models/ChunkFileModel.ts';
+import CoreIndexFile from './CoreIndexFile.ts';
+import CoreProofFile from './CoreProofFile.ts';
+import DownloadManager from '../../DownloadManager.ts';
+import ErrorCode from './ErrorCode.ts';
+import FeeManager from './FeeManager.ts';
+import FetchResultCode from '../../../common/enums/FetchResultCode.ts';
+import IBlockchain from '../../interfaces/IBlockchain.ts';
+import IOperationStore from '../../interfaces/IOperationStore.ts';
+import ITransactionProcessor from '../../interfaces/ITransactionProcessor.ts';
+import IVersionMetadataFetcher from '../../interfaces/IVersionMetadataFetcher.ts';
+import LogColor from '../../../common/LogColor.ts';
+import Logger from '../../../common/Logger.ts';
+import OperationType from '../../enums/OperationType.ts';
+import ProtocolParameters from './ProtocolParameters.ts';
+import ProvisionalIndexFile from './ProvisionalIndexFile.ts';
+import ProvisionalProofFile from './ProvisionalProofFile.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
+import TransactionModel from '../../../common/models/TransactionModel.ts';
+import ValueTimeLockVerifier from './ValueTimeLockVerifier.ts';
 
 /**
  * Implementation of the `ITransactionProcessor`.
@@ -317,7 +317,7 @@ export default class TransactionProcessor implements ITransactionProcessor {
     anchoredOperationModels.push(...anchoredRecoverOperationModels);
     anchoredOperationModels.push(...anchoredDeactivateOperationModels);
     anchoredOperationModels.push(...anchoredUpdateOperationModels);
-    return anchoredOperationModels;
+    return await anchoredOperationModels;
   }
 
   private static composeAnchoredCreateOperationModels (

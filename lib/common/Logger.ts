@@ -1,5 +1,5 @@
-import ConsoleLogger from './ConsoleLogger';
-import ILogger from './interfaces/ILogger';
+import ConsoleLogger from './ConsoleLogger.ts';
+import ILogger from './interfaces/ILogger.ts';
 
 /**
  * Logger used in Sidetree.

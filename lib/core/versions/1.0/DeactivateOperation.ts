@@ -1,14 +1,16 @@
-import Encoder from './Encoder';
-import ErrorCode from './ErrorCode';
-import InputValidator from './InputValidator';
-import JsonAsync from './util/JsonAsync';
-import Jwk from './util/Jwk';
-import Jws from './util/Jws';
-import Multihash from './Multihash';
-import OperationModel from './models/OperationModel';
-import OperationType from '../../enums/OperationType';
-import SidetreeError from '../../../common/SidetreeError';
-import SignedDataModel from './models/DeactivateSignedDataModel';
+import Encoder from './Encoder.ts';
+import ErrorCode from './ErrorCode.ts';
+import InputValidator from './InputValidator.ts';
+import JsonAsync from './util/JsonAsync.ts';
+import Jwk from './util/Jwk.ts';
+import Jws from './util/Jws.ts';
+import Multihash from './Multihash.ts';
+import OperationModel from './models/OperationModel.ts';
+import OperationType from '../../enums/OperationType.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
+import SignedDataModel from './models/DeactivateSignedDataModel.ts';
+import { Buffer } from 'node:buffer';
+
 
 /**
  * A class that represents a deactivate operation.

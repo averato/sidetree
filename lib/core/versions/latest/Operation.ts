@@ -1,13 +1,13 @@
-import CreateOperation from './CreateOperation';
-import DeactivateOperation from './DeactivateOperation';
-import DocumentComposer from './DocumentComposer';
-import ErrorCode from './ErrorCode';
-import InputValidator from './InputValidator';
-import OperationModel from './models/OperationModel';
-import OperationType from '../../enums/OperationType';
-import RecoverOperation from './RecoverOperation';
-import SidetreeError from '../../../common/SidetreeError';
-import UpdateOperation from './UpdateOperation';
+import CreateOperation from './CreateOperation.ts';
+import DeactivateOperation from './DeactivateOperation.ts';
+import DocumentComposer from './DocumentComposer.ts';
+import ErrorCode from './ErrorCode.ts';
+import InputValidator from './InputValidator.ts';
+import OperationModel from './models/OperationModel.ts';
+import OperationType from '../../enums/OperationType.ts';
+import RecoverOperation from './RecoverOperation.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
+import UpdateOperation from './UpdateOperation.ts';
 
 /**
  * A class that contains Sidetree operation utility methods.

@@ -1,17 +1,17 @@
-import ArrayMethods from './util/ArrayMethods';
-import Compressor from './util/Compressor';
-import CoreIndexFileModel from './models/CoreIndexFileModel';
-import CreateOperation from './CreateOperation';
-import DeactivateOperation from './DeactivateOperation';
-import Did from './Did';
-import ErrorCode from './ErrorCode';
-import InputValidator from './InputValidator';
-import JsonAsync from './util/JsonAsync';
-import OperationReferenceModel from './models/OperationReferenceModel';
-import ProtocolParameters from './ProtocolParameters';
-import RecoverOperation from './RecoverOperation';
-import SidetreeError from '../../../common/SidetreeError';
-import SuffixDataModel from './models/SuffixDataModel';
+import ArrayMethods from './util/ArrayMethods.ts';
+import Compressor from './util/Compressor.ts';
+import CoreIndexFileModel from './models/CoreIndexFileModel.ts';
+import CreateOperation from './CreateOperation.ts';
+import DeactivateOperation from './DeactivateOperation.ts';
+import Did from './Did.ts';
+import ErrorCode from './ErrorCode.ts';
+import InputValidator from './InputValidator.ts';
+import JsonAsync from './util/JsonAsync.ts';
+import OperationReferenceModel from './models/OperationReferenceModel.ts';
+import ProtocolParameters from './ProtocolParameters.ts';
+import RecoverOperation from './RecoverOperation.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
+import SuffixDataModel from './models/SuffixDataModel.ts';
 
 /**
  * Create reference model internally used in a core index file.
@@ -176,7 +176,7 @@ export default class CoreIndexFile {
   /**
    * Creates an `CoreIndexFileModel`.
    */
-  public static async createModel (
+  public static createModel (
     writerLockId: string | undefined,
     provisionalIndexFileUri: string | undefined,
     coreProofFileUri: string | undefined,

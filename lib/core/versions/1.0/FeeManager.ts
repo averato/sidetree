@@ -1,6 +1,6 @@
-import ErrorCode from './ErrorCode';
-import ProtocolParameters from './ProtocolParameters';
-import SidetreeError from '../../../common/SidetreeError';
+import ErrorCode from './ErrorCode.ts';
+import ProtocolParameters from './ProtocolParameters.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
 
 /**
  * Encapsulates the functionality to calculate and verify the blockchain transaction fees.

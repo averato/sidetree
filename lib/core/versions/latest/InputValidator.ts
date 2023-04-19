@@ -1,8 +1,8 @@
-import Encoder from './Encoder';
-import ErrorCode from './ErrorCode';
-import Multihash from './Multihash';
-import ProtocolParameters from './ProtocolParameters';
-import SidetreeError from '../../../common/SidetreeError';
+import Encoder from './Encoder.ts';
+import ErrorCode from './ErrorCode.ts';
+import Multihash from './Multihash.ts';
+import ProtocolParameters from './ProtocolParameters.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
 
 /**
  * Class containing generic input validation methods.

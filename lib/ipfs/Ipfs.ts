@@ -1,24 +1,22 @@
-import * as HttpStatus from 'http-status';
-import * as crypto from 'crypto';
-import FetchResult from '../common/models/FetchResult';
-import FetchResultCode from '../common/enums/FetchResultCode';
-import ICas from '../core/interfaces/ICas';
-import IpfsErrorCode from '../ipfs/IpfsErrorCode';
-import Logger from '../common/Logger';
-import ReadableStream from '../common/ReadableStream';
-import SharedErrorCode from '../common/SharedErrorCode';
-import SidetreeError from '../common/SidetreeError';
-import Timeout from './Util/Timeout';
-import nodeFetch from 'node-fetch';
-
-// this has to be require because it doesn't have a default export
-const Cids = require('cids');
+import {Status, isSuccessfulStatus} from "https://deno.land/std@0.182.0/http/http_status.ts";
+import * as crypto from 'node:crypto';
+import FetchResult from '../common/models/FetchResult.ts';
+import FetchResultCode from '../common/enums/FetchResultCode.ts';
+import ICas from '../core/interfaces/ICas.ts';
+import IpfsErrorCode from '../ipfs/IpfsErrorCode.ts';
+import Logger from '../common/Logger.ts';
+import ReadableStreamUtils from '../common/ReadableStreamUtils.ts';
+import SharedErrorCode from '../common/SharedErrorCode.ts';
+import SidetreeError from '../common/SidetreeError.ts';
+import Timeout from './Util/Timeout.ts';
+import { Buffer } from 'node:buffer';
+import Cids from 'npm:cids';
 
 /**
  * Class that implements the `ICas` interface by communicating with IPFS.
  */
 export default class Ipfs implements ICas {
-  private fetch = nodeFetch;
+//  private fetch = nodeFetch;
 
   public constructor (private uri: string, private fetchTimeoutInSeconds: number) { }
 
@@ -52,20 +50,21 @@ export default class Ipfs implements ICas {
     };
 
     const addUrl = new URL('/api/v0/add', this.uri).toString(); // e.g. 'http://127.0.0.1:5001/api/v0/add'
-    const response = await this.fetch(addUrl, requestParameters);
+    const response = await fetch(addUrl, requestParameters);
 
-    if (response.status !== HttpStatus.OK) {
+    if (response.status !== Status.OK) {
       Logger.error(`IPFS write error response status: ${response.status}`);
 
       if (response.body) {
-        const errorBody = await ReadableStream.readAll(response.body);
+        const errorBody = await ReadableStreamUtils.readAll(response.body);
         Logger.error(`IPFS write error body: ${errorBody}`);
       }
 
       throw new SidetreeError(IpfsErrorCode.IpfsFailedWritingContent, `Failed writing content of ${content.length} bytes.`);
     }
 
-    const body = await ReadableStream.readAll(response.body);
+    const body = await ReadableStreamUtils.readAll(response.body);
+//    for await (const chunk of request.body)
     const casUri = JSON.parse(body.toString()).Hash;
 
     Logger.info(`Wrote ${content.length} byte content as IPFS CID: ${casUri}`);
@@ -134,7 +133,7 @@ export default class Ipfs implements ICas {
       // Alternatively, we could choose not to supply this optional `length` parameter, but we do so such that
       // IPFS is given the opportunity to optimize its download logic. (e.g. not needing to download the entire content).
       const catUrl = new URL(`/api/v0/cat?arg=${base58Multihash}&length=${maxSizeInBytes + 1}`, this.uri).toString();
-      response = await this.fetch(catUrl, { method: 'POST' });
+      response = await fetch(catUrl, { method: 'POST' });
     } catch (error) {
       if (error instanceof SidetreeError && error.code === 'ECONNREFUSED') {
         return { code: FetchResultCode.CasNotReachable };
@@ -144,7 +143,7 @@ export default class Ipfs implements ICas {
     }
 
     // Handle non-OK response.
-    if (response.status !== HttpStatus.OK) {
+    if (response.status !== Status.OK) {
       const body = await ReadableStream.readAll(response.body);
       const json = JSON.parse(body.toString());
 
@@ -174,6 +173,6 @@ export default class Ipfs implements ICas {
   private async pinContent (hash: string) {
     // e.g. 'http://127.0.0.1:5001/api/v0/pin/add?arg=QmPPsg8BeJdqK2TnRHx5L2BFyjmFr9FK6giyznNjdL93NL'
     const pinUrl = new URL(`/api/v0/pin/add?arg=${hash}`, this.uri).toString();
-    await this.fetch(pinUrl, { method: 'POST' });
+    await fetch(pinUrl, { method: 'POST' });
   }
 }

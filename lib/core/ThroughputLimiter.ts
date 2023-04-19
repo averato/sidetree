@@ -1,5 +1,5 @@
-import IVersionManager from './interfaces/IVersionManager';
-import TransactionModel from '../common/models/TransactionModel';
+import IVersionManager from './interfaces/IVersionManager.ts';
+import TransactionModel from '../common/models/TransactionModel.ts';
 
 /**
  * Keeps track of current block and throughput limits based on the state

@@ -1,9 +1,9 @@
-import { FindCursor, Long } from 'mongodb';
-import ITransactionStore from '../core/interfaces/ITransactionStore';
-import Logger from '../common/Logger';
-import MongoDbStore from './MongoDbStore';
-import TransactionModel from './models/TransactionModel';
-import SidetreeError from '../common/SidetreeError';
+import { FindCursor, Long } from 'npm:mongodb';
+import ITransactionStore from '../core/interfaces/ITransactionStore.ts';
+import Logger from '../common/Logger.ts';
+import MongoDbStore from './MongoDbStore.ts';
+import TransactionModel from './models/TransactionModel.ts';
+import SidetreeError from '../common/SidetreeError.ts';
 
 /**
  * Implementation of ITransactionStore that stores the transaction data in a MongoDB database.

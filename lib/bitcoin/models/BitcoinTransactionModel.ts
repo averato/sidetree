@@ -1,5 +1,5 @@
-import BitcoinInputModel from './BitcoinInputModel';
-import BitcoinOutputModel from './BitcoinOutputModel';
+import BitcoinInputModel from './BitcoinInputModel.ts';
+import BitcoinOutputModel from './BitcoinOutputModel.ts';
 
 /**
  * Encapsulates data for a bitcoin transaction.

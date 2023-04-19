@@ -1,7 +1,13 @@
-import { Address, PrivateKey, Script, Transaction } from 'bitcore-lib';
-import ErrorCode from './ErrorCode';
-import IBitcoinWallet from './interfaces/IBitcoinWallet';
-import SidetreeError from '../common/SidetreeError';
+// @deno-types="npm:@types/bitcoinjs-lib"
+import * as Bitcoin from "npm:bitcoinjs-lib";
+import ErrorCode from './ErrorCode.ts';
+import IBitcoinWallet from './interfaces/IBitcoinWallet.ts';
+import SidetreeError from '../common/SidetreeError.ts';
+import { Buffer } from "https://deno.land/std@0.182.0/io/buffer.ts";
+import ECPairFactory from 'npm:ecpair';
+
+const Transaction = Bitcoin.Transaction;
+type Script = Bitcoin.script;
 
 /**
  * Represents a bitcoin wallet.
@@ -38,14 +44,14 @@ export default class BitcoinWallet implements IBitcoinWallet {
   }
 
   public async signTransaction (transaction: Transaction): Promise<Transaction> {
-    return transaction.sign(this.walletPrivateKey);
+    return await transaction.sign(this.walletPrivateKey);
   }
 
   public async signFreezeTransaction (transaction: Transaction, _outputRedeemScript: Script): Promise<Transaction> {
 
     // In this implementation of the wallet, we are not using the output-redeem-script parameter for anything. We'll
     // treat the signing of this transaction same as a regular non-freeze transaction.
-    return this.signTransaction(transaction);
+    return await this.signTransaction(transaction);
   }
 
   public async signSpendFromFreezeTransaction (
@@ -66,6 +72,6 @@ export default class BitcoinWallet implements IBitcoinWallet {
 
     (lockTransaction.inputs[0] as any).setScript(inputScript);
 
-    return lockTransaction;
+    return await lockTransaction;
   }
 }

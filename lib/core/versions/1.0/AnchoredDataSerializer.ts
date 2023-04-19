@@ -1,7 +1,7 @@
-import AnchoredData from './models/AnchoredData';
-import ErrorCode from './ErrorCode';
-import ProtocolParameters from './ProtocolParameters';
-import SidetreeError from '../../../common/SidetreeError';
+import AnchoredData from './models/AnchoredData.ts';
+import ErrorCode from './ErrorCode.ts';
+import ProtocolParameters from './ProtocolParameters.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
 
 /**
  * Encapsulates functionality to serialize/deserialize data that read/write to

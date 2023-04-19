@@ -1,4 +1,4 @@
-import BlockMetadata from '../models/BlockMetadata';
+import BlockMetadata from '../models/BlockMetadata.ts';
 
 /**
  * An abstraction for the persistence of block metadata.

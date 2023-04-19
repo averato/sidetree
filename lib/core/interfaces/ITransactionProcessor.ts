@@ -1,4 +1,4 @@
-import TransactionModel from '../../common/models/TransactionModel';
+import TransactionModel from '../../common/models/TransactionModel.ts';
 
 /**
  * Interface that defines a class that can process transactions fetched from blockchain.

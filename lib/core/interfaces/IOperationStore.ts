@@ -1,4 +1,4 @@
-import AnchoredOperationModel from '../models/AnchoredOperationModel';
+import AnchoredOperationModel from '../models/AnchoredOperationModel.ts';
 
 /**
  * An abstraction of a complete store for operations exposing methods to

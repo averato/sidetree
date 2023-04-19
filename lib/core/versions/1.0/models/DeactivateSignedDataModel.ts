@@ -1,4 +1,4 @@
-import JwkEs256k from '../../../models/JwkEs256k';
+import JwkEs256k from '../../../models/JwkEs256k.ts';
 
 /**
  * Defines the internal decoded schema of signed data of a recover operation.

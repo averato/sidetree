@@ -1,9 +1,9 @@
-import { Binary } from 'mongodb';
-import ErrorCode from './ErrorCode';
-import IOperationQueue from './interfaces/IOperationQueue';
-import MongoDbStore from '../../../common/MongoDbStore';
-import QueuedOperationModel from './models/QueuedOperationModel';
-import SidetreeError from '../../../common/SidetreeError';
+import { Binary } from 'npm:mongodb';
+import ErrorCode from './ErrorCode.ts';
+import IOperationQueue from './interfaces/IOperationQueue.ts';
+import MongoDbStore from '../../../common/MongoDbStore.ts';
+import QueuedOperationModel from './models/QueuedOperationModel.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
 
 /**
  * Sidetree operation stored in MongoDb.

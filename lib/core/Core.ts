@@ -1,31 +1,33 @@
-import semver from 'semver';
-import timeSpan from 'time-span';
-import { ISidetreeCas, ISidetreeEventEmitter, ISidetreeLogger } from '..';
-import BatchScheduler from './BatchScheduler';
-import Blockchain from './Blockchain';
-import BlockchainClock from './BlockchainClock';
-import Config from './models/Config';
-import DownloadManager from './DownloadManager';
-import ErrorCode from './ErrorCode';
-import EventEmitter from '../common/EventEmitter';
-import IBlockchain from './interfaces/IBlockchain';
-import LogColor from '../common/LogColor';
-import Logger from '../common/Logger';
-import MongoDbConfirmationStore from './MongoDbConfirmationStore';
-import MongoDbOperationStore from './MongoDbOperationStore';
-import MongoDbServiceStateStore from '../common/MongoDbServiceStateStore';
-import MongoDbTransactionStore from '../common/MongoDbTransactionStore';
-import MongoDbUnresolvableTransactionStore from './MongoDbUnresolvableTransactionStore';
-import Monitor from './Monitor';
-import Observer from './Observer';
-import Resolver from './Resolver';
-import ResponseModel from '../common/models/ResponseModel';
-import ResponseStatus from '../common/enums/ResponseStatus';
-import ServiceInfo from '../common/ServiceInfoProvider';
-import ServiceStateModel from './models/ServiceStateModel';
-import SidetreeError from '../common/SidetreeError';
-import VersionManager from './VersionManager';
-import VersionModel from './models/VersionModel';
+import semver from 'npm:semver';
+import timeSpan from 'npm:time-span';
+import ISidetreeCas from '../core/interfaces/ICas.ts'; 
+import ISidetreeEventEmitter from '../common/interfaces/IEventEmitter.ts';
+import ISidetreeLogger from '../common/interfaces/ILogger.ts';
+import BatchScheduler from './BatchScheduler.ts';
+import Blockchain from './Blockchain.ts';
+import BlockchainClock from './BlockchainClock.ts';
+import Config from './models/Config.ts';
+import DownloadManager from './DownloadManager.ts';
+import ErrorCode from './ErrorCode.ts';
+import EventEmitter from '../common/EventEmitter.ts';
+import IBlockchain from './interfaces/IBlockchain.ts';
+import LogColor from '../common/LogColor.ts';
+import Logger from '../common/Logger.ts';
+import MongoDbConfirmationStore from './MongoDbConfirmationStore.ts';
+import MongoDbOperationStore from './MongoDbOperationStore.ts';
+import MongoDbServiceStateStore from '../common/MongoDbServiceStateStore.ts';
+import MongoDbTransactionStore from '../common/MongoDbTransactionStore.ts';
+import MongoDbUnresolvableTransactionStore from './MongoDbUnresolvableTransactionStore.ts';
+import Monitor from './Monitor.ts';
+import Observer from './Observer.ts';
+import Resolver from './Resolver.ts';
+import ResponseModel from '../common/models/ResponseModel.ts';
+import ResponseStatus from '../common/enums/ResponseStatus.ts';
+import ServiceInfo from '../common/ServiceInfoProvider.ts';
+import ServiceStateModel from './models/ServiceStateModel.ts';
+import SidetreeError from '../common/SidetreeError.ts';
+import VersionManager from './VersionManager.ts';
+import VersionModel from './models/VersionModel.ts';
 
 /**
  * The core class that is instantiated when running a Sidetree node.
@@ -96,6 +98,7 @@ export default class Core {
 
     // DB initializations.
     await this.initializeDataStores(this.config.observingIntervalInSeconds);
+    // console.log(`After Data Stores inti!`);		
 
     await this.versionManager.initialize(
       this.blockchain,
@@ -115,13 +118,14 @@ export default class Core {
 
     // Only pull real blockchain time when observer is enabled, else only read from db.
     await this.blockchainClock.startPeriodicPullLatestBlockchainTime();
+    console.log(`After blockchain clock inti!`);		
 
     if (this.config.batchingIntervalInSeconds > 0) {
       this.batchScheduler.startPeriodicBatchWriting();
     } else {
       Logger.warn(LogColor.yellow(`Batch writing is disabled.`));
     }
-
+    console.log(`Before Download manager init!`);		
     this.downloadManager.start();
 
     await this.monitor.initialize();

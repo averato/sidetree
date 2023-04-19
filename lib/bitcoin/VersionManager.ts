@@ -1,10 +1,10 @@
-import BitcoinErrorCode from './ErrorCode';
-import BitcoinVersionModel from './models/BitcoinVersionModel';
-import IBitcoinConfig from './IBitcoinConfig';
-import IBlockMetadataStore from './interfaces/IBlockMetadataStore';
-import IFeeCalculator from './interfaces/IFeeCalculator';
-import ProtocolParameters from './models/ProtocolParameters';
-import SidetreeError from '../common/SidetreeError';
+import BitcoinErrorCode from './ErrorCode.ts';
+import BitcoinVersionModel from './models/BitcoinVersionModel.ts';
+import IBitcoinConfig from './IBitcoinConfig.ts';
+import IBlockMetadataStore from './interfaces/IBlockMetadataStore.ts';
+import IFeeCalculator from './interfaces/IFeeCalculator.ts';
+import ProtocolParameters from './models/ProtocolParameters.ts';
+import SidetreeError from '../common/SidetreeError.ts';
 
 /**
  * The class that handles code versioning.
@@ -87,7 +87,7 @@ export default class VersionManager {
     throw new SidetreeError(BitcoinErrorCode.VersionManagerVersionStringNotFound, `Unable to find version string for block ${blockHeight}.`);
   }
 
-  private async loadDefaultExportsForVersion (version: string, className: string): Promise<any> {
+  private async loadDefaultExportsForVersion (version: string, className: string): Promise<string> {
     const defaults = (await import(`./versions/${version}/${className}`)).default;
 
     return defaults;

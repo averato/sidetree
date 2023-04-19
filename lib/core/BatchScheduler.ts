@@ -1,11 +1,11 @@
-import timeSpan from 'time-span';
-import ErrorCode from './ErrorCode';
-import EventCode from './EventCode';
-import EventEmitter from '../common/EventEmitter';
-import IBlockchain from './interfaces/IBlockchain';
-import IVersionManager from './interfaces/IVersionManager';
-import Logger from '../common/Logger';
-import SidetreeError from '../common/SidetreeError';
+import timeSpan from 'npm:time-span';
+import ErrorCode from './ErrorCode.ts';
+import EventCode from './EventCode.ts';
+import EventEmitter from '../common/EventEmitter.ts';
+import IBlockchain from './interfaces/IBlockchain.ts';
+import IVersionManager from './interfaces/IVersionManager.ts';
+import Logger from '../common/Logger.ts';
+import SidetreeError from '../common/SidetreeError.ts';
 
 /**
  * Class that performs periodic writing of batches of Sidetree operations to CAS and blockchain.
@@ -28,7 +28,8 @@ export default class BatchScheduler {
    */
   public startPeriodicBatchWriting () {
     this.continuePeriodicBatchWriting = true;
-    setImmediate(async () => this.writeOperationBatch());
+    const setNow = setTimeout(async () => await this.writeOperationBatch(), 0);
+    clearTimeout(setNow);
   }
 
   /**

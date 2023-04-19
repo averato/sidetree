@@ -1,5 +1,5 @@
-import { Collection, Db, MongoClient } from 'mongodb';
-import Logger from '../common/Logger';
+import { Collection, Db, MongoClient } from 'npm:mongodb';
+import Logger from '../common/Logger.ts';
 
 /**
  * Base class that contains the common MongoDB collection setup.

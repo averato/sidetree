@@ -1,4 +1,4 @@
-import ResponseStatus from '../enums/ResponseStatus';
+import ResponseStatus from '../enums/ResponseStatus.ts';
 
 /**
  * Defines a Sidetree response object.

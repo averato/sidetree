@@ -1,12 +1,12 @@
-import AnchoredDataSerializer from './AnchoredDataSerializer';
-import ErrorCode from './ErrorCode';
-import ITransactionSelector from '../../interfaces/ITransactionSelector';
-import ITransactionStore from '../../interfaces/ITransactionStore';
-import Logger from '../../../common/Logger';
-import PriorityQueue from 'priorityqueue';
-import ProtocolParameters from './ProtocolParameters';
-import SidetreeError from '../../../common/SidetreeError';
-import TransactionModel from '../../../common/models/TransactionModel';
+import AnchoredDataSerializer from './AnchoredDataSerializer.ts';
+import ErrorCode from './ErrorCode.ts';
+import ITransactionSelector from '../../interfaces/ITransactionSelector.ts';
+import ITransactionStore from '../../interfaces/ITransactionStore.ts';
+import Logger from '../../../common/Logger.ts';
+import PriorityQueue from 'npm:priorityqueue';
+import ProtocolParameters from './ProtocolParameters.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
+import TransactionModel from '../../../common/models/TransactionModel.ts';
 
 /**
  * rate limits how many operations is valid per block

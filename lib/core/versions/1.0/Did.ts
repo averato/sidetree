@@ -1,12 +1,14 @@
-import CreateOperation from './CreateOperation';
-import Delta from './Delta';
-import Encoder from './Encoder';
-import ErrorCode from './ErrorCode';
-import JsonCanonicalizer from './util/JsonCanonicalizer';
-import Multihash from './Multihash';
-import OperationType from '../../enums/OperationType';
-import SidetreeError from '../../../common/SidetreeError';
-import SuffixDataModel from './models/SuffixDataModel';
+import CreateOperation from './CreateOperation.ts';
+import Delta from './Delta.ts';
+import Encoder from './Encoder.ts';
+import ErrorCode from './ErrorCode.ts';
+import JsonCanonicalizer from './util/JsonCanonicalizer.ts';
+import Multihash from './Multihash.ts';
+import OperationType from '../../enums/OperationType.ts';
+import SidetreeError from '../../../common/SidetreeError.ts';
+import SuffixDataModel from './models/SuffixDataModel.ts';
+import { Buffer } from 'node:buffer';
+
 
 /**
  * Class containing reusable Sidetree DID related operations.
@@ -105,8 +107,10 @@ export default class Did {
     // TODO: #965 - Need to decide on what hash algorithm to use when hashing suffix data - https://github.com/decentralized-identity/sidetree/issues/965
     const hashAlgorithmInMultihashCode = 18;
     const suffixDataBuffer = JsonCanonicalizer.canonicalizeAsBuffer(suffixDataModel);
+
     const multihash = Multihash.hash(suffixDataBuffer, hashAlgorithmInMultihashCode);
     const encodedMultihash = Encoder.encode(multihash);
+
     return encodedMultihash;
   }
 

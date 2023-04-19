@@ -1,9 +1,9 @@
-import IUnresolvableTransactionStore from './interfaces/IUnresolvableTransactionStore';
-import Logger from '../common/Logger';
-import { Long } from 'mongodb';
-import MongoDbStore from '../common/MongoDbStore';
-import TransactionModel from '../common/models/TransactionModel';
-import UnresolvableTransactionModel from './models/UnresolvableTransactionModel';
+import IUnresolvableTransactionStore from './interfaces/IUnresolvableTransactionStore.ts';
+import Logger from '../common/Logger.ts';
+import { Long } from 'npm:mongodb';
+import MongoDbStore from '../common/MongoDbStore.ts';
+import TransactionModel from '../common/models/TransactionModel.ts';
+import UnresolvableTransactionModel from './models/UnresolvableTransactionModel.ts';
 
 /**
  * Implementation of `IUnresolvableTransactionStore` that stores the transaction data in a MongoDB database.
